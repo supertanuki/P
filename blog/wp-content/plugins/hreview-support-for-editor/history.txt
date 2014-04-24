@@ -1,0 +1,51 @@
+Version 0.9 - 2011-12-28
+
+Fixed support for hReview button in HTML code editor, broken by WP v3.3
+
+-----
+Version 0.8 - 2010-11-07
+
+Changed the "my rating" text to "rated by" text.
+Added "reviewer" tag into review, using the current user display_name.
+
+-----
+Version 0.7 - 2008-12-21
+
+Added settings page to allow configuration of the text added in a review.
+Utilised thickbox script to do popup rather than an embedded div.
+
+-----
+Version 0.6 - 2008-06-28
+
+Removed dependency on buttonsnap plugin.
+Rewrote to work with WordPress v2.5 (although not backwardly compatible).
+Fixed bug with popup stylesheet not inheriting admin css, introduced in v0.5.
+
+-----
+Version 0.5 - 2008-03-22
+
+Removed the product type field.
+Put "item" into its own h2 tag to comply with hReview 0.3. (Thanks Gazza!)
+
+-----
+Version 0.4 - 2007-09-09
+
+Provides a button to allow code/HTML editor to insert hReviews in WP v2.1+
+
+-----
+Version 0.3 - 2007-06-05
+
+Uses TinyMCE plugin for WordPress v2.1 or later.
+
+-----
+Version 0.2 - 2006-09-23
+
+Added GPL licence text.
+Made coding style more like the WordPress standard.
+Moved styles into separate CSS files. (Thanks Kirk!)
+Removed hardcoded dependence on WordPress 2.0.4 stylesheet.
+
+-----
+Version 0.1 - 2006-09-05
+
+Original release.

@@ -1,0 +1,965 @@
+/*
+Theme Name: Alien Ship
+Theme URI: http://www.johnparris.com/alienship/
+Author: John Parris
+Author URI: http://www.johnparris.com/alienship/
+Description: Alien Ship is an HTML5 responsive starter theme for WordPress.
+Version: 0.61
+License: GNU General Public License
+License URI: license.txt
+Tags: blue, green, silver, red, orange, white, black, light, dark, one-column, two-columns, right-sidebar, fixed-width, flexible-width, custom-colors, custom-header, custom-menu, threaded-comments, translation-ready, sticky-post, rtl-language-support, microformats, featured-images, post-formats
+*/
+
+/* Fonts
+---------------------------- */
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: lighter;
+    font-style: normal;
+    src: local('Open Sans Light'), local('OpenSans-Light'), url('inc/fonts/OpenSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: normal;
+    src: local('Open Sans'), local('OpenSans'), url('inc/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-style: normal;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url('inc/fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: normal;
+    font-style: italic;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url('inc/fonts/OpenSans-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-style: italic;
+    src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url('inc/fonts/OpenSans-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cabin';
+    font-weight: normal;
+    font-style: normal;
+    src: local('Cabin'), local('Cabin'), url('inc/fonts/Cabin-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cabin';
+    font-weight: bold;
+    font-style: normal;
+    src: local('Cabin Bold'), local('Cabin-Bold'), url('inc/fonts/Cabin-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cabin';
+    font-weight: normal;
+    font-style: italic;
+    src: local('Cabin Italic'), local('Cabin-Italic'), url('inc/fonts/Cabin-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Cabin';
+    font-weight: bold;
+    font-style: italic;
+    src: local('Cabin Bold Italic'), local('Cabin-BoldItalic'), url('inc/fonts/Cabin-BoldItalic.ttf') format('truetype');
+}
+
+/* =Navigation and dropdowns
+----------------------------------------------- */
+
+/* body.logged-in > div.navbar-fixed-top {
+margin-top:28px;
+} */
+
+body.logged-in > div #page,
+body.logged-in > div.navbar-fixed-top {
+    /* position: relative !important; */
+    top: 28px !important;
+}
+
+/* Remove the rounded edges from the navbar */
+.navbar-inner {
+  border-radius: 0px 0px 0px 0px;
+}
+
+/* Set rounded edges on Main Menu navbar */
+#main-nav > .navbar .navbar-inner {
+  border-radius: 4px;
+}
+
+/* Change width of responsive menu button to match width of "Menu" text */
+.btn-navbar .icon-bar {
+  width: 35px;
+}
+
+/* Style "Menu" text in responsive menu button */
+.btn-navbar .icon-bar-text {
+  color: #F5F5F5;
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  width: auto;
+  text-shadow: 0 0 0em;
+}
+
+.btn-navbar > a.btn {
+  text-shadow: 0px;
+}
+
+/* Site description */
+.navbar .brand-desc {
+    color: #FFFFFF;
+    float: left;
+    font-size: 13px;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: -20px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 14px;
+}
+
+/* Footer Nav - Admin > Appearance > Menus > Bottom Menu */
+.footer-section {
+  padding-bottom: 10px;
+  padding-top: 20px;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
+
+.footer-nav li {
+  display: block;
+  float: right;
+  padding-left: 3%;
+  margin-bottom: 0;
+}
+
+/* Main Menu */
+.nav-collapse-main.collapse{height:auto;}
+
+@media (max-width: 480px) {
+  .nav-collapse-main {
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 979px) {
+  .navbar .nav-collapse-main {
+    clear: left;
+  }
+  .nav-collapse-main,
+  .nav-collapse-main.collapse {
+    overflow: hidden;
+    height: 0;
+  }
+}
+
+@media (min-width: 980px) {
+  .nav-collapse-main.collapse {
+  height: auto !important;
+  overflow: visible !important;
+  }
+}
+/* End of Main Menu */
+
+/* Mobile Footer Nav */
+@media only screen and (max-width: 767px) {
+ul.footer-nav.mobile,
+dl.nav.mobile {
+  width: auto;
+  max-width: 100%;
+  margin: 20px -10px 40px;
+  height: auto;
+  border-bottom: 1px solid #ccc;
+}
+ul.footer-nav.mobile li {
+  float: none;
+  height: auto;
+  padding-right: 0;
+}
+
+dl.nav.mobile dt {
+  display: none;
+}
+
+dl.nav.mobile dd {
+  float: none;
+  height: auto;
+}
+
+ul.footer-nav.mobile li a:hover {
+  color: #ffffff;
+  background-color: #0088CC;
+  text-decoration: none;
+}
+
+ul.footer-nav.mobile li a,
+dl.nav.mobile dd a {
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 18px 20px;
+  line-height: 1;
+  border: solid 0 #ccc;
+  border-width: 1px 0 0;
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+  font-size: 1.0rem;
+  -webkit-background-clip: padding-box; /* fix WebKit background bleed on border-radius */
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+ul.footer-nav.mobile li a.active,
+dl.nav.mobile dd a.active {
+  height: auto;
+  margin: 0;
+  border-width: 1px 0 0;
+}
+
+ul.footer-nav.mobile li.current-menu-item a,
+dl.nav.mobile dd.current-menu-item a,
+.nice.tabs.mobile dd.current-menu-item a {
+  border: none;
+  background: #00a6fc;
+  color: #fff;
+  margin: 0;
+  position: static;
+  top: 0px;
+  height: auto;
+  }
+}
+
+
+/* Various design elements
+-------------------------- */
+
+.sticky {
+  
+}
+
+/* Style the comments
+ ---------------------------------------*/
+ #comments {
+  border-top: 1px solid #EEEEEE;
+  margin: 40px 0 0;
+  padding: 40px 0 0;
+ }
+
+.comment.thread-even > article {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+#comments cite {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#comments .comment-meta {
+  font-size: 12px;
+}
+
+/* Style comment reply link as a button */
+.comment-reply-link {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none 100% 100% 100% 100% / 1 1 1 1 / 0 0 0 0 stretch stretch;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #F5F5F5;
+  background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+  background-repeat: repeat-x;
+  border-color: #CCCCCC #CCCCCC #B3B3B3;
+  border-radius: 4px 4px 4px 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 11px;
+  line-height: 14px;
+  margin-bottom: 0;
+  padding: 2px 6px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+}
+
+/* Hover effect for comment reply button */
+.comment-reply-link:hover {
+  background-color: #E6E6E6;
+  background-position: 0 -15px;
+  -moz-transition: background-position 0.1s linear 0s;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Pad the comment list */
+div.reply,
+.commentlist {
+  padding-bottom: 7px;
+}
+
+article.comment {
+  padding: 7px;
+  margin-bottom: 20px;
+}
+
+div.comment-author {
+  margin-bottom: 7px;
+}
+
+div.comment-content {
+  margin-top: 7px;
+}
+
+div.comment-author > img.avatar {
+  margin-right: 0.846em;
+  background: none repeat scroll 0 0 #FFFFFF;
+  padding: 3px;
+  vertical-align: middle;
+}
+
+#comments ul.children {
+  margin-left: 20px;
+}
+
+#comments ul.children li {
+  list-style-type: none;
+  border-top: 1px solid #E6E6E6;
+}
+
+/* Highlight comments made by the post author */
+.bypostauthor > article.comment {
+  background: none repeat scroll 0 0 rgba(70, 165, 70, 0.09);
+  padding-left: 10px;
+}
+
+.bypostauthor > article img.avatar {
+  border-bottom: 4px solid #46A546;
+}
+/* End of comments */
+
+#page {
+  margin: 0px auto;
+  max-width: 940px;
+}
+
+/* The content wrapper home page called in index.php */
+#main {
+  clear: both;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+#main-row {
+  margin-top: 10px;
+}
+
+/* The article wrapper that displays the content of a post/page/whatever */
+div#content > article {
+    clear: both;
+    margin: 0 0 18px;
+    padding-bottom: 30px;
+    overflow: hidden; 
+}
+
+article > .entry-content p {
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  line-height: 150%;
+}
+
+/* hgroup is the header area that contains the site title and description. */
+hgroup {
+	margin-bottom: 10px;
+}
+
+header#masthead {
+  padding-bottom: 20px;
+}
+
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 1.625em;
+}
+
+/* a small bottom margin prevents content floating under images */
+p img {
+  margin-bottom: 0.5em;
+}
+
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"],
+#content .gallery .gallery-icon img {
+  border: 1px solid #DDDDDD;
+  padding: 6px;
+  height: auto;
+}
+
+img.wp-post-image {
+  border: 0;
+  padding: 0;
+  height: auto;
+}
+
+img.header-image,
+img.wp-post-image,
+img.avatar {
+  max-width: 100%;
+  height: auto;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+/* Fix carousel images */
+.carousel-inner > .item > a > img {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+a.carousel-control {
+  font-family: "Helvetica Neue";
+}
+
+h1, h2, h3, h4, h5, h6 {
+    clear: both;
+}
+
+h3, h4, h5, h6 {
+    line-height: 36px;
+}
+
+.alert strong {
+  font-size: 1.15em;
+}
+
+/* Post/page and comment content */
+.entry-content {
+  padding: 15px 0;
+}
+
+.entry-content h1,
+.entry-content h2,
+.comment-content h1,
+.comment-content h2 {
+  font-weight: bold;
+  margin: 0 0 .8125em;
+}
+
+/* Remove margins from page-header that get set above if used inside a post/page */
+.page-header h1,
+.page-header h2 {
+  margin: 0;
+}
+
+/* Space out the archives descriptions from the names */
+.page-header .taxonomy-description p {
+  margin: 10px 3px;
+  font-size: 1.15em;
+}
+
+/* Fluid images for posts, comments, and widgets */
+.entry-content img,
+.comment-content img,
+.widget img {
+  max-width: 100%;
+}
+
+/* The post/page title. Pad the bottom */
+h1.entry-title {
+  padding-bottom: 5px;
+}
+
+/* Remove hover underlining from post/page title link */
+.entry-title a:hover {
+  text-decoration: none;
+}
+
+/* Pads the paging links within a post or page */
+.page-links {
+  padding: 7px 0;
+}
+
+/* Page links */
+.pagination li.active {
+  -moz-border-bottom-colors: none;
+    -moz-border-image: none 100% 100% 100% 100% / 1 1 1 1 / 0 0 0 0 stretch stretch;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #DDDDDD;
+    border-style: solid;
+    border-width: 1px 1px 1px 0;
+    float: left;
+    line-height: 34px;
+    padding: 0 14px;
+    text-decoration: none;
+    background-color: #EEEEEE;
+  }
+
+.pagination li.active:first-child,
+.pagination > ul > a:first-child {
+  border-left-width: 1px;
+}
+
+/* Meta data displayed within a post header */
+header .entry-meta {
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+/* The meta data displayed within a post footer. */
+footer.entry-meta {
+  font-size: 11px;
+  border-bottom: 1px solid #EEEEEE;
+  margin-bottom: 7px;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+}
+
+p img,
+.wp-caption {
+  margin-top: 0.4em;
+}
+
+/* WordPress image captions */
+.wp-caption {
+  background: #eee;
+  margin-bottom: 1.625em;
+  max-width: 96%;
+  padding: 9px;
+}
+
+.wp-caption img {
+  display: block;
+  margin: 0 auto;
+  max-width: 98%;
+}
+
+.wp-caption .wp-caption-text,
+.gallery-caption {
+  color: #666;
+  font-family: Georgia, serif;
+  font-size: 12px;
+}
+
+.wp-caption .wp-caption-text {
+  margin-bottom: 0.6em;
+  padding: 10px 0 5px 40px;
+  position: relative;
+}
+
+.wp-caption .wp-caption-text:before {
+  color: #666;
+  content: '\2014';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: bold;
+  margin-right: 5px;
+  position: absolute;
+  left: 10px;
+  top: 7px;
+}
+
+/* Featured posts grid */
+ul#featured-posts-grid > li {
+  padding-bottom: 2px;
+  display: block;
+  height: auto;
+  float: left;
+  background-color: #EEEEEE;
+  margin-bottom: 25px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+ul#featured-posts-grid > li > header > h4 {
+  line-height: 18px;
+}
+
+div#innergrid {
+  padding: 0 10px 12px;
+  height: 85%;
+}
+
+div#innergrid > p {
+  line-height: 24px;
+  margin-bottom: 0;
+}
+
+div#innergrid > a > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+}
+
+.grid-header {
+  text-align: center;
+  line-height: 18px;
+  padding-bottom: 5px;
+}
+
+#grid-footer-meta {
+  font-size: 12px; text-align: center;
+  margin-bottom: .125em;
+}
+/* End of featured posts grid */
+
+
+/* Put a border above copyright info and bottom menu in footer. Center info. Pad it. */
+body > footer {
+	border-top: solid 1px #ccc;
+	padding: 7px 0px 7px 0px;
+	text-align: center;
+}
+
+/* Text meant only for screen readers */
+.assistive-text {
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+
+/* Alignment */
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 1.625em;
+}
+
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 1.625em;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img.alignright {
+  float:right;
+  margin: 0 0 1em 1em;
+}
+
+img.alignleft {
+  float:left;
+  margin:0 1em 1em 0;
+}
+
+img.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+}
+
+/* Transform text to uppercase on the post category and tag labels/links */
+.cat-links > a.label,
+.tag-links > a.label {
+  text-transform: uppercase;
+}
+
+/* Clear */
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+/* Post formats
+------------------------------------ */
+
+/* Quote post format */
+article.format-quote {
+    background: url("img/quote.png") no-repeat scroll left top;
+}
+
+article.format-quote .entry-content {
+  padding: 40px 0;
+  margin-bottom: 75px;
+}
+
+article.format-quote cite {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+article.format-quote blockquote {
+  border-left: 2px solid #EEEEEE;
+  margin: 0 0 18px 20px;
+}
+
+article.format-quote blockquote p {
+  font-family: Georgia, Serif;
+  font-size: 1.2em;
+  font-style: italic;
+  line-height: 23px;
+  margin-bottom: 10px;
+}
+
+
+/* Panels inspired by Zurb Foundation
+--------------------------------------- */
+.panel {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #E6E6E6;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  background: -moz-linear-gradient(center top, #EEEEEE 0%, #E6E6E6 100%) repeat scroll 0 0 transparent;
+  background: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#E6E6E6), color-stop(0.5, #E6E6E6));
+
+}
+.panel blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* =Widgets
+----------------------------------------------- */
+
+.widget {
+	margin: 0 0 1.5em;
+}
+
+.widget select,
+.widget input {
+  max-width: 95%;
+}
+
+/* Hide search widget submit button */
+#searchsubmit {
+	display: none;
+}
+
+/* Shorten the search widget input */
+input#s {
+  width: 95%;
+}
+
+.footerwidget {
+  padding: 0px 0px 25px 0px;
+}
+
+#logout-link-widget {
+  font-size: 11px;
+}
+
+.alienship-login-form .login-username,
+.alienship-login-form .login-password {
+  margin-bottom: 0;
+}
+
+.alienship-login-form .login-remember input {
+  float: left;
+  margin-right: 5px
+}
+  
+/* Responsive layout
+---------------------------------------------- */
+@media only screen and (max-width: 480px) {
+  /* Reduce font sizes on mobile */
+  h1 { font-size: 20px; line-height: 1.3; }
+  h2 { font-size: 18px; line-height: 1.3; }
+  h3 { font-size: 16px; line-height: 1.3; }
+ .navbar .brand { font-size: 17px !important; margin-left: -20px; }
+ .btn-navbar { margin-right: -10px; }
+}
+
+@media only screen and (max-width: 767px) {
+  /* Change Hero styling to better fit on mobile devices */
+  .hero-unit {
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+  }
+
+  .hero-unit h1 {
+    margin-bottom: 0;
+    font-size: 50px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .hero-unit p {
+    padding: 1px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 27px;
+  }
+
+}
+  
+@media only screen and (max-width: 979px) {
+  /* Improve font size and spacing on dropdown menu on mobile/tablets */
+  .navbar .nav > li > a, .navbar .dropdown-menu a {
+    font-size: 18px;
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 15px 20px;
+  }
+  /* Fix navbar top margin in responsive when admin bar is showing */
+  body.logged-in > div.navbar-fixed-top {
+    margin-top: 0px;
+  }
+}
+
+/* Override default Bootstrap body padding and navbar margins */
+@media (max-width: 767px) {
+  body {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .navbar {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  /* Pad the #page */
+  #page,
+  body.page-template-page-hero-php > #main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  /* div.nav-collapse > ul.nav,
+  div.nav-collapse > form.navbar-search {
+    position: relative;
+    bottom: 28px;
+  } */
+} 
+
+/*  --------------------------------------------------
+  :: Block grids - Thanks to Zurb Foundation
+  http://foundation.zurb.com/
+  
+  These are 2-up, 3-up, 4-up and 5-up ULs, suited
+  for repeating blocks of content. Add 'mobile' to
+  them to switch them just like the layout grid
+  (one item per line) on phones
+  
+  For IE7/8 compatibility block-grid items need to be
+  the same height. You can optionally uncomment the
+  lines below to support arbitrary height, but know
+  that IE7/8 do not support :nth-child.
+  -------------------------------------------------- */
+  
+  .block-grid {
+    display: block;
+    overflow: hidden;
+  }
+
+  .block-grid > li {
+    display: block;
+    height: auto;
+    float: left;
+    padding: 10px 0;
+    margin-bottom: 12px;
+  }
+
+  .block-grid > li > blockquote {
+    border-left: none;
+    padding: 0 15px;
+  }
+  
+  .block-grid.two-up {
+    margin-left: -4%;
+  }
+  
+  .block-grid.two-up > li {
+    margin-left: 4%;
+    width: 46%;
+  }
+  
+  .block-grid.three-up {
+    margin-left: -2%;
+  }
+
+  .block-grid.three-up > li {
+    margin-left: 2%;
+    width: 31.3%;
+  }
+  
+  .block-grid.four-up {
+    margin-left: -2%;
+  }
+
+  .block-grid.four-up > li {
+    margin-left: 2%;
+    width: 23%;
+  }
+  
+  .block-grid.five-up {
+    margin-left: -1.5%;
+  }
+
+  .block-grid.five-up > li {
+    margin-left: 1.5%;
+    width: 18.5%;
+  }
+
+/* --------------------------------------------------
+  :: Mobile Block Grids
+  -------------------------------------------------- */ 
+  
+  @media only screen and (max-width: 767px) {
+    .block-grid.mobile {
+      margin-left: 0;
+    }
+
+    .block-grid.mobile > li {
+      float: none;
+      width: 100%;
+      margin-left: 0;
+    }
+  }

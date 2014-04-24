@@ -1,0 +1,99 @@
+*
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:12px;
+}
+
+a
+{
+	color:#6699FF;
+	text-decoration:none;
+}
+
+a:hover
+{
+	color:#000000;
+	text-decoration:underline;
+}
+
+.table_journee td
+{
+	padding:4px;
+	margin:0px;
+	background-color:#D0D9EE;
+}
+
+.table_match
+{
+	width:100%;
+	margin-bottom:10px;
+}
+
+.table_match td
+{
+	padding:2px;
+	margin:0px;
+	background-color:#eeeeee;
+}
+
+.table_match_line
+{
+	padding:0px !important;
+	margin:0px !important;
+	background-color:#ffffff !important;
+}
+
+.adminmenu
+{
+	background-color:#f5f5f5;
+}
+
+.adminmenu a
+{
+	color:#2255FF;
+	text-decoration:none;
+	font-weight:bold;
+}
+
+.adminmenu a:hover
+{
+	color:#000;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+legend
+{
+	background-color:#ddd;
+	padding:4px;
+	border:none;
+}
+
+fieldset
+{
+	background-color:#eee;
+	border:none;
+}
+
+.info
+{
+	font-size:14px;
+	background-color:#FFFF00;
+	font-weight:bold;
+	padding:10px;
+}
+
+.menufixe {
+  position: absolute;
+  bottom: 0;
+  border-left:1px solid #000000;
+  border-right:1px solid #000000;
+  border-top:1px solid #000000;
+  background:#ddd;
+  padding: 1em;
+  width: 90%;
+  z-index: 2;
+}
+html>body .menufixe {
+  position: fixed;
+}

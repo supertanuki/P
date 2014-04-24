@@ -1,0 +1,10 @@
+config.php
+avatars/
+upload/
+
+blog/wp-config.php
+blog/wp-content/uploads
+
+sitemap.xml.gz
+sitemap.xml
+stats/

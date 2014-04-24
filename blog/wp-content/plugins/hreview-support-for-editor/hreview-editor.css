@@ -1,0 +1,16 @@
+div.hreview p.item {
+    font-size: 1.6em;
+    text-align: left;
+    margin-top: !important 0px;
+    color: #1374B9;
+}
+
+div.hreview p.summary {
+    font-weight: bold;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+div.hreview p.myrating {
+    font-weight: bold;
+}

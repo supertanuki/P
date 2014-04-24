@@ -1,0 +1,10 @@
+ErrorDocument 404 /404.html
+#Redirect permanent /index.php http://www.pronoplus.com/panne.html
+Redirect permanent /iphone http://www.pronoplus.com/mobile
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /url_redirect.php [L]
+</IfModule>

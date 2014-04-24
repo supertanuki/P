@@ -1,0 +1,31 @@
+Known Bugs
+----------
+
+1. FIXED in version 0.7 (using WordPress styles)
+Was: Fields are not lined up nicely in "New Review" with Internet Explorer
+Since version: 0.1
+Workaround: Use Firefox
+
+2. Reviews are not inserted into editor at previous cursor point with
+   Internet Explorer
+Since version: 0.1
+Workaround: Use Firefox, or cut-n-paste review to correct place
+
+3. FIXED in version 0.5 (review type removed)
+Was: Hidden text for review type (e.g. product) is seen in editor with
+   Internet Explorer
+Since version: 0.1
+Workaround: Use Firefox
+
+4. FIXED in version 0.7 (settings page added)
+Was: Text (such as "My rating") is hardcoded and difficult to change (e.g. 
+   to another language)
+Since version: 0.1
+Workaround: Edit in the hreview.php file in the WordPress admin console's
+Plugin Editor.
+
+6. When review entry form first appears, the cursor does not appear in any
+   of the form's fields
+Since version: 0.1
+Workaround: Click the mouse in a form field to have the cursor appear in
+the form.

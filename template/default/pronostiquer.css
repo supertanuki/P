@@ -1,0 +1,173 @@
+.grille_equipe_gauche, .grille_equipe_droite, .grille_score
+{
+	/*padding:2px;*/
+}
+.grille_equipe_gauche
+{
+	text-align:right;
+}
+.grille_equipe_gauche, .grille_equipe_droite
+{
+	color:#666;
+}
+.grille_score
+{
+	text-align:center;
+}
+.grille_score_input
+{
+	width:30px;
+	height:16px;
+	text-align:center;
+}
+.grille_mise_slider
+{
+	width:200px;
+	padding-bottom:2px;
+}
+.grille_mise
+{
+}
+
+.grille_track
+{
+	width:200px;
+	background:#CCCCCC;
+	height:14px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.grille_handle
+{
+	width:14px;
+	height:14px;
+	background:url(curseur.gif) no-repeat #FF6600;
+	cursor: col-resize;
+}
+.grille_handle_off
+{
+	width:14px;
+	height:14px;
+	background-color:#aaa;
+}
+
+.details_libelle
+{
+	width:142px;
+	font-size:11px;
+	padding:4px;
+	color:#666;
+}
+.details_equipe_gauche
+{
+	width:60px;
+	text-align:center;
+	padding:4px;
+}
+.details_separation
+{
+	width:50px;
+	padding:4px;
+	text-align:center;
+}
+.details_equipe_droite
+{
+	width:60px;
+	padding:4px;
+	text-align:center;
+}
+
+/* on / off */
+.details_match_off, .grille_match_off, .grille_score_off, .grille_mise_off, .grille_mise_slider_off, .match_line_off
+{
+}
+.details_match_on, .grille_match_on, .grille_score_on, .grille_mise_on, .grille_mise_slider_on, .match_line_on
+{
+	background-color:#E4E4E4;
+}
+
+.details_match_off, .details_match_on
+{
+	margin-bottom:6px;
+	padding-bottom:10px;
+}
+
+.grille_match_off, .grille_match_on
+{
+	padding:4px 10px 7px 10px;
+}
+
+.grille_score_off, .grille_score_on
+{
+	padding:2px;
+	margin-top:4px;
+}
+
+.grille_mise_off, .grille_mise_on
+{
+	padding:4px 8px 3px 0;
+	margin-right:10px;
+}
+
+.grille_mise_slider_off, .grille_mise_slider_on
+{
+
+}
+/* on / off */
+
+
+.details_match_off .tab_details_match td
+{
+	border-bottom:1px solid #fff;
+}
+
+.details_match .tab_details_match td
+{
+	border-bottom:1px solid #ddd;
+}
+
+.tab_tendance td
+{
+	border:none !important;
+}
+
+.grille_info_mise
+{
+	width:30px;
+	text-align:center;
+	border:none;
+	margin-left:1px;
+	background-color:transparent;
+}
+.grille_libelle_mise
+{
+	padding-top:12px;
+	border-bottom:1px solid #ddd;
+}
+
+.close_match_link
+{
+}
+.close_match_link a
+{
+	color:#666 !important;
+	text-decoration:none !important;
+	font-size:11px !important;
+}
+.close_match_link a:hover
+{
+	color:#000 !important;
+	text-decoration:none !important;
+	font-size:11px !important;
+}
+
+#content h2
+{
+	color:#FFFFFF;
+	font-size:13px;
+	font-weight:bold;
+	padding:3px 4px 4px 4px;
+	margin:0;
+	background-position:bottom;
+}

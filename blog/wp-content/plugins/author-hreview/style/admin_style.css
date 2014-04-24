@@ -1,0 +1,105 @@
+/*
+File:			style.css
+Description:	Custom style of Thesis Reviews plugin - admin page
+*/
+.clear { clear:both;}
+
+.fixed .column-rating, .fixed .column-visible {
+	width:20%;
+}
+.wpar_icon32 {
+	background: transparent url(../images/wpar_icon_32.png) 0 0 no-repeat;
+}
+.ta_rating { 
+	position: relative;
+	background: transparent url(../images/stars.png) 0 -16px repeat-x;
+	width: 80px;
+	height: 16px;
+	margin: 5px 0;
+}
+.ta_rating .result {
+	position: absolute;
+	background: transparent url(../images/stars.png) 0 0 repeat-x;
+	top: 0px;
+	left: 0px;
+	height: 16px;
+	z-index: 102;
+	text-indent: -9999px;
+}
+.required {
+	color: #72A1C6;
+	font-style:italic;
+}
+/* setting page */
+.arwp_admin {
+	float:right;
+	margin-left:20px;
+}
+.wpar_fb_rss li {
+	padding-left:22px;
+	background: transparent url(../images/fb.png) 0 -16px no-repeat;
+}
+.wpar_fb_rss li:hover {
+	background: transparent url(../images/fb.png) 0 0 no-repeat;
+}
+.wpar_admin_link {
+	margin-top:20px;
+}
+.wpar_admin_link li {
+	padding-left:22px;
+	background: transparent url(../images/stars.png) 0 -16px no-repeat;
+}
+.wpar_admin_link li:hover {
+	background: transparent url(../images/stars.png) 0 0 no-repeat;
+}
+li.wpar_paypal {
+	margin-top:20px;
+	padding-left:60px;
+	background: transparent url(../images/paypal.png) 0 -16px no-repeat;
+}
+li.wpar_paypal:hover {
+	background: transparent url(../images/paypal.png) 0 0 no-repeat;
+}
+/* news admin page */
+#wpar_news_headline {
+	margin-bottom: 10px;
+}
+#wpar_news_headline a {
+	color: #D54E21;
+}
+.wpar_news_item {
+	border-bottom: 1px solid #d5d5d5;
+	margin-bottom: 23px;
+	margin-left: 38px;
+	padding-bottom: 5px;
+	width: 722px;
+}
+.wpar_news_item h3 {
+	margin-top: 0;
+}
+.wpar_news_item:last-child {
+	border: 0;
+}
+.wpar_news_item h3 {
+	font-size: 23px;
+	font-weight: normal;
+	line-height: 30px;
+	margin-bottom: 20px;
+}
+.wpar_news_item h3 a {
+	color: #21759b;
+	text-decoration: none;
+}
+.wpar_news_item h3 a:hover {
+	text-decoration: underline;
+}
+.wpar_news_item p {
+	color: #686767;
+	margin-bottom: 22px;
+}
+.wpar_news_item_creator, .wpar_news_item_date {
+	font-weight: bold;
+}
+.wpar_news_item_creator {
+	color: #d54e21;
+}
