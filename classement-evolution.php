@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -137,22 +137,22 @@ if(count($myStats) >= 2) {
 	font-weight:bold !important;
 }
 </style>
-<?
+<?php
 }
 ?>
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('classement');
 ?>
 <div id="content">
-<h2 class="title_green">Evolution au <?=$pp_class_label->label?></h2>
+<h2 class="title_green">Evolution au <?php echo $pp_class_label->label?></h2>
 <p>Graphique de mon évolution au classement. En passant la souris sur les points, le n° de journée et le classement s'affichent.</p>
 
 
-<?
+<?php
 if(count($myStats) >= 2) {
 ?>
 <div id="container" style="width:98%; height:300px; margin:10px;"></div>
@@ -164,19 +164,19 @@ if(count($myStats) >= 2) {
 <? echo $table; ?>
 </div>
 
-<p align="center"><a href="/class.php?id=<?=$pp_class_label->id_class?>" class="link_button">Voir le <?=$pp_class_label->label?></a></p>
+<p align="center"><a href="/class.php?id=<?php echo $pp_class_label->id_class?>" class="link_button">Voir le <?php echo $pp_class_label->label?></a></p>
 
-<?
+<?php
 } else {
 ?>
 <p class="message_error">Il n'y a pour l'instant pas assez de grilles jouées pour afficher le graphique d'évolution pour ce classement !</p>
-<?
+<?php
 }
 ?>
 
 <hr>
 
-<?
+<?php
 // Les autres classements
 $SQL = "SELECT `pp_class`.`id_class`, `pp_class`.`type`, `pp_class`.`label`, `pp_info_country`.`label` AS `country`
 		FROM `pp_class` LEFT JOIN `pp_info_country` ON `pp_info_country`.`id_info_country`=`pp_class`.`id_info_country`
@@ -221,7 +221,7 @@ if(DB::isError($result))
 </div>
 
 
-<?
+<?php
 if(count($myStats) >= 2) {
 ?>
 <script type="text/javascript">
@@ -232,7 +232,7 @@ document.observe('dom:loaded', function(){
 	var minY = 0;
 	
 	<? foreach($myStats as $matches) { ?>
-	d.push([i,-<?=$matches['class']?>]);
+	d.push([i,-<?php echo $matches['class']?>]);
 	i++;
 	<? } ?>
 	
@@ -280,10 +280,10 @@ document.observe('dom:loaded', function(){
 	);
 });			
 </script>
-<?
+<?php
 }
 ?>
 
-<?
+<?php
 pagefooter();
 ?>

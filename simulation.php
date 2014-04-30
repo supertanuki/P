@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -81,7 +81,7 @@ pageheader("Calculer le classement provisoire : ".formatDbData($pp_matches->labe
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -91,12 +91,12 @@ echo getOnglets();
 <div id="content">
 
 
-<h2 class="title_green"><?='Calculer le classement provisoire : ' . formatDbData($pp_matches->label)?></h2>
+<h2 class="title_green"><?php echo 'Calculer le classement provisoire : ' . formatDbData($pp_matches->label)?></h2>
 
 
 
 
-<?
+<?php
 echo "<table width=\"100%\" border=\"0\" cellspacing=\"4\" cellpadding=\"0\"><tr>
 		<td valign=\"top\" width=\"1%\"><img src=\"template/default/".$pp_matches->image."\" class=\"preview_matches_image\" border=\"0\" /></td>
 		<td  valign=\"top\" width=\"99%\">";
@@ -167,7 +167,7 @@ new Effect.Highlight('msg_error', {startcolor:'#ffff00', duration:1});
 
 
 
-<?
+<?php
 echo "<form method=\"post\" action=\"\" class=\"niceform\">
 		<input type=\"hidden\" name=\"id_matches\" value=\"".$pp_matches->id_matches."\">
 		<table border=\"0\" width=\"100%\" border=\"0\" cellpadding=\"4\" cellspacing=\"0\" align=\"center\">";
@@ -240,7 +240,7 @@ echo "<tr><td colspan=\"3\" align=\"center\">&nbsp;<br />
 ?>
 <script type="text/javascript">
 <!--
-var timerebours = <?=$timerebours;?>;
+var timerebours = <?php echo $timerebours;?>;
 
 function rebour()
 {
@@ -258,7 +258,7 @@ var timerrebour = setInterval("rebour()", 1000);
 -->
 </script>
 
-<?
+<?php
 		}
 }
 ?>
@@ -270,6 +270,6 @@ var timerrebour = setInterval("rebour()", 1000);
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

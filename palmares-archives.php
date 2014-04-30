@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -40,7 +40,7 @@ pageheader("Archives de Prono+");
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -58,7 +58,7 @@ echo getOnglets();
 		<form>
 		Afficher le palmarès général de l'année : 
 		<select name="annee">
-			<?
+			<?php
 			$SQL = "SELECT DISTINCT saison_annee FROM pp_archives ORDER BY `saison_annee` DESC";
 			$result = $db->query($SQL);
 			if(DB::isError($result)) die ("<li>ERROR : ".$result->getMessage()."<li>$SQL");
@@ -66,7 +66,7 @@ echo getOnglets();
 			{
 				?>
 				<option value="<? echo $pp_class->saison_annee; ?>" <? echo $annee==$pp_class->saison_annee ? 'selected="selected"' : ''; ?>><? echo $pp_class->saison_annee . ' - ' . ($pp_class->saison_annee+1); ?></option>
-				<?
+				<?php
 			}
 			?>
 		</select> <input type="submit" class="link_button" value="Ok" />
@@ -74,12 +74,12 @@ echo getOnglets();
 	</td>
 	
 	<td style="background:#eee" width="50%" valign="top">
-	<?
+	<?php
 	if($user && $pp_user->id_user != $user->id_user)
 	{
 		?>
-		ou <a href="/palmares-archives.php?q=<?=urlencode(htmlspecialchars($user->login))?>" class="link_button">Afficher mon palmarès personnel</a>
-		<?
+		ou <a href="/palmares-archives.php?q=<?php echo urlencode(htmlspecialchars($user->login))?>" class="link_button">Afficher mon palmarès personnel</a>
+		<?php
 	}
 	?>
 	</td>
@@ -94,23 +94,23 @@ echo getOnglets();
 	
 	
 	
-<?
+<?php
 // classement joueur
 if($pp_user->id_user)
 {
 	?>
 	<p>
-	<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">
-	<?
+	<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">
+	<?php
 	if($avatar = getAvatar($pp_user->id_user, $pp_user->avatar_key, $pp_user->avatar_ext, 'small')) {
 	?>
-		<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
+		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
 	<? } else { ?>
-		<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
+		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
 	<? } ?>
-	Palmarès de : <br/><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?=htmlspecialchars($pp_user->login); ?></a> | <a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">Voir le profil</a>
+	Palmarès de : <br/><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?php echo htmlspecialchars($pp_user->login); ?></a> | <a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">Voir le profil</a>
 	</p>
-	<?
+	<?php
 	
 	
 	
@@ -364,6 +364,6 @@ if($pp_user->id_user)
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

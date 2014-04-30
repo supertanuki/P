@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Création grille de pronostics
@@ -190,7 +190,7 @@ function ValidAddMatches()
 	<input id="matches_label" name="label" type="text" value="" size="50" maxlength="250" /> <a href="#" onclick="$('matches_label').value = ''">X</a><br />
   Titre prédéfinis : <a href="#" onclick="$('matches_label').value = 'Championnats européens'">Championnats européens</a>
   <br /><br />
-	<?
+	<?php
   /*
   Description<br />
 	<textarea name="description" cols="50"></textarea><br /><br />
@@ -210,7 +210,7 @@ function ValidAddMatches()
     <option value="diversfoot.png">Divers foot</option>
 	</select><br /><br />
 	
-	<?
+	<?php
   // tous les matchs dans un délai d'un mois
   $matches = array();
   $SQL = "SELECT `pp_info_match`.`id_info_match`, `pp_info_match`.`id_info_matches`, IF(`pp_match`.`score` != 'R-R', `pp_match`.`id_match`, 0) AS `id_match`,
@@ -356,7 +356,7 @@ function ValidAddMatches()
 	
 	
 	
-	<?
+	<?php
 	// Match de coupe ?
 	$SQL = "SELECT `pp_cup_matches`.`id_cup_matches`, `pp_cup`.`label`, `pp_cup_matches`.`number_tour`
 			FROM `pp_cup_matches`
@@ -373,14 +373,14 @@ function ValidAddMatches()
 		{
 			?>
 			Assigner au match de coupe :<br />
-			<?
+			<?php
 			if($pp_cup_matches = $result->fetchRow())
 			{
 				echo "<input name=\"cup_matches\" type=\"checkbox\" id=\"cup_matches\" value=\"".$pp_cup_matches->id_cup_matches."\" />&nbsp;<label for=\"cup_matches\">".formatDbData($pp_cup_matches->label)." - Tour ".$pp_cup_matches->number_tour."</label><br />";
 			}
 			?>
 			<br /><br />
-			<?
+			<?php
 		}
 	}
 	?>
@@ -390,7 +390,7 @@ function ValidAddMatches()
 	
 	Assigner aux classements :<br /><br />
 	<fieldset><legend>Classements Généraux</legend>
-	<?
+	<?php
 	// classements généraux ?
 	$SQL = "SELECT `pp_class`.`id_class`, `pp_class`.`label`, `pp_info_country`.`label` AS `country`
 			FROM `pp_class` LEFT JOIN `pp_info_country` ON `pp_info_country`.`id_info_country`=`pp_class`.`id_info_country`
@@ -412,7 +412,7 @@ function ValidAddMatches()
 	</fieldset><br />
 	
 	<fieldset><legend>Classement mensuel</legend>
-	<?
+	<?php
 	// classement mensuel ?
 	$SQL = "SELECT `pp_class`.`id_class`, `pp_class`.`label`, `pp_info_country`.`label` AS `country`
 			FROM `pp_class` LEFT JOIN `pp_info_country` ON `pp_info_country`.`id_info_country`=`pp_class`.`id_info_country`
@@ -435,11 +435,11 @@ function ValidAddMatches()
 	?>
 	</fieldset>
 	
-	<?
+	<?php
 	/*
 	?><br />
 	Assigner au Pays :<br />
-	<?
+	<?php
 	// classements généraux ?
 	$SQL = "SELECT `pp_info_country`.`id_info_country`, `pp_info_country`.`label`
 			FROM `pp_info_country`
@@ -467,12 +467,12 @@ function ValidAddMatches()
 <div id="menufixe" class="menufixe">
 </div>
 
-<?
+<?php
 /*
 <fieldset style="width:25%; float:left">
 	<legend>N'afficher que les matchs de...</legend>
 	<form method="post" action="matches_add.php">
-	<?
+	<?php
 	$SQL = "SELECT `pp_league`.`id_league`, `pp_league`.`label` AS `league`, `pp_info_country`.`label` AS `country`
 			FROM `pp_league` INNER JOIN `pp_info_country` ON `pp_info_country`.`id_info_country`=`pp_league`.`id_info_country`
 			ORDER BY `country`, `league`";
@@ -495,7 +495,7 @@ function ValidAddMatches()
 	<br /><br /><input type="submit" value="Valider" disabled="disabled" />
 	</form>
 </fieldset>
-<?
+<?php
 */
 
 

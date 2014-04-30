@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Liste grilles de pronostics
@@ -187,7 +187,7 @@ function show_update_match(id_matches, id_match)
 
 <? if($message) echo "<p class=\"info\">$message</p>"; ?>
 
-<?
+<?php
 liste_matches_calcul('Grille de pronostics', $is_calcul='', $limit=0, $order='date_last_match', $ordertype='ASC');
 echo '<br />';
 liste_matches_calcul('Grilles calculées récemment (au cas où erreur de score)', $is_calcul='1', $limit=4, $order='date_calcul', $ordertype='DESC');
@@ -199,7 +199,7 @@ function liste_matches_calcul($libelle, $is_calcul='', $limit=0, $order='date_la
 	<fieldset>
 		<legend><? echo $libelle ?></legend>
 
-		<?
+		<?php
 		$SQL = "SELECT `pp_matches`.`id_matches`, `pp_matches`.`label`, `pp_matches`.`id_cup_matches`,
 				DATE_FORMAT(`pp_matches`.`date_first_match`, '".$txtlang['AFF_DATE_TIME_SQL']."') AS `date_first_match_format`,
 				DATE_FORMAT(`pp_matches`.`date_last_match`, '".$txtlang['AFF_DATE_TIME_SQL']."') AS `date_last_match_format`,
@@ -289,17 +289,17 @@ function liste_matches_calcul($libelle, $is_calcul='', $limit=0, $order='date_la
 		}
 		?>
 	</fieldset>
-	<?
+	<?php
 }
 ?>
 
 <? if($_POST[id_matches]) { ?>
 <script language="javascript">
-showTableMatches(<?=$_POST[id_matches]?>);
+showTableMatches(<?php echo $_POST[id_matches]?>);
 </script>
 <? } ?>
 
 
-<?
+<?php
 echo adminfooter();
 ?>

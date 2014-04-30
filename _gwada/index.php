@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Accueil de l'admin

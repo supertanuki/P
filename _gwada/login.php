@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: authentification à l'admin
@@ -36,7 +36,7 @@ echo adminheader("Login", " onLoad=\"document.getElementById('login').focus()\""
 	<form method="post" action="login.php">
 	<? if($login_incorrect) { ?><strong>Identifiants incorrects</strong><br /><br /><? } ?>
 	Login<br />
-	<input id="login" type="text" name="login" value="<?=stripslashes($_POST[login])?>" /><br /><br />
+	<input id="login" type="text" name="login" value="<?php echo stripslashes($_POST[login])?>" /><br /><br />
 	Mot de passe<br />
 	<input type="password" name="pwd" value="" /><br /><br />
 	<input type="submit" value="Valider" />

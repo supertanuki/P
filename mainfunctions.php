@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Fonctions principales
@@ -703,7 +703,7 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 				<th width="5%">Moy.BP</th>
 				<th width="5%">Moy.BC</th>
 			</tr>
-			<?
+			<?php
 			$bg_blue = '#22A9B2';
 			$points_max = 0;
 			$taille_points = 100;
@@ -723,7 +723,7 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 				
 				$diff = $pp_team_class->nb_goals_for - $pp_team_class->nb_goals_against;
 				?>
-				<tr class="<?=$class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'">
+				<tr class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
 					<td align="center"><b><? echo ($index+1) ?></b></td>
 					<td><a href="/stats-equipe.php?id=<? echo $pp_team_class->id_team; ?>" class="link_orange"><? echo ($pp_team_class->flag ? '<img src="/image/flags/'.$pp_team_class->flag.'"  align="absmiddle" border="0" />' : '').' '.$pp_team_class->label.($pp_team_class->nb_points_sanction != 0 ? '*' : '') ?></a></td>
 					
@@ -736,7 +736,7 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 					<td align="center"><? echo $pp_team_class->nb_tie ?></td>
 					<td align="center"><? echo $pp_team_class->nb_lost ?></td>
 					
-					<td align="center" nowrap="nowrap"><?
+					<td align="center" nowrap="nowrap"><?php
 						echo $pp_team_class->nb_won > 0 && $pp_team_class->nb_matches > 0 ? '<span class="result_gagne"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_won * $taille_points / $pp_team_class->nb_matches).'" height="5" /></span>' : '';
 						echo $pp_team_class->nb_tie > 0 && $pp_team_class->nb_matches > 0 ? '<span class="result_nul"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_tie * $taille_points / $pp_team_class->nb_matches).'" height="5" /></span>' : '';
 						echo $pp_team_class->nb_lost > 0 && $pp_team_class->nb_matches > 0 ? '<span class="result_defaite"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_lost * $taille_points / $pp_team_class->nb_matches).'" height="5" /></span>' : '';
@@ -749,11 +749,11 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 					<td align="center"><? echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_for / $pp_team_class->nb_matches, 1) : ''; ?></td>
 					<td align="center"><? echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_against / $pp_team_class->nb_matches, 1) : ''; ?></td>
 				</tr>
-				<?
+				<?php
 			}
 			?>
 		</table>
-		<?
+		<?php
 		
 		// sanctions ?
 		$sanctions = array();

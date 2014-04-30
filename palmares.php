@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -9,13 +9,13 @@ pageheader($title ? $title : "Palmarès");
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
 	<div id="content">
 	
-<?
+<?php
 // recherche coupe
 $SQL = "SELECT `pp_cup`.`id_cup`, `pp_cup`.`label`
 		FROM `pp_cup`
@@ -222,6 +222,6 @@ if(DB::isError($result_pp_matches))
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

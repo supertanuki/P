@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -11,14 +11,14 @@ pageheader($titrepage);
 
 
 <div id="content_fullscreen">
-	<?
+	<?php
 	// affichage des onglets
 	echo getOnglets('coupedumonde2014');
 	?>
 	<div id="content">
 	
 	
-	<?
+	<?php
 	echo '<h2 class="title_green">'.$titrepage.'</h2>';
 	
 	
@@ -168,6 +168,6 @@ pageheader($titrepage);
 
 
 
-<?
+<?php
 pagefooter();
 ?>

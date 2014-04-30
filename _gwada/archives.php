@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Archives
@@ -179,13 +179,13 @@ if($_POST[supprimer_saison])
 <fieldset>
 <legend>Enregistrer les archives</legend>
 <form method="post">
-Année de la saison : <input type="text" name="annee" value="<?=date("Y")-1;?>" size="4" maxlength="4" /><br /><br />
+Année de la saison : <input type="text" name="annee" value="<?php echo date("Y")-1;?>" size="4" maxlength="4" /><br /><br />
 <input type="submit" name="enregistrer_archives" value="Enregistrer" style="padding: 6px; background-color: rgb(204, 204, 204);" /><br /><br />
 NB : Avant l'enregistrement, les données déjà enregistrées en archives pour cette saison seront supprimées.
 </form>
 
 <p><b>Extrait des dernières archives enregistrées :</b></p>
-<?
+<?php
 $SQL = "SELECT * FROM pp_archives ORDER BY id_archive DESC LIMIT 5";
 $result = $db->query($SQL);
 if(DB::isError($result))
@@ -214,7 +214,7 @@ if(DB::isError($result))
 <input type="submit" name="supprimer_saison" value="Supprimer la saison" style="padding: 6px; background-color: rgb(255, 34, 34); color: rgb(255, 255, 255);" />
 </form>
 </fieldset>
-<?
+<?php
 
 echo adminfooter();
 ?>

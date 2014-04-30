@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Classement journée
@@ -89,7 +89,7 @@ pageheader($title_page." | Prono+");
 
 ?>
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('classement');
 ?>
@@ -98,7 +98,7 @@ echo getOnglets('classement');
 
 <div id="content">
 
-<h1 class="title_green"><?=$title_page?></h1>
+<h1 class="title_green"><?php echo $title_page?></h1>
 
 
 
@@ -165,7 +165,7 @@ if($user->id_user)
 
 
 <a name="class"></a>
-<?
+<?php
 /*
 if(!$_GET[sqldep]) $_GET[sqldep] = $_POST[sqldep];
 if(!$_GET[sqldep]) $sqldep = 0; else $sqldep = $_GET[sqldep];	
@@ -177,7 +177,7 @@ pagination($pagego, $sqldep, $nb_element, 20, $extension);
 ?><br />
 
 
-<?
+<?php
 $color1_a = "bbbbbb";
 $color1_b = "aaaaaa";
 $color2_a = "eeeeee";
@@ -233,19 +233,19 @@ if(DB::isError($result))
       
       if($_GET[selj] == $pp_class_user->id_user) $class_line = 'ligne_selected';
   ?>
-  <tr class='<?=$class_line?>' onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'"> 
-    <td align="center"><a name="joueur<?=$pp_class_user->id_user?>"></a><? echo $rang; ?></td>
-    <td align="center"><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
-    <?
+  <tr class='<?php echo $class_line?>' onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
+    <td align="center"><a name="joueur<?php echo $pp_class_user->id_user?>"></a><? echo $rang; ?></td>
+    <td align="center"><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
+    <?php
     if($avatar = getAvatar($pp_class_user->id_user, $pp_class_user->avatar_key, $pp_class_user->avatar_ext, 'small')) {
     ?>
-      <img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" />
+      <img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" />
     <? } else { ?>
       <img src="/template/default/_profil.png" height="30" width="30" border="0" />
     <? } ?>
     </a>
     </td>
-    <td><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?
+    <td><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?php
     if($pp_class_user->id_user != $user->id_user) {
       echo $pp_class_user->login;
     } else {
@@ -253,10 +253,10 @@ if(DB::isError($result))
     }
     ?>
     </a></td>
-    <td align="center"><strong><?=$pp_class_user->nb_points?></strong></td>
-    <td align="center"><?=$pp_class_user->nb_score_ok?></td>
-    <td align="center"><?=$pp_class_user->nb_result_ok?></td>
-    <?
+    <td align="center"><strong><?php echo $pp_class_user->nb_points?></strong></td>
+    <td align="center"><?php echo $pp_class_user->nb_score_ok?></td>
+    <td align="center"><?php echo $pp_class_user->nb_result_ok?></td>
+    <?php
     $date_prono ='';
     $SQL = "SELECT DATE_FORMAT(`pp_matches_user`.`date_creation`, '".$txtlang['AFF_DATE_SQL']."') AS `date_prono`
         FROM `pp_matches_user`
@@ -281,9 +281,9 @@ if(DB::isError($result))
       }
     }
     ?>
-    <td><a class="link_orange" href="classj.php?id=<?=$pp_class_user->id_matches;?>"><img src="template/default/<?=$image_matches?>" style="float:left; border:solid 3px #eee; margin-right:10px;" height="50" width="35" /><?=$label_matches?></a><?=$date_prono?></td>
+    <td><a class="link_orange" href="classj.php?id=<?php echo $pp_class_user->id_matches;?>"><img src="template/default/<?php echo $image_matches?>" style="float:left; border:solid 3px #eee; margin-right:10px;" height="50" width="35" /><?php echo $label_matches?></a><?php echo $date_prono?></td>
   </tr>
-  <?
+  <?php
     }
     
     echo '</table><br />';
@@ -292,13 +292,13 @@ if(DB::isError($result))
 
 			
 			
-<?
+<?php
 //pagination($pagego, $sqldep, $nb_element, 20, $extension);
 ?>
 
 <a name="comments"></a>
 <h1 class="title_orange">Commentaires</h1>
-<?
+<?php
 echo pp_comments_afficher('stats', date('Y') . '1', array('url_param' => 'classement-meilleurs-scores.php?'));
 ?>
 
@@ -306,6 +306,6 @@ echo pp_comments_afficher('stats', date('Y') . '1', array('url_param' => 'classe
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

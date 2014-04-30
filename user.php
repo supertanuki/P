@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Profil d'un utilisateur
@@ -42,7 +42,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 <script type="text/javascript" src="/user.js?v=1"></script>
 
 <div id="content_left">
-	<?
+	<?php
 	if($pp_user->id_user == $user->id_user)
 	{
 		echo getOnglets('mon_profil');
@@ -52,7 +52,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 	?>
 	<div id="content">
 		<ul id="list_left" class="list_sortable">
-			<?
+			<?php
 			$content = '';
 			
 			if($pp_user->id_user == $user->id_user)
@@ -70,13 +70,13 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 </div>
 
 <div id="content_right">
-	<?
+	<?php
 	getRightBulle($pp_user);
 	getRightProfil($pp_user);
 	?>
 	<ul class="list_sortable">
 	
-		<?
+		<?php
 		$content = '';
 		//$content .= "<p>Plus d'infos sur les profils, bientôt... <img src=\"/smileys/3.gif\" /></p>";
 		
@@ -150,7 +150,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 				<? echo $content; ?>
 			</div>
 		</li>
-		<?
+		<?php
 		}
 		?>
 	
@@ -162,7 +162,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 			</div>
 		</li>
 		
-		<?
+		<?php
 		if($user && $pp_user->id_user != $user->id_user)
 		{
 			?>
@@ -172,12 +172,12 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 					<? echo getSameFriends($user, $pp_user); ?>
 				</div>
 			</li>
-			<?
+			<?php
 		}
 		?>
 	</ul>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

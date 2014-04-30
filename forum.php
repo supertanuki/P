@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -68,7 +68,7 @@ pageheader($title ? $title : "Forum football Prono+", array('meta_description' =
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('forum');
 ?>
@@ -118,7 +118,7 @@ function unselect_refresh()
 }
 -->
 </script>
-<?
+<?php
 if($sendmsg && $message) {
 	// vrification dernier message post
 	$datedelai=strtotime("now")-10;
@@ -150,7 +150,7 @@ if($sendmsg && $message) {
 			<script language="javascript">
 			alert("Vous ne pouvez plus modifier ce message !")
 			</script>
-			<?
+			<?php
 			}
 		} elseif(!$nbmsg) {
 			// réponse à un sujet
@@ -165,7 +165,7 @@ if($sendmsg && $message) {
 		<script language="javascript">
 		alert("Vous devez attendre un délai de quelques secondes avant de poster un nouveau message !")
 		</script>
-		<?
+		<?php
 	} else {
 		$resnbmsg = mysql_query("select Nmsg from forum where Nmsg='$nmsg' or Nquest='$nmsg'");
 		$nbmsg = mysql_num_rows($resnbmsg);
@@ -179,25 +179,25 @@ if($sendmsg && $message) {
 		$rowsujet = mysql_fetch_assoc($sujet);
 		?>
 		<script language="javascript">
-		location.replace("/forum-football/<?=$rowsujet["url"]?>-<?=$rowsujet["Nmsg"]?><?=$sqldeb>0?"page".$sqldeb:""?>.html#mess<?=$lmsg[0]?>");
+		location.replace("/forum-football/<?php echo $rowsujet["url"]?>-<?php echo $rowsujet["Nmsg"]?><?php echo $sqldeb>0?"page".$sqldeb:""?>.html#mess<?php echo $lmsg[0]?>");
 		</script>
-		<?
+		<?php
 	}
 }
 
 if(!$nmsg && $id_forum_theme) { ?>
 
-<h1 class="title_orange"><?=$title_page?></h1>
-<?
+<h1 class="title_orange"><?php echo $title_page?></h1>
+<?php
 if(!$beginline) $beginline=0;
 $resmsg=mysql_query("SELECT * FROM forum WHERE Nquest=0 AND supp=0 AND id_forum_theme=$id_forum_theme ORDER BY dateder DESC LIMIT ".$beginline.",20");
 
 if(!mysql_num_rows($resmsg)) {
 ?>
-<tr bgcolor="#<?=$color?>">
+<tr bgcolor="#<?php echo $color?>">
 	<td colspan="5"><p class="center"><strong>Aucun sujet n'a été créé dans ce forum pour l'instant.</strong><br />Pourquoi ne pas être le premier à le faire ?</p></td>
 </tr>
-<?
+<?php
 } else {
 ?>
 <table width="100%" border="0" cellspacing="1" cellpadding="4">
@@ -209,10 +209,10 @@ if(!mysql_num_rows($resmsg)) {
   <th width="5%">R&eacute;ponses</th>
 </tr>
 <? $color="ffffff"; ?>
-<tr bgcolor="#<?=$color?>">
-	<td colspan="5"><a href="#modifier_msg"><img src="/template/default/comment_new.gif" height="16" width="16" alt="Ouvrir au sujet" border="0" align="absmiddle"> Ouvrir un sujet</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/forum_recherche.php?id_forum_theme=<?=$id_forum_theme?>"><img src="/template/default/search.png" border="0" align="absmiddle" /> Rechercher sur le forum</a></td>
+<tr bgcolor="#<?php echo $color?>">
+	<td colspan="5"><a href="#modifier_msg"><img src="/template/default/comment_new.gif" height="16" width="16" alt="Ouvrir au sujet" border="0" align="absmiddle"> Ouvrir un sujet</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="/forum_recherche.php?id_forum_theme=<?php echo $id_forum_theme?>"><img src="/template/default/search.png" border="0" align="absmiddle" /> Rechercher sur le forum</a></td>
 </tr>
-<?
+<?php
 
 $color="aaaaaa";
 while($lmsg=mysql_fetch_array($resmsg)) {
@@ -225,9 +225,9 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 ?>
 
 
-		<tr bgcolor="#<?=$color?>"> 
-		  <td><a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?>.html"> 
-			<?
+		<tr bgcolor="#<?php echo $color?>">
+		  <td><a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?>.html">
+			<?php
 			echo htmlspecialchars($lmsg["sujet"]);
 			if($lmsg["bloque"]) {
 			?>&nbsp;<img src="/template/default/cadenas.gif" alt="Sujet bloqu&eacute;" border="0" align="absmiddle"><? } ?>
@@ -241,12 +241,12 @@ $nbpage=ceil($nbtotalmsg/$nbaff);
 if($nbtotalmsg > 10) {
 	?>
 			<font size="1">[ 
-			<?
+			<?php
 	for($i=1; $i<=$nbpage; $i++) {
 		$ldeb=(($i-1)*$nbaff);
 		?>
-			<a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?><?=$ldeb>0?"page".$ldeb:""?>.html">
-			<?=$i?>
+			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html">
+			<?php echo $i?>
 			</a> 
 			<?	if($i!=$nbpage) echo ".";
 	} ?>
@@ -254,7 +254,7 @@ if($nbtotalmsg > 10) {
 			<? } ?>
 		  </td>
 	<td>
-	<?
+	<?php
 		$rec_nlogin=$lmsg["id_user"];
 		if($rec_nlogin!=$user->id_user) {
 			$joueur = nom_joueur($rec_nlogin);
@@ -268,28 +268,28 @@ if($nbtotalmsg > 10) {
 		  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
 	<td><div align="center"><font size="1">
-	<?=formatdateheure($lmsg["dateder"])?></font>
+	<?php echo formatdateheure($lmsg["dateder"])?></font>
 	</div></td>
 	<? // dernier message du topic
 	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]." order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
-				<td width="23" valign="middle"><a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?><?=($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?=$lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a></td>
+				<td width="23" valign="middle"><a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo ($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?php echo $lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a></td>
   </tr>
 </table>
  
 		  </td>
 		  <td> <div align="center"> 
-			  <?=$lmsg["nblu"]?>
+			  <?php echo $lmsg["nblu"]?>
 			  </div></td>
 		  <td> <div align="center">
-			  <?=mysql_num_rows($resrep)?>
+			  <?php echo mysql_num_rows($resrep)?>
 			  </div></td>
 		</tr>
 		<? } ?>
 	  </table>
 	  <br>
-<?
+<?php
 $res_nb_sujets = mysql_query("select Nmsg from forum where Nquest=0 and supp=0 AND id_forum_theme='".$id_forum_theme."'");
 $NbTotal = mysql_num_rows($res_nb_sujets);
 
@@ -368,8 +368,8 @@ if($sqldeb>0) $repaff=1;
 $resmsg=mysql_query("select * from forum where Nmsg=$nmsg or Nquest=$nmsg order by datemsg limit $sqldeb,$nbaff");
 ?>
 
-<h2 class="title_orange"><a href="/forum-football/<?=$uri_begin_theme?>"><?=$title_theme?></a></h2><br />
-<h1 class="title_green"><?=$lmsg["sujet"]?> <? if($is_bloque) { ?><img src="/template/default/cadenas.gif" alt="Sujet bloqu&eacute;" border="0" align="absmiddle"><? } ?></h1>
+<h2 class="title_orange"><a href="/forum-football/<?php echo $uri_begin_theme?>"><?php echo $title_theme?></a></h2><br />
+<h1 class="title_green"><?php echo $lmsg["sujet"]?> <? if($is_bloque) { ?><img src="/template/default/cadenas.gif" alt="Sujet bloqu&eacute;" border="0" align="absmiddle"><? } ?></h1>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="2">
   		<tr> 
@@ -378,13 +378,13 @@ $resmsg=mysql_query("select * from forum where Nmsg=$nmsg or Nquest=$nmsg order 
 			<div style="float:right;"><a href="#modifier_msg"><img src="/template/default/comment_new.gif" height="16" width="16" alt="Répondre au sujet" border="0" style="float:left; margin-right:6px;">Répondre</a></div>
 			
 			 Pages : 			  
-			  <?
+			  <?php
 	 $nbpage=ceil($nbtotalmsg/$nbaff);
 	 for($i=1; $i<=$nbpage; $i++) {
 		$ldeb=(($i-1)*$nbaff);
 		if($ldeb!=$sqldeb) {
 	 ?>
-			  <a href="/forum-football/<?=$uri_begin?><?=$ldeb>0?"page".$ldeb:""?>.html"><?=$i?></a> 
+			  <a href="/forum-football/<?php echo $uri_begin?><?php echo $ldeb>0?"page".$ldeb:""?>.html"><?php echo $i?></a>
 			  <? 	} else { 
  		echo "<strong> $i </strong>";
   	} 
@@ -395,10 +395,10 @@ $resmsg=mysql_query("select * from forum where Nmsg=$nmsg or Nquest=$nmsg order 
 	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=$nmsg or Nquest=$nmsg order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
-	<a href="/forum-football/<?=$uri_begin?><?=($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?=$lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a>
+	<a href="/forum-football/<?php echo $uri_begin?><?php echo ($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?php echo $lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a>
 		    </div></td>
   </tr>
-<?
+<?php
 $nbmsguser = array();
 $repaff = 0;
 $i_msg = 0;
@@ -406,20 +406,20 @@ $i_msg = 0;
 while($lmsg=mysql_fetch_array($resmsg)) {
 ?>
   <tr> 
-    	  <td valign="top" align="center" width="15%" bgcolor="#eeeeee"><a name="mess<?=$lmsg["Nmsg"]?>"></a>
+    	  <td valign="top" align="center" width="15%" bgcolor="#eeeeee"><a name="mess<?php echo $lmsg["Nmsg"]?>"></a>
 			<div style="margin-bottom:10px;">
 				<div style="width:120px;overflow:hidden;background-color:#CCCCCC">
     				<h2 class="title_green" style="width:120px;overflow:hidden;">
-					<?
+					<?php
 					$joueur = nom_joueur($lmsg["id_user"]);
 					echo "<a href=\"/user.php?q=".urlencode(htmlspecialchars($joueur->login))."\" class=\"link_orange\">".$joueur->login."</a>";
 					?>
 					</h2>
-				<?
+				<?php
 				echo "<a href=\"/user.php?q=".urlencode(htmlspecialchars($joueur->login))."\" class=\"link_orange\">";
 				if($avatar = getAvatar($lmsg["id_user"], $joueur->avatar_key, $joueur->avatar_ext, 'normal')) {
 				?>
-					<img src="/avatars/<?=$avatar?>" height="118" width="118" style="border:1px solid #666" />
+					<img src="/avatars/<?php echo $avatar?>" height="118" width="118" style="border:1px solid #666" />
 				<? } else { ?>
 					<img src="/template/default/_profil.png" height="118" width="118" style="border:1px solid #666" />
 				<? }
@@ -439,14 +439,14 @@ while($lmsg=mysql_fetch_array($resmsg)) {
         </div></td>
     <td width="85%" valign="top">
 	<hr>
-    <div align="right"><?
+    <div align="right"><?php
 	// modifier le message
 	$datenow = strtotime("now");
 	if((($lmsg["datemsg"]+1800) > $datenow && $lmsg["id_user"]==$user->id_user) || $user->id_user==27) {
-	?><a href="/forum-football/<?=$uri_begin?>.html?modifier=1&num_msg=<?=$lmsg["Nmsg"]?>#modifier_msg"><font color="red" size="1">Modifier</font></a> |
-	<?
+	?><a href="/forum-football/<?php echo $uri_begin?>.html?modifier=1&num_msg=<?php echo $lmsg["Nmsg"]?>#modifier_msg"><font color="red" size="1">Modifier</font></a> |
+	<?php
 	}
-	?><font size="1"> Posté le <?=formatdateheure($lmsg["datemsg"])?></font></div>
+	?><font size="1"> Posté le <?php echo formatdateheure($lmsg["datemsg"])?></font></div>
 	<br />
 	<div style="width:620px;overflow:hidden; margin-bottom:10px;">
 	  <? echo formattexte($lmsg["message"]); ?>
@@ -490,18 +490,18 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 <? } ?>
 
   <tr> 
-    	  <td><a href="/forum-football/<?=$uri_begin_theme?>"><img src="/template/default/last.gif" width="16" height="16" border="0" align="absmiddle"> retour</a></td>
+    	  <td><a href="/forum-football/<?php echo $uri_begin_theme?>"><img src="/template/default/last.gif" width="16" height="16" border="0" align="absmiddle"> retour</a></td>
     	  <td> 
 			<div align="right">Pages 
 			  : 
-			  <?
+			  <?php
  $nbpage=ceil($nbtotalmsg/$nbaff);
  for($i=1; $i<=$nbpage; $i++) {
  	$ldeb=(($i-1)*$nbaff);
 	if($ldeb!=$sqldeb) {
  ?>
-			  <a href="/forum-football/<?=$uri_begin?><?=$ldeb>0?"page".$ldeb:""?>.html"> 
-			  <?=$i?>
+			  <a href="/forum-football/<?php echo $uri_begin?><?php echo $ldeb>0?"page".$ldeb:""?>.html">
+			  <?php echo $i?>
 			  </a> 
 			  <? 	} else { 
  		echo "<strong> $i </strong>";
@@ -512,7 +512,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
   </tr>
  <tr> 
     	  <td>&nbsp;</td>
-    	  <td><input id="refresh_forum" type="checkbox" value="1" <?=$_GET[refresh_forum] ? "checked=\"checked\"" : ""; ?> style="vertical-align:middle" /> <label for="refresh_forum">Rafraichir le sujet toutes les minutes</label></td>
+    	  <td><input id="refresh_forum" type="checkbox" value="1" <?php echo $_GET[refresh_forum] ? "checked=\"checked\"" : ""; ?> style="vertical-align:middle" /> <label for="refresh_forum">Rafraichir le sujet toutes les minutes</label></td>
   </tr>
 </table>
 
@@ -524,7 +524,7 @@ function RefreshPage()
 {
 	if(document.getElementById('refresh_forum').checked)
 	{
-		document.location.href = '/forum.php?nmsg=<?=$nmsg?>&gotolast=1&refresh_forum=1';
+		document.location.href = '/forum.php?nmsg=<?php echo $nmsg?>&gotolast=1&refresh_forum=1';
 	} else {
 		setTimeout("RefreshPage()", time2refresh);
 	}
@@ -541,7 +541,7 @@ setTimeout("RefreshPage()", time2refresh);
 	
 
 <a name="modifier_msg"></a>
-<?
+<?php
 if(!$nmsg && !$modifier) {
 	$titre_cadre="Ouvrir un sujet dans ".$title_page;
 } elseif($num_msg && $modifier) {
@@ -564,7 +564,7 @@ $disabled_forum=true;
             <td>&nbsp;</td>
             <td><a href="javascript:afficher_charte();">Charte d'utilisation du forum</a></td>
 	      </tr>*/ ?>
-			<?
+			<?php
 			if($num_msg && $modifier)
 			{
 				$res_msg = mysql_query("select Nquest, id_forum_theme, sujet, message from forum where Nmsg=$num_msg");
@@ -573,16 +573,16 @@ $disabled_forum=true;
 			?>
 			
 
-		  <input name="id_forum_theme" type="hidden" value="<?=$id_forum_theme?>">
-		  <input name="nmsg" type="hidden" value="<?=$nmsg?>">
-		  <input name="num_msg" type="hidden" value="<?=$num_msg?>">
+		  <input name="id_forum_theme" type="hidden" value="<?php echo $id_forum_theme?>">
+		  <input name="nmsg" type="hidden" value="<?php echo $nmsg?>">
+		  <input name="num_msg" type="hidden" value="<?php echo $num_msg?>">
 		  
-			<?
+			<?php
 			if(!$nmsg  || $modifier && $num_msg && !$message->Nquest) {
 			?>
 		  <tr> 
 			<td width="20%" align="right">Titre</td>
-			<td width="80%"><input name="sujet" type="text" id="sujet" size="50" maxlength="100" value="<?=htmlentities(utf8_decode(stripslashes($message->sujet)))?>" <?=$disabled_forum?"disabled=\"disabled\"":""?>></td>
+			<td width="80%"><input name="sujet" type="text" id="sujet" size="50" maxlength="100" value="<?php echo htmlentities(utf8_decode(stripslashes($message->sujet)))?>" <?php echo $disabled_forum?"disabled=\"disabled\"":""?>></td>
 		  </tr>
 		  <tr> 
 			<td></td>
@@ -615,7 +615,7 @@ $disabled_forum=true;
 		  <tr> 
 			<td valign="top"> <div align="right">Message 
 				&nbsp;</div></td>
-			<td> <textarea name="message" cols="60" rows="10" onfocus="unselect_refresh()" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" <?=$disabled_forum?"disabled=\"disabled\"":""?>><?=stripslashes($message->message)?></textarea></td>
+			<td> <textarea name="message" cols="60" rows="10" onfocus="unselect_refresh()" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" <?php echo $disabled_forum?"disabled=\"disabled\"":""?>><?php echo stripslashes($message->message)?></textarea></td>
 		  </tr>
 		  <tr> 
 			<td>&nbsp;</td>
@@ -635,7 +635,7 @@ $disabled_forum=true;
 		  		
 		  <tr> 
 			<td>&nbsp;</td>
-			<td> <input name="sendmsg" type="hidden" value="1"> <input name="envoyer" type="submit" class="link_button" <?=$disabled_forum?"disabled=\"disabled\"":""?> value="Envoyer" /> 
+			<td> <input name="sendmsg" type="hidden" value="1"> <input name="envoyer" type="submit" class="link_button" <?php echo $disabled_forum?"disabled=\"disabled\"":""?> value="Envoyer" />
 			</td>
 		  </tr>
 		</table>
@@ -647,8 +647,8 @@ $disabled_forum=true;
 	?>
 		<br /><form method="post" action="/forum.php">
 		<fieldset><legend>Admin</legend><br />
-			<input name="nmsg_admin" type="hidden" value="<?=$nmsg?>">
-			<input name="id_forum_theme" type="hidden" value="<?=$id_forum_theme?>">
+			<input name="nmsg_admin" type="hidden" value="<?php echo $nmsg?>">
+			<input name="id_forum_theme" type="hidden" value="<?php echo $id_forum_theme?>">
 
 			<? if(!$is_bloque) { ?>
 				<input name="bloquer" type="submit" id="bloquer" value="Bloquer"  class="link_button" />
@@ -659,7 +659,7 @@ $disabled_forum=true;
 			<input name="supp" type="submit" id="Supp" value="Supprimer"  class="link_button" />
 			
 			
-			<br><br>Changer de thème : <select name="id_forum_theme_admin"><?
+			<br><br>Changer de thème : <select name="id_forum_theme_admin"><?php
 				$SQL = "SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` ORDER BY `order`";
 				$result = $db->query($SQL);
 				//echo "<li>$SQL";
@@ -676,7 +676,7 @@ $disabled_forum=true;
 			?></select> <input name="change_theme" type="submit" value="Changer"  class="link_button" />
 		</fieldset></form>
 	<? } ?>
-<?
+<?php
 } //fin is_bloque
 
 
@@ -684,6 +684,6 @@ $disabled_forum=true;
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

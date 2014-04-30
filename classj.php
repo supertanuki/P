@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Classement journée
@@ -208,7 +208,7 @@ pageheader($title_page." | Prono+", array('meta_description' => $meta_descriptio
 
 ?>
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('classement');
 ?>
@@ -217,10 +217,10 @@ echo getOnglets('classement');
 
 <div id="content">
 
-<h1 class="title_green"><?=$title_page?></h1>
+<h1 class="title_green"><?php echo $title_page?></h1>
 
 
-<?
+<?php
 echo "<table width=\"100%\" border=\"0\" cellspacing=\"4\" cellpadding=\"0\"><tr>
 		<td valign=\"top\" width=\"1%\"><img src=\"template/default/".$pp_matches->image."\" class=\"preview_matches_image\" border=\"0\" /></td>
 		<td  valign=\"top\" width=\"99%\">";
@@ -384,7 +384,7 @@ echo "</td></tr></table>";
 <th width="10%" nowrap="nowrap">Pts moy</th>
 <th width="40%">Tendances des r&eacute;sultats</th>
 </tr>
-<?
+<?php
 $anecdotes = array();
 
 $n=1;
@@ -419,17 +419,17 @@ foreach($matches as $id_match=>$match)
 ?>
 	<tr> 
 	<td bgcolor="#eeeeee" align="center"><b>M<? echo $n ?></b></td>
-	<td nowrap="nowrap" align="right"><a href="<?=$url_info_match?>" class="link_orange" title="<?=htmlspecialchars($title_info_match);?>"><? echo $tabscore[0]>$tabscore[1] ? '<b>' . $match->team_host_label . '</b>' : $match->team_host_label; ?><? if($match->team_host_flag && $match->team_visitor_flag) echo '&nbsp;<img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" border="0" />'; ?></a></td>
-	<td bgcolor="#eeeeee" align="center"><a href="<?=$url_info_match?>" class="link_orange" title="<?=htmlspecialchars($title_info_match);?>">
+	<td nowrap="nowrap" align="right"><a href="<?php echo $url_info_match?>" class="link_orange" title="<?php echo htmlspecialchars($title_info_match);?>"><? echo $tabscore[0]>$tabscore[1] ? '<b>' . $match->team_host_label . '</b>' : $match->team_host_label; ?><? if($match->team_host_flag && $match->team_visitor_flag) echo '&nbsp;<img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" border="0" />'; ?></a></td>
+	<td bgcolor="#eeeeee" align="center"><a href="<?php echo $url_info_match?>" class="link_orange" title="<?php echo htmlspecialchars($title_info_match);?>">
 	<? if($match->score == "R-R") {
 		echo "<font color=\"red\">Annul&eacute;</font>";
 	} else {
 		echo $match->score;
 	} ?>
 	</a></td>
-	<td nowrap="nowrap"><a href="<?=$url_info_match?>" class="link_orange" title="<?=htmlspecialchars($title_info_match);?>"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" border="0"  />&nbsp;'; ?><? echo $tabscore[0]<$tabscore[1] ? '<b>' . $match->team_visitor_label . '</b>' : $match->team_visitor_label;; ?></a></td>
+	<td nowrap="nowrap"><a href="<?php echo $url_info_match?>" class="link_orange" title="<?php echo htmlspecialchars($title_info_match);?>"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" border="0"  />&nbsp;'; ?><? echo $tabscore[0]<$tabscore[1] ? '<b>' . $match->team_visitor_label . '</b>' : $match->team_visitor_label;; ?></a></td>
 	<td align="center">
-	<?
+	<?php
 	if($match->score != "R-R" && $nb_joueurs_tendance>0) {
 		$ptsmoy = round(($tendances[1]->PTSWONAVG * $tendances[1]->NBUSERS + $tendances[2]->PTSWONAVG * $tendances[2]->NBUSERS + $tendances[3]->PTSWONAVG * $tendances[3]->NBUSERS) / $nb_joueurs_tendance);
 		echo $ptsmoy;
@@ -440,7 +440,7 @@ foreach($matches as $id_match=>$match)
 	if($match->score != "R-R" && $nb_joueurs_tendance>0) { ?>
 	<table width="100%" cellpadding="2">
 		<tr>
-			<?
+			<?php
 			$totalpercent = 0;
 			
 			$percent_win = round(100 * $tendances[1]->NBUSERS / $nb_joueurs_tendance);
@@ -469,10 +469,10 @@ foreach($matches as $id_match=>$match)
 			}
 			
 			if($percent_win) { 
-			?><td class="result_gagne" width="<?=$percent_win?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[1]->NBUSERS == 1 ? 'Un seul joueur a trouvé le bon score. Il a misé '.$tendances[1]->PTSAVG.' points et a gagné '.$tendances[1]->PTSWONAVG.' points.' : $tendances[1]->NBUSERS.' joueurs ont trouvé le bon score. Ils ont misé une moyenne de '.$tendances[1]->PTSAVG.' points et ont gagné une moyenne de '.$tendances[1]->PTSWONAVG.' points.' ?> "><?=$percent_win?>%</a></td>
+			?><td class="result_gagne" width="<?php echo $percent_win?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[1]->NBUSERS == 1 ? 'Un seul joueur a trouvé le bon score. Il a misé '.$tendances[1]->PTSAVG.' points et a gagné '.$tendances[1]->PTSWONAVG.' points.' : $tendances[1]->NBUSERS.' joueurs ont trouvé le bon score. Ils ont misé une moyenne de '.$tendances[1]->PTSAVG.' points et ont gagné une moyenne de '.$tendances[1]->PTSWONAVG.' points.' ?> "><?php echo $percent_win?>%</a></td>
 			<? } ?>
 			
-			<?
+			<?php
 			$percent_draw = round(100 * $tendances[2]->NBUSERS / $nb_joueurs_tendance);
 			if($percent_win==0 && $percent_draw < 5 && $percent_draw > 0)
 			{
@@ -498,10 +498,10 @@ foreach($matches as $id_match=>$match)
 			}
 			
 			if($percent_draw) { ?>
-			<td class="result_nul" width="<?=$percent_draw?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[2]->NBUSERS == 1 ? 'Un seul joueur a trouvé le bon résultat. Il a misé '.$tendances[2]->PTSAVG.' points et a gagné '.$tendances[2]->PTSWONAVG.' points.' : $tendances[2]->NBUSERS.' joueurs ont trouvé le bon résultat. Ils ont misé une moyenne de '.$tendances[2]->PTSAVG.' points et ont gagné une moyenne de '.$tendances[2]->PTSWONAVG.' points.'; ?>"><?=$percent_draw?>%</a></td>
+			<td class="result_nul" width="<?php echo $percent_draw?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[2]->NBUSERS == 1 ? 'Un seul joueur a trouvé le bon résultat. Il a misé '.$tendances[2]->PTSAVG.' points et a gagné '.$tendances[2]->PTSWONAVG.' points.' : $tendances[2]->NBUSERS.' joueurs ont trouvé le bon résultat. Ils ont misé une moyenne de '.$tendances[2]->PTSAVG.' points et ont gagné une moyenne de '.$tendances[2]->PTSWONAVG.' points.'; ?>"><?php echo $percent_draw?>%</a></td>
 			<? } ?>
 			
-			<?
+			<?php
 			$percent_lose = round(100 * $tendances[3]->NBUSERS / $nb_joueurs_tendance); 
 			if($percent_lose > 95)
 			{
@@ -514,14 +514,14 @@ foreach($matches as $id_match=>$match)
 			}
 			
 			if($percent_lose) { ?>
-			<td class="result_defaite" width="<?=$percent_lose?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[3]->NBUSERS == 1 ? 'Un seul joueur a mal joué ce match et a misé' : $tendances[3]->NBUSERS . ' joueurs ont mal joué ce match et ont misé une moyenne de'; ?>  <?=$tendances[3]->PTSAVG?> points."><?=$percent_lose?>%</a></td>
+			<td class="result_defaite" width="<?php echo $percent_lose?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $tendances[3]->NBUSERS == 1 ? 'Un seul joueur a mal joué ce match et a misé' : $tendances[3]->NBUSERS . ' joueurs ont mal joué ce match et ont misé une moyenne de'; ?>  <?php echo $tendances[3]->PTSAVG?> points."><?php echo $percent_lose?>%</a></td>
 			<? } ?>
 		</tr>
 	</table>
 	<? } else echo '&nbsp;'; ?>
 	</td>
 	</tr>
-<?
+<?php
 	$n++;
 }
 ?>
@@ -579,15 +579,15 @@ foreach($anecdotes_index as $index=>$libelle)
 <tr><td colspan="2" style="padding:0;"><img src="/template/default/blocgrishaut.gif" border="0" /></td></tr>
 <tr>
 <? /* Aller à mon classement */ ?>
-<td align="left" valign="top" style="background:#eee"><? if($user->id_user) { ?><a href="/classj.php?id=<?=$_GET[id]?>&rech_jpseudo=<?=$user->login?>&search_joueur=1" class="link_button"><img src="/template/default/zoom.png" border="0" align="absmiddle" /> Aller à mon classement</a><? } ?></td>
+<td align="left" valign="top" style="background:#eee"><? if($user->id_user) { ?><a href="/classj.php?id=<?php echo $_GET[id]?>&rech_jpseudo=<?php echo $user->login?>&search_joueur=1" class="link_button"><img src="/template/default/zoom.png" border="0" align="absmiddle" /> Aller à mon classement</a><? } ?></td>
 
 
 <? /* Recherche classement d'un joueur */ ?>
 <td align="right" valign="top" style="background:#eee"><a name="arcp"></a>
 <form method="get" action="classj.php#arcp">
-<?
+<?php
 if($class_introuvable) echo "<font color=red><b>Pas de joueur trouvé !</b></font><br>"; ?>
-<img src="/template/default/zoom.png" border="0" align="absmiddle" /> Rechercher le classement d'un joueur <input name="rech_jpseudo" type="text" size="12" maxlength="100" value="<?=$rech_jpseudo?htmlspecialchars(stripslashes($rech_jpseudo)):"son pseudo";?>" <?=!$rech_jpseudo?"onfocus=\"this.value=''\"":"";?>>&nbsp;<input type="hidden" name="search_joueur" value="1"><input type="hidden" name="id" value="<?=$_GET[id]?>"><input type="submit" name="search_joueur" value="Ok" class="link_button" />
+<img src="/template/default/zoom.png" border="0" align="absmiddle" /> Rechercher le classement d'un joueur <input name="rech_jpseudo" type="text" size="12" maxlength="100" value="<?php echo $rech_jpseudo?htmlspecialchars(stripslashes($rech_jpseudo)):"son pseudo";?>" <?php echo !$rech_jpseudo?"onfocus=\"this.value=''\"":"";?>>&nbsp;<input type="hidden" name="search_joueur" value="1"><input type="hidden" name="id" value="<?php echo $_GET[id]?>"><input type="submit" name="search_joueur" value="Ok" class="link_button" />
 </form>
 </td>
 </tr>
@@ -657,7 +657,7 @@ if($user->id_user)
 
 
 <a name="class"></a>
-<?
+<?php
 if(!$_GET[sqldep]) $_GET[sqldep] = $_POST[sqldep];
 if(!$_GET[sqldep]) $sqldep = 0; else $sqldep = $_GET[sqldep];	
 
@@ -672,19 +672,19 @@ pagination($pagego, $sqldep, $nb_element, 20, $extension);
 	<th width="5%">Rang <? if($friends_ids != '') { echo 'réel'; } ?></th>
 	<th colspan="2" width="20%" align="center">Joueur</th>
 	<th width="10%" align="center">Points</th>
-	<?
+	<?php
 	$i=1;
 	foreach($matches as $id_match=>$match)
 	{
 	?>
-		<th width="5%" align="center"><a href="javascript:" style="color:#000; text-decoration:none; font-weight:bold;" title="<?=$matches[$id_match]->team_host_label.' '.$matches[$id_match]->score.' '.$matches[$id_match]->team_visitor_label?>">M<?=$i?><br />
+		<th width="5%" align="center"><a href="javascript:" style="color:#000; text-decoration:none; font-weight:bold;" title="<?php echo $matches[$id_match]->team_host_label.' '.$matches[$id_match]->score.' '.$matches[$id_match]->team_visitor_label?>">M<?php echo $i?><br />
 		<? if($match->score == "R-R") {
 			echo "<span style=\"color:red\">Ann.</span>";
 		} else {
 			echo $match->score;
 		} ?></a>
 		</th>
-		<?
+		<?php
 		$i++;
 	}
 	?>
@@ -692,7 +692,7 @@ pagination($pagego, $sqldep, $nb_element, 20, $extension);
 	<th width="10%" align="center">Scores justes</th>
 	<th width="10%" align="center">Résultats justes</th>
 </tr>
-<?
+<?php
 $color1_a = "bbbbbb";
 $color1_b = "aaaaaa";
 $color2_a = "eeeeee";
@@ -749,22 +749,22 @@ if(DB::isError($result))
 		
 		if($_GET[selj] == $pp_class_user->id_user) $class_line = 'ligne_selected';
 ?>
-<tr class='<?=$class_line?>' onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'"> 
+<tr class='<?php echo $class_line?>' onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
 
 <? if($friends_ids != '') { ?><td align="center"><? echo $rang; ?></td><? } ?>
 
-<td align="center"><a name="joueur<?=$pp_class_user->id_user?>"></a><?=$pp_class_user->class?></td>
-<td align="center"><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
-<?
+<td align="center"><a name="joueur<?php echo $pp_class_user->id_user?>"></a><?php echo $pp_class_user->class?></td>
+<td align="center"><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
+<?php
 if($avatar = getAvatar($pp_class_user->id_user, $pp_class_user->avatar_key, $pp_class_user->avatar_ext, 'small')) {
 ?>
-	<img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" />
+	<img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" />
 <? } else { ?>
 	<img src="/template/default/_profil.png" height="30" width="30" border="0" />
 <? } ?>
 </a>
 </td>
-<td><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?
+<td><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?php
 if($pp_class_user->id_user != $user->id_user) {
 	echo $pp_class_user->login;
 } else {
@@ -772,15 +772,15 @@ if($pp_class_user->id_user != $user->id_user) {
 }
 ?>
 </a></td>
-<td align="center"><strong title="Pronostiqué le <?=$pp_class_user->date_last_pronostic_format; ?>" style="cursor:help"><?=$pp_class_user->nb_points?></strong></td>
-<?
+<td align="center"><strong title="Pronostiqué le <?php echo $pp_class_user->date_last_pronostic_format; ?>" style="cursor:help"><?php echo $pp_class_user->nb_points?></strong></td>
+<?php
 foreach($matches as $id_match=>$match)
 {
 	if(!$match_user[$id_match]->score)
 	{
 ?>
 <td align="center"><a href="javascript:" style="color:#000000; text-decoration:none; font-weight:bold;" title="Match non joué">&nbsp;-&nbsp;</a></td>
-<?
+<?php
 	} else {
 	
 		$color="#dddddd";
@@ -809,28 +809,28 @@ foreach($matches as $id_match=>$match)
 			$match_user[$id_match]->type_result = 0;
 		}
 ?>
-<td align="center" class="<?=$color?>">
+<td align="center" class="<?php echo $color?>">
 <? if($match_user[$id_match]->type_result > 0) { ?>
-	<a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?=$matches[$id_match]->team_host_label.' '.$matches[$id_match]->score.' '.$matches[$id_match]->team_visitor_label.". Points gagnés : ".$match_user[$id_match]->pts." x ".$fact." = ".$match_user[$id_match]->pts_won?>"><?=$match_user[$id_match]->score?></a>
-<?
+	<a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $matches[$id_match]->team_host_label.' '.$matches[$id_match]->score.' '.$matches[$id_match]->team_visitor_label.". Points gagnés : ".$match_user[$id_match]->pts." x ".$fact." = ".$match_user[$id_match]->pts_won?>"><?php echo $match_user[$id_match]->score?></a>
+<?php
 } else {
 	echo $pp_class_user->id_user == $user->id_user ? '<a href="/pronostiquer.php?id='.$pp_matches->id_matches.'" class="link_orange" title="Modifier mes pronostics">'.$match_user[$id_match]->score.'</a>' : 'X';
 }
 ?>
 </td>
-<?
+<?php
 	}
 }
 ?>
-<td align="center"><?=$pp_class_user->nb_score_ok?></td>
-<td align="center"><?=$pp_class_user->nb_result_ok?></td>
+<td align="center"><?php echo $pp_class_user->nb_score_ok?></td>
+<td align="center"><?php echo $pp_class_user->nb_result_ok?></td>
 </tr>
 <? }
 } ?>
 </table><br />
 			
 			
-<?
+<?php
 pagination($pagego, $sqldep, $nb_element, 20, $extension);
 ?>
 
@@ -842,7 +842,7 @@ pagination($pagego, $sqldep, $nb_element, 20, $extension);
 
 <a name="comments"></a>
 <h2 class="title_orange">Commentaires</h2>
-<?
+<?php
 $pp_comments_id_type = substr($pp_matches->date_first_match, 0, 4) . $pp_matches->id_matches;
 $date_viewed = pp_comments_get_dateviewed('classj', $pp_comments_id_type);
 echo pp_comments_afficher('classj', $pp_comments_id_type, array('url_param' => 'classj.php?id='.$_GET[id], 'date_viewed' => $date_viewed));
@@ -854,6 +854,6 @@ if($nb_comments) pp_comments_viewed('classj', $pp_comments_id_type);
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Classement journée
@@ -272,7 +272,7 @@ echo pp_iphone_header(!$pp_matches->id_cup_matches ? 'Classement' : $pp_cup_matc
 							?>
 						</td>
 					</tr>
-					<?
+					<?php
 				}
 				$n++;
 			}
@@ -304,13 +304,13 @@ echo pp_iphone_header(!$pp_matches->id_cup_matches ? 'Classement' : $pp_cup_matc
 						<th align="center">Points</th>
 					</tr>
 					<tr<?php echo $cup_user->id_user_host == $cup_user->id_user_won ? ' style="background:yellow"' : ''; ?>>
-						<td align="center"><img src="<?=$avatar_host; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
+						<td align="center"><img src="<?php echo $avatar_host; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
 						<td><?php echo $cup_user->login_host; ?></td>
 						<td align="center"><?php echo $cup_user->host_class . '<sup>' . ($cup_user->host_class > 1 ? 'ème' : 'er') . '</sup>'; ?></td>
 						<td align="center"><?php echo $pp_matches->is_calcul ? $cup_user->host_nb_points : '-'; ?></td>
 					</tr>
 					<tr<?php echo $cup_user->id_user_visitor == $cup_user->id_user_won ? ' style="background:yellow"' : ''; ?>>
-						<td align="center"><img src="<?=$avatar_visitor; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
+						<td align="center"><img src="<?php echo $avatar_visitor; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
 						<td><?php echo $cup_user->login_visitor; ?></td>
 						<td align="center"><?php echo $cup_user->visitor_class . '<sup>' . ($cup_user->visitor_class > 1 ? 'ème' : 'er') . '</sup>'; ?></td>
 						<td align="center"><?php echo $pp_matches->is_calcul ? $cup_user->visitor_nb_points : '-'; ?></td>
@@ -356,24 +356,24 @@ echo pp_iphone_header(!$pp_matches->id_cup_matches ? 'Classement' : $pp_cup_matc
 				{
 					?>
 						<tr>
-							<td align="center"><?=$pp_class_user->class?></td>
+							<td align="center"><?php echo $pp_class_user->class?></td>
 							<td align="center">
-								<?
+								<?php
 								if($avatar = getAvatar($pp_class_user->id_user, $pp_class_user->avatar_key, $pp_class_user->avatar_ext, 'small')) {
 								?>
-									<img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" align="absmiddle" />
-								<?
+									<img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" align="absmiddle" />
+								<?php
 								} else {
 								?>
 									<img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" />
-								<?
+								<?php
 								}
 								?>
 							</td>
 							<td>
 								<?php echo $pp_class_user->login; ?>
 							</td>
-							<td align="center"><?=$pp_class_user->nb_points?></td>
+							<td align="center"><?php echo $pp_class_user->nb_points?></td>
 						</tr>
 					<?php
 				}

@@ -69,7 +69,7 @@ google_ui_features = "rc:10";
 
 </div><br /><br />
 
-		<?
+		<?php
 
 	}
 

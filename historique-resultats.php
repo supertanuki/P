@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -177,7 +177,7 @@ pageheader("Historique des résultats | Prono+");
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -203,7 +203,7 @@ if(!$nb_matches)
 		$param = ($param != '' ? '?'.$param : '');
 ?>
 <a href="/historique-resultats.php?start=0" class="link_button">&lt;&lt; Les plus anciens</a>
-<a href="/historique-resultats.php<?=$param?>" class="link_button">&lt; <?=(($nb_begin - $nb_step) >= 0 ? $nb_step : $nb_step + ($nb_begin - $nb_step)); ?> précédents</a>
+<a href="/historique-resultats.php<?php echo $param?>" class="link_button">&lt; <?php echo (($nb_begin - $nb_step) >= 0 ? $nb_step : $nb_step + ($nb_begin - $nb_step)); ?> précédents</a>
 <? } ?>
 
 <? if($nb_matches > ($nb_begin + $nb_limit)) {
@@ -213,8 +213,8 @@ if(!$nb_matches)
 		$paramLimit = "start=".($nb_matches - $nb_limit);
 		$paramLimit = ($paramLimit != '' ? '?'.$paramLimit : '');
 ?>
-<a href="/historique-resultats.php<?=$param?>" class="link_button"><?=($nb_begin + $nb_step + $nb_limit) > $nb_matches ? ($nb_matches - ($nb_begin + $nb_limit)) : $nb_step; ?> suivants &gt;</a>
-<a href="/historique-resultats.php<?=$paramLimit?>" class="link_button">Les plus récents &gt;&gt;</a>
+<a href="/historique-resultats.php<?php echo $param?>" class="link_button"><?php echo ($nb_begin + $nb_step + $nb_limit) > $nb_matches ? ($nb_matches - ($nb_begin + $nb_limit)) : $nb_step; ?> suivants &gt;</a>
+<a href="/historique-resultats.php<?php echo $paramLimit?>" class="link_button">Les plus récents &gt;&gt;</a>
 <? } ?>
 </div>
 
@@ -230,17 +230,17 @@ if(!$nb_matches)
 document.observe('dom:loaded', function(){
 	var d1 = [];
 	var d2 = [];
-	var i = <?=$nb_begin+1?>;
+	var i = <?php echo $nb_begin+1?>;
 	var tooltip = [];
 	
 	<? foreach($myStats as $matches) { ?>
-	d1.push([i,<?=$matches['nb_points']?>]);
-	d2.push([i,<?=$matches['sum_nb_points']?>]);
-	tooltip[i] = '<?=str_replace("'", "\\\'", $matches['tooltip'])?>';
+	d1.push([i,<?php echo $matches['nb_points']?>]);
+	d2.push([i,<?php echo $matches['sum_nb_points']?>]);
+	tooltip[i] = '<?php echo str_replace("'", "\\\'", $matches['tooltip'])?>';
 	i++;
 	<? } ?>
     
-    for(var j=d1.length; j<<?=$nb_limit?>; j++)
+    for(var j=d1.length; j<<?php echo $nb_limit?>; j++)
     {
     	d1.push([j, 0]);
         d2.push([j, 0]);
@@ -253,11 +253,11 @@ document.observe('dom:loaded', function(){
 			colors: ['#00aa00', '#555555', '#cb4b4b', '#4da74d', '#9440ed'],
 			bars: {show:true},
 			xaxis: {
-				noTicks: <?=$nb_limit?>,
+				noTicks: <?php echo $nb_limit?>,
 				tickDecimals: 0,
 				tickFormatter: function(nb)
 				{
-					if(nb > <?=$nb_begin+$nb_limit?>) return '';
+					if(nb > <?php echo $nb_begin+$nb_limit?>) return '';
 					return '<a class="link_orange" style="display:block; padding-left:30px;" href="javascript:" onmouseover="showtip(event, \''+tooltip[nb]+'\');" onmouseout="hidetip();">'+nb+'</a>';
 				}
 			},

@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -287,7 +287,7 @@ pageheader("Avatar | Prono+");
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('mon_profil');
 ?>
@@ -320,7 +320,7 @@ echo getOnglets('mon_profil');
 	}
 </style>
 
-<?
+<?php
 //charger l'image
 if(!$image2crop)
 {
@@ -333,10 +333,10 @@ if(!$image2crop)
 	<td width="40%" valign="top" align="center">
 	Avatar actuel<br /><br />
 	<div style="padding:10px; border:1px solid #CCCCCC">
-	<?
+	<?php
 	if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'normal')) {
 	?>
-		<img src="/avatars/<?=$avatar?>" height="118" width="118" border="0"/>
+		<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0"/>
 	<? } else { ?>
 		<img src="/template/default/_profil.png" height="118" width="118" border="0" />
 	<? } ?>
@@ -365,7 +365,7 @@ list($w, $h) = getimagesize($image2crop);
 ?>
 
 <form method="post">
-	<input type="hidden" name="image2crop" value="<?=basename($image2crop)?>" />
+	<input type="hidden" name="image2crop" value="<?php echo basename($image2crop)?>" />
 	
 	<h2 class="title_orange">Recadrer votre avatar</h2>
 	<? if($message_error) echo '<p class="message_error">'.$message_error.'</p>'; ?>
@@ -373,7 +373,7 @@ list($w, $h) = getimagesize($image2crop);
 	<br />Recadrer ou redimensionner l'image pour créer votre avatar :<br /><br />
 	
 	<div id="testWrap">
-		<img src="upload/<?=basename($image2crop)?>?a=<?=time()?>" alt="" id="testImage" width="<?=$w?>" height="<?=$h?>" />
+		<img src="upload/<?php echo basename($image2crop)?>?a=<?php echo time()?>" alt="" id="testImage" width="<?php echo $w?>" height="<?php echo $h?>" />
 	</div>
 	<div id="preview_bloc">
 	  <h3>Aperçu</h3>
@@ -420,7 +420,7 @@ list($w, $h) = getimagesize($image2crop);
 	);		
 </script>
 
-<?
+<?php
 }
 
 /*
@@ -428,11 +428,11 @@ elseif(!$image2crop && $imagecropped) {
 
 list($w, $h) = getimagesize($imagecropped);
 ?>
-<img src="upload/<?=basename($imagecropped)?>" alt="" width="<?=$w?>" height="<?=$h?>" />
+<img src="upload/<?php echo basename($imagecropped)?>" alt="" width="<?php echo $w?>" height="<?php echo $h?>" />
 */
 ?>
 	</div>
 </div>
-<?
+<?php
 pagefooter();
 ?>

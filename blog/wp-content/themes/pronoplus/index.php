@@ -3,7 +3,7 @@
 	<div id="content" class="narrowcolumn">
 	
 	
-	<?
+	<?php
 	require_once($_SERVER[DOCUMENT_ROOT].'/init.php');
 	require_once($_SERVER[DOCUMENT_ROOT].'/mainfunctions.php');
 	require_once($_SERVER[DOCUMENT_ROOT].'/contentfunctions.php');
@@ -58,7 +58,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					} else {
 					?>
 					<?php the_content('Lire le reste de cet article &raquo;'); ?>
-					<?
+					<?php
 					}
 					?>
 					<? /*<p align="center">Lien direct vers cette page :<br /><input type="text" value="<?php the_permalink() ?>" style="width:100%" onFocus="select();" /></p>*/ ?>

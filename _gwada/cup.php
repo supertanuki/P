@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Gestion de la coupe
@@ -115,7 +115,7 @@ echo AdminName($admin_user);
 
 
 
-<?
+<?php
 // classements mensuels ?
 $class_month = array();
 $SQL = "SELECT id_class, label FROM pp_class WHERE type='month' ORDER BY `order` ASC";
@@ -144,7 +144,7 @@ if(DB::isError($result))
 	Classement mensuel concerné<br />
 	<select name="id_class">
 	<? foreach($class_month as $id_class=>$label) { ?>
-		<option value="<?=$id_class?>"><?=$label?></option>
+		<option value="<?php echo $id_class?>"><?php echo $label?></option>
 	<? } ?>
 	</select><br /><br />
 	
@@ -155,7 +155,7 @@ if(DB::isError($result))
 
 <fieldset>
 	<legend>Coupe en cours</legend>
-<?
+<?php
 // Coupe en cours
 $SQL = "SELECT `pp_cup`.`id_cup`, `pp_cup`.`label`
 		FROM `pp_cup`

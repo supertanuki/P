@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 
@@ -49,7 +49,7 @@ if($_POST[action] == "signin")
 		exit;
 	}
 	
-	// vérification email
+	// vï¿½rification email
 	$SQL = "SELECT `id_user`
 			FROM `pp_user`
 			WHERE `email`='".$db->escapeSimple($_POST[email])."'";
@@ -66,7 +66,7 @@ if($_POST[action] == "signin")
 		}
 	}
 	
-	// vérification login
+	// vï¿½rification login
 	$SQL = "SELECT `id_user`
 			FROM `pp_user`
 			WHERE `login`='".$db->escapeSimple($_POST[login])."' OR urlprofil='".$db->escapeSimple($_POST[login])."'";

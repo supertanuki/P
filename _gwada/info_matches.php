@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Création grille de pronostics
@@ -140,7 +140,7 @@ echo "<div id=\"line_add_match\" style=\"display:none\">$html</div>";
 <legend>Ajouter une liste de matchs</legend>
 <form method="post">
 Championnat : 
-<?
+<?php
 $SQL = "SELECT `label`, `id_league`
 		FROM `pp_league`
 		ORDER BY `label`";
@@ -174,7 +174,7 @@ Numéro tour : <input type="text" name="number_tour" size="2" /><br /><br />
 </form>
 </fieldset>
 
-<?
+<?php
 
 
 echo adminfooter();

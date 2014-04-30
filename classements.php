@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -34,38 +34,38 @@ if($_GET[q])
 
 
 <div id="content_fullscreen">
-	<?
+	<?php
 	// affichage des onglets
 	echo getOnglets('classement');
 	?>
 	<div id="content">
-		<?
+		<?php
 		if($_GET[q])
 		{
 			?>
 			<p>
-			<?
+			<?php
 			if($avatar = getAvatar($pp_user->id_user, $pp_user->avatar_key, $pp_user->avatar_ext, 'small')) {
 			?>
-				<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
+				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
 			<? } else { ?>
-				<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
+				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
 			<? } ?>
-			Les classements de : <br/><a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?=htmlspecialchars($pp_user->login); ?></a> | <a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">Voir le profil</a>
+			Les classements de : <br/><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?php echo htmlspecialchars($pp_user->login); ?></a> | <a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">Voir le profil</a>
 			</p>
-			<?
+			<?php
 		} else {
 			echo '<h1 class="title_orange">Mes classements</h1><br />';
 		}
 		?>
 		
-		<?
+		<?php
 		// Affichage du tableau des classements
 		echo classements_user($pp_user);
 		?>
 		
 		
-		<?
+		<?php
 		if(!$_GET[q])
 		{
 			?>
@@ -91,7 +91,7 @@ if($_GET[q])
                 <li><b><a href="/stats-pronostics.php" class="link_orange">Statistiques des scores et pronostics</a></b><br />
 						Les stats des scores des matchs qui étaient à pronostiquer sur Prono+ et les pronostics de tous les joueurs.<br />&nbsp;</li>
             </ul>
-			<?
+			<?php
 		}
 		?>
 	</div>
@@ -99,6 +99,6 @@ if($_GET[q])
 
 
 
-<?
+<?php
 pagefooter();
 ?>

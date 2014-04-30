@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -68,7 +68,7 @@ pageheader($title ? $title : "Forum football Prono+");
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('forum');
 ?>
@@ -94,7 +94,7 @@ a:hover {
 	
 	<h2 class="title_orange">Les thèmes du forum de discussion</h2>
 	<p><a href="/forum_recherche.php"><img src="/template/default/search.png" border="0" align="absmiddle" /> Rechercher sur le forum</a></p>
-<?
+<?php
 	$SQL = "SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` ORDER BY `order`";
 	$result = $db->query($SQL);
 	//echo "<li>$SQL";
@@ -114,6 +114,6 @@ a:hover {
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

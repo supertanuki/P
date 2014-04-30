@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Création grille de pronostics
@@ -83,7 +83,7 @@ if($result_teams && $result_teams->numRows())
 <legend><?php echo $team ? 'Modifier une équipe' : 'Ajouter une équipe'; ?></legend>
 <form method="post">
 Championnat : 
-<?
+<?php
 $SQL = "SELECT `label`, `id_league`
 		FROM `pp_league`
 		ORDER BY `label`";
@@ -120,7 +120,7 @@ Nb points sanction : <input name="nb_points_sanction" type="text" size="3" value
 </form>
 </fieldset>
 
-<?
+<?php
 
 
 echo adminfooter();

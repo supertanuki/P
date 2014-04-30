@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Récompenses
@@ -92,7 +92,7 @@ pageheader("Récompenses de ".$pp_user->login, array('meta_description' => 'Mur 
 <script type="text/javascript" src="/user.js?v=1"></script>
 
 <div id="content_left">
-	<?
+	<?php
 	echo getOnglets('mes_recompenses');
 	?>
 	<div id="content">
@@ -101,22 +101,22 @@ pageheader("Récompenses de ".$pp_user->login, array('meta_description' => 'Mur 
     <p>Voici les objectifs ou/et défis que vous devrez atteindre sur Prono+ et ainsi obtenir les étoiles suivantes en récompenses !</p>
     <p>Les étoiles obtenues ne sont mises à jour que toutes les nuits (forcément... pour des étoiles ! :)).</p>    
     
-		<?
+		<?php
 		if($pp_user->id_user != $user->id_user)
 		{
 			?>
 			<p>
             Les objectifs atteints par :
-			<?
+			<?php
 			if($avatar = getAvatar($pp_user->id_user, $pp_user->avatar_key, $pp_user->avatar_ext, 'small')) {
 			?>
-				<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" style="vertical-align:middle" /></a>
+				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" style="vertical-align:middle" /></a>
 			<? } else { ?>
-				<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" style="vertical-align:middle" /></a>
+				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" style="vertical-align:middle" /></a>
 			<? } ?>
-			<a href="/user.php?q=<?=urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?=htmlspecialchars($pp_user->login); ?></a>
+			<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?php echo htmlspecialchars($pp_user->login); ?></a>
 			</p>
-			<?
+			<?php
 		}
 
     $nbetoiles = 0;
@@ -181,12 +181,12 @@ pageheader("Récompenses de ".$pp_user->login, array('meta_description' => 'Mur 
 </div>
 
 <div id="content_right">
-	<?
+	<?php
 	getRightBulle($pp_user);
 	getRightProfil($pp_user);
 	?>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

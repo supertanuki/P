@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -11,7 +11,7 @@ pageheader("Pronostiquer | Prono+");
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -22,7 +22,7 @@ echo getOnglets();
 
 
 
-<?
+<?php
 	$content = CurrentMatches(false, array("liste_non_joues" => true));
 	if($content != '')
 	{
@@ -48,6 +48,6 @@ echo getOnglets();
 new Effect.Highlight('message_ok', {startcolor:'#ffff00', duration:1});
 -->
 </script>
-<?
+<?php
 pagefooter();
 ?>

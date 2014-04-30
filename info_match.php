@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Match, vote...
@@ -119,7 +119,7 @@ if(DB::isError($result))
 
 
 <div id="content_fullscreen">
-<?
+<?php
 /*
 if($title_retour && $url_retour)
 {
@@ -150,7 +150,7 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 ?>
 
 	<div id="content">
-		<h1 class="title_green"><?=formatDbData($title_page)?></h1>
+		<h1 class="title_green"><?php echo formatDbData($title_page)?></h1>
 		
 		<p>
 			<? echo ($match->afficher_classement ? '<a href="/stats-classement.php?id='.$match->id_league.'&j='.$match->day_number.'" class="link_orange">' : '')
@@ -166,13 +166,13 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 		<h3 style="color:#555" align="center">La note du match <? echo formatDbData($match->team_host.' - '.$match->team_visitor); ?> <?php echo $match->score ? '('.$match->score.')' : ''; ?> : <? echo $notedumatch ? round($notedumatch, 2) . ' / 20' : ''; ?></h3>		
 		
 		
-		<?
+		<?php
 		if($nb_votants > 0) {
 		?>		
 			<br />
 			<table width="100%" border="0"><tr>	
-				<td width="<?=$pourcent?>%">&nbsp;</td>	
-				<td width="<?=100-$pourcent?>%"><div class="notedumatch"><?=round($notedumatch, 2);?></div></td>
+				<td width="<?php echo $pourcent?>%">&nbsp;</td>
+				<td width="<?php echo 100-$pourcent?>%"><div class="notedumatch"><?php echo round($notedumatch, 2);?></div></td>
 			</tr></table>
 			
 			<div id="track_note_du_match" class="grille_track">
@@ -188,9 +188,9 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 			</tr></table>
 			
 			<br />
-			<p align="center"><?=$nb_votants?> joueur<?=$nb_votants>1 ? 's ont ' : ' a '; ?> noté le match <b><?=$libelle_match?></b>.</p>
+			<p align="center"><?php echo $nb_votants?> joueur<?php echo $nb_votants>1 ? 's ont ' : ' a '; ?> noté le match <b><?php echo $libelle_match?></b>.</p>
 			<br /><br />
-		<?
+		<?php
 		} else {
 		?>
 			<p align="center">Aucun joueur n'a noté ce match. Soyez le premier !</p>
@@ -219,7 +219,7 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 		
 		<br />
 		
-		<?
+		<?php
 		$note_perso_match = 0;
 		$SQL = "SELECT `note` FROM `pp_info_match_note` WHERE `id_info_match`='".$_GET[id]."' AND `id_user`='".$user->id_user."'";
 		$result = $db->query($SQL);
@@ -232,21 +232,21 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 			{
 				$note_perso_match = $pp_info_match_note->note;
 				?>
-				<div id="note_du_match" class="message_error" align="center">Vous avez donné une note de <?=$pp_info_match_note->note?> à ce match.</div>
-				<?
+				<div id="note_du_match" class="message_error" align="center">Vous avez donné une note de <?php echo $pp_info_match_note->note?> à ce match.</div>
+				<?php
 				
 			} else {
 				?>
-				<div id="note_du_match" class="message_error" align="center">Vous n'avez pas encore noter <?=$libelle_match?><br />
+				<div id="note_du_match" class="message_error" align="center">Vous n'avez pas encore noter <?php echo $libelle_match?><br />
 				Déplacer le curseur orange pour noter ce match.</div>
-				<?
+				<?php
 			}
 		}
 		?>
 		
 		<a name="comments"></a>
 		<h1 class="title_orange">Commenter ce match</h1>
-		<?
+		<?php
 		echo pp_comments_afficher('info_match', $_GET[id]);
 		?>
 		
@@ -258,23 +258,23 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 // <![CDATA[
 function init_sliders()
 {
-<?
+<?php
 if($nb_votants > 0) {
 ?>	
 	var slider_note_du_match = new Control.Slider('handle_note_du_match','track_note_du_match',
 		{
 			range:$R(0,20),
-			sliderValue: <?=$notedumatch?>
+			sliderValue: <?php echo $notedumatch?>
 		});
 	slider_note_du_match.setDisabled();
-<?
+<?php
 }
 ?>	
 	new Control.Slider('handle_note','track_note',
 		{
 			range:$R(0,20),
 			values: [<? for($i=0; $i<=19; $i++) echo $i.', '; ?>, 20],
-			sliderValue: <?=$note_perso_match?>,
+			sliderValue: <?php echo $note_perso_match?>,
         	onChange:function(note) { noter(note); }
 		});
 }
@@ -287,7 +287,7 @@ function noter(note)
 <? } else { ?>
 	note = Math.round(note);
 	new Ajax.Request('/actions.php', {
-		parameters: { action: 'noter_match', note: note, id_info_match: <?=$_GET[id]?> },
+		parameters: { action: 'noter_match', note: note, id_info_match: <?php echo $_GET[id]?> },
 		onComplete: function(transport)
 		{
 			if (200 == transport.status)
@@ -305,6 +305,6 @@ window.onload = init_sliders;
 // ]]>
 </script>
 
-<?
+<?php
 pagefooter();
 ?>

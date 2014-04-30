@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Création grille de pronostics
@@ -54,7 +54,7 @@ Message<br />
 <input type="submit" value="Envoyer" />
 </form>
 
-<?
+<?php
 
 
 echo adminfooter();

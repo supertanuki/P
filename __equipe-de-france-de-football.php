@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -15,14 +15,14 @@ pageheader($title ? $title : "L'Equipe de France de football", array('equipe-de-
 </style>
 
 <div id="content_fullscreen">
-<?
+<?php
 
 // affichage des onglets
 echo getOnglets('equipe-de-france');
 ?>
 <div id="content">
 	<ul class="list_sortable">
-		<?
+		<?php
 		/*
 		<li>
 			<h2 class="title_blueking">Pronostic des matchs de l'équipe de France</h2>
@@ -36,7 +36,7 @@ echo getOnglets('equipe-de-france');
 		<li>
 			<h2 class="title_blueking">Calendrier de l'équipe de France 2008 - 2010</h2>
 			<div class="bloc_content">
-<?
+<?php
 $calendrier = "Suède;<span class=\"match_gagne\">2-3</span>;<strong>France</strong>;Mercredi 20 août 2008 à 21h00;Match amical
 Autriche;<span class=\"match_perdu\">3-1</span>;<strong>France</strong>;Samedi 6 septembre 2008 à 20h30;Eliminatoire Coupe du Monde 2010
 <strong>France</strong>;<span class=\"match_gagne\">2-1</span>;Serbie;Mercredi 10 septembre 2008 à 21h00;Eliminatoire Coupe du Monde 2010 
@@ -64,7 +64,7 @@ Uruguay;<span class=\"match_nul\">0-0</span>;<strong>France</strong>;Vendredi 11
 <strong>France</strong>;<span class=\"match_perdu\">1-2</span>;Afrique du Sud;Mardi 22 juin 2010;<strong>Coupe du Monde 2010</strong>";
 ?>
 			<table width="100%" cellpadding="4" cellspacing="1" border="0">
-			<?
+			<?php
 			$matches = explode("\n", $calendrier);
 			foreach($matches as $match)
 			{
@@ -77,14 +77,14 @@ Uruguay;<span class=\"match_nul\">0-0</span>;<strong>France</strong>;Vendredi 11
 					$altern = 1;
 				}
 			?>
-				<tr class="<?=$class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'">
-					<td align="right" width="12%" nowrap="nowrap"><?=$info_match[0]?></td>
-					<td align="center" width="10%"><?=$info_match[1]?></td>
-					<td width="12%" nowrap="nowrap"><?=$info_match[2]?></td>
-					<td width="30%"><?=$info_match[3]?></td>
-					<td width="36%"><?=$info_match[4]?></td>
+				<tr class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
+					<td align="right" width="12%" nowrap="nowrap"><?php echo $info_match[0]?></td>
+					<td align="center" width="10%"><?php echo $info_match[1]?></td>
+					<td width="12%" nowrap="nowrap"><?php echo $info_match[2]?></td>
+					<td width="30%"><?php echo $info_match[3]?></td>
+					<td width="36%"><?php echo $info_match[4]?></td>
 				</tr>
-			<?
+			<?php
 			}
 			?>
 			</table>
@@ -92,7 +92,7 @@ Uruguay;<span class=\"match_nul\">0-0</span>;<strong>France</strong>;Vendredi 11
 		</li>
 
 		
-<?
+<?php
 /*
 $classement = "1.  	    SERBIE;  	22; 	10; 	7; 	1; 	2; 	22; 	8; 	+14
 2.  	  FRANCE; 	21; 	10; 	6; 	3; 	1; 	18; 	9; 	+9
@@ -117,7 +117,7 @@ $classement = "1.  	    SERBIE;  	22; 	10; 	7; 	1; 	2; 	22; 	8; 	+14
 					<th>BC</th>
 					<th>Diff</th>
 				</tr>
-			<?
+			<?php
 			$equipes = explode("\n", $classement);
 			foreach($equipes as $equipe)
 			{
@@ -130,24 +130,24 @@ $classement = "1.  	    SERBIE;  	22; 	10; 	7; 	1; 	2; 	22; 	8; 	+14
 					$altern = 1;
 				}
 			?>
-				<tr class="<?=$class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'">
-					<td><?=$info_equipe[0]?></td>
-					<td align="center"><?=$info_equipe[1]?></td>
-					<td align="center"><?=$info_equipe[2]?></td>
-					<td align="center"><?=$info_equipe[3]?></td>
-					<td align="center"><?=$info_equipe[4]?></td>
-					<td align="center"><?=$info_equipe[5]?></td>
-					<td align="center"><?=$info_equipe[6]?></td>
-					<td align="center"><?=$info_equipe[7]?></td>
-					<td align="center"><?=$info_equipe[8]?></td>
+				<tr class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
+					<td><?php echo $info_equipe[0]?></td>
+					<td align="center"><?php echo $info_equipe[1]?></td>
+					<td align="center"><?php echo $info_equipe[2]?></td>
+					<td align="center"><?php echo $info_equipe[3]?></td>
+					<td align="center"><?php echo $info_equipe[4]?></td>
+					<td align="center"><?php echo $info_equipe[5]?></td>
+					<td align="center"><?php echo $info_equipe[6]?></td>
+					<td align="center"><?php echo $info_equipe[7]?></td>
+					<td align="center"><?php echo $info_equipe[8]?></td>
 				</tr>
-			<?
+			<?php
 			}
 			?>
 			</table></p>
 			</div>
 		</li>
-		<?
+		<?php
 		*/
 		?>
 		
@@ -171,7 +171,7 @@ $classement = "1.  	    SERBIE;  	22; 	10; 	7; 	1; 	2; 	22; 	8; 	+14
 		  <th width="50%">Sujets</th>
 		  <th width="20%">Dernier message</th>
 		</tr>
-<?
+<?php
 $resmsg=mysql_query("SELECT forum.* FROM forum 
 					WHERE Nquest=0 AND forum.supp=0 AND forum.bloque=0 AND forum.id_forum_theme=3
 					ORDER BY dateder DESC LIMIT 5");
@@ -185,9 +185,9 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 	}
 ?>
 
-		<tr bgcolor="#<?=$color?>">		
-		  <td><a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?>.html" class="link_orange"> 
-			<?
+		<tr bgcolor="#<?php echo $color?>">
+		  <td><a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?>.html" class="link_orange">
+			<?php
 			echo htmlspecialchars($lmsg["sujet"]);
 			?>
 			</a><br />
@@ -200,12 +200,12 @@ $nbpage=ceil($nbtotalmsg/$nbaff);
 if($nbtotalmsg > 10) {
 	?>
 			[ 
-			<?
+			<?php
 	for($i=1; $i<=$nbpage; $i++) {
 		$ldeb=(($i-1)*$nbaff);
 		?>
-			<a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?><?=$ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
-			<?=$i?>
+			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
+			<?php echo $i?>
 			</a> 
 			<?	if($i!=$nbpage) echo ".";
 	} ?>
@@ -216,13 +216,13 @@ if($nbtotalmsg > 10) {
 		  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
 	<td><div align="center"><font size="1">
-	<?=formatdateheure($lmsg["dateder"])?></font>
+	<?php echo formatdateheure($lmsg["dateder"])?></font>
 	</div></td>
 	<? // dernier message du topic
 	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]." order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
-				<td width="23" valign="middle"><a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?><?=($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?=$lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a></td>
+				<td width="23" valign="middle"><a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo ($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?php echo $lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a></td>
   </tr>
 </table>
  
@@ -239,6 +239,6 @@ if($nbtotalmsg > 10) {
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 <hr />
 <div id="footer">
@@ -10,7 +10,7 @@
 <?php wp_footer(); ?>
 */ ?>
 
-<?
+<?php
 echo file_get_contents('http://'.$_SERVER['HTTP_HOST'].'/footer-blog.php');
 ?>
 

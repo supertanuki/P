@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Fonctions d'affichage de contenus
@@ -20,7 +20,7 @@ function pageheader($title, $options=false)
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=$title?></title>
+<title><?php echo $title?></title>
 
 <meta name="description" content="<? echo $options[meta_description]; ?>" />
 <?php if($options[meta_keywords]) { ?><meta name="keywords" content="<? echo $options[meta_keywords]; ?>"><?php } ?>
@@ -67,7 +67,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 
 				if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'small'))
 				{
-				?><div style="float:left;"><img src="/avatars/<?=$avatar?>" height="29" width="29" border="0" align="absmiddle" style="border-right:solid 1px #fff" /></div><?
+				?><div style="float:left;"><img src="/avatars/<?php echo $avatar?>" height="29" width="29" border="0" align="absmiddle" style="border-right:solid 1px #fff" /></div><?php
 				}
 				echo "<div style=\"float:left; padding:9px 5px 6px 5px; font-weight:bold; width:105px; overflow:hidden;\"><a href=\"/profil.php\" style=\"display:inline\">".$user->login."</a>&nbsp;<a href=\"/logout.php\" class=\"logout_link\" title=\"Se déconnecter\" onclick=\"return confirm('Souhaitez-vous vous déconnecter ?');\"><img src=\"/template/default/close.gif\" height=\"12\" width=\"12\" border=\"0\" align=\"absmiddle\" /></a></div>";
 				echo "<div class=\"clear\"></div>";
@@ -78,7 +78,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 			<li class="header_link_blue"><a href="/forum-football/">Forum</a></li>-->
 		</ul>
 		<div style="display:block; width:300px; height:12px; overflow:hidden; color:#666666; font-size:12px; font-weight:bold; margin:0; padding:5px 5px 2px 5px;">
-		<?=($title=="Prono+, Pronostic de foot" ? "Jeu gratuit de pronostics de football" : str_replace('| Prono+', '', $title) ); ?>
+		<?php echo ($title=="Prono+, Pronostic de foot" ? "Jeu gratuit de pronostics de football" : str_replace('| Prono+', '', $title) ); ?>
 		</div>
 	</div>
 	
@@ -94,21 +94,21 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	
 
 	
-	<?
+	<?php
 	if(navigator_is_mobile())
 	{
 		?>
 		<p align="center" style="padding: 10px; background: none repeat scroll 0% 0% rgb(255, 255, 170); font-size:24px;"><b>
 			Tu es sur ton mobile ?<br /><a href="/mobile/" class="link_orange">Utilise la version mobile de Prono+</a> !
 		</b></p>
-		<?
+		<?php
 	} else {
 		?>
 		<noscript><p align="center" style="padding: 10px; background: none repeat scroll 0% 0% rgb(255, 255, 170);"><b>Ce site nécessite JavaScript pour fonctionner intégralement.<br> Merci de l'activer dans votre navigateur.</b></p></noscript>
-		<?
+		<?php
 	}
 	?>
-<?
+<?php
 }
 
 function listGrillesEnCours()
@@ -259,7 +259,7 @@ function pagefooter($options=false)
 	<? }*/ ?>
     <img src="/template/default/whosonline.png" height="25" width="37" border="0" alt="" align="absmiddle" style="margin-right:6px;" /><strong>Qui est en ligne ?</strong>
     
-<?
+<?php
 $nb_online = 0;
 $content = '';
 $SQL = "SELECT `pp_user`.`id_user`, `pp_user`.`last_cnx`, `pp_user`.`login`, `pp_user`.`avatar_key`, `pp_user`.`avatar_ext`
@@ -307,7 +307,7 @@ else echo $nb_online . " joueur" .($nb_online > 1 ? "s" : ""). " en ligne<hr>" .
 				<li><a href="/cup.php">Coupe Prono+</a></li>
                 
                 <? if($user->id_user) { ?>
-					<li><a href="/user.php?q=<?=htmlspecialchars(urlencode($user->login));?>">Mon profil</a></li>
+					<li><a href="/user.php?q=<?php echo htmlspecialchars(urlencode($user->login));?>">Mon profil</a></li>
 					<li><a href="/profil.php">Modifier mon profil</a></li>					
 				<? } else if(!$options['forblog']) { ?>                
 					<li><a href="javascript:" onclick="SeConnecter(this);">Se connecter à Prono+</a></li>
@@ -320,7 +320,7 @@ else echo $nb_online . " joueur" .($nb_online > 1 ? "s" : ""). " en ligne<hr>" .
             </ul>
             
             
-<?
+<?php
 $SQL = "SELECT `pp_class`.`id_class`, `pp_class`.`label`
 		FROM `pp_class`
 		WHERE `pp_class`.`last_id_matches` != 0
@@ -387,7 +387,7 @@ if(DB::isError($result))
             </td>
             <td class="footer_separator">&nbsp;</td>
             <td valign="top" width="33%">
-<?
+<?php
 	// FORUMS
 	$SQL = "SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` ORDER BY `order`";
 	$result = $db->query($SQL);
@@ -427,7 +427,7 @@ if(DB::isError($result))
     </div>	
 </div>
 
-<?
+<?php
 	if(!$options['forblog']) {
 	
 		if(!$user) {
@@ -446,7 +446,7 @@ if(DB::isError($result))
 			});
 			// ]]>
 			</script>
-			<?
+			<?php
 		}
 	
 		?>
@@ -463,7 +463,7 @@ if(DB::isError($result))
 		<!--/footer-->
 		</body>
 		</html>
-		<?
+		<?php
 	}
 }
 
@@ -633,7 +633,7 @@ function getContentLeft()
 ?>
 	<div id="content_left">		
 
-		<?
+		<?php
 		echo getOnglets('accueil');
 		?>
 		
@@ -828,7 +828,7 @@ Je gagne : 50 x 10 = 500 points.
 	-->
 	</script>
 	*/ ?>
-<?
+<?php
 }
 
 
@@ -1083,7 +1083,7 @@ function getRightBulle($pp_user=0)
 	<div class="bulle_top"></div>
 	<div class="bulle_bloc">
 		<div class="bulle_content"><div class="center">		
-			<?
+			<?php
 			$message_bulle = '';
 			
 			if($userprofil->id_user == $user->id_user)
@@ -1199,7 +1199,7 @@ function getRightBulle($pp_user=0)
 	</div>
 	<div class="bulle_bottom"></div>
 </div>
-<?
+<?php
 }
 
 function getRightProfil($pp_user=0)
@@ -1242,11 +1242,11 @@ function getRightProfil($pp_user=0)
 				<div class="profil_img_top"></div>
 				<div class="profil_img_left">
 					<div class="profil_img_right">
-						<?
+						<?php
 						if($user->id_user == $userprofil->id_user) echo '<a href="/avatar.php">';
 							if($avatar) {
 							?>
-								<img src="/avatars/<?=$avatar?>" height="118" width="118" border="0" />
+								<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0" />
 							<? } else { ?>
 								<img src="/template/default/_profil.png" height="118" width="118" border="0" />
 							<? }
@@ -1261,7 +1261,7 @@ function getRightProfil($pp_user=0)
 			
 			<div class="pseudo_joueur">
 				<? if($userprofil) { ?>
-					<?=formatDbData($userprofil->login)?> <?php /*<img src="template/default/status_online.png" alt="En ligne" title="En ligne" height="16" width="16" />*/ ?>
+					<?php echo formatDbData($userprofil->login)?> <?php /*<img src="template/default/status_online.png" alt="En ligne" title="En ligne" height="16" width="16" />*/ ?>
                     <br /><p class="<?php echo $nb_recompenses != 0 ? 'recompense-star' : 'recompense-star-disabled'; ?>"><a href="/recompenses.php?q=<? echo urlencode($userprofil->login); ?>"><?php echo $nb_recompenses; ?> <?php echo $nb_recompenses > 1 ? 'étoiles' : 'étoile'; ?></a></p>
                     <br /><small>Inscrit(e) depuis le <? echo $userprofil->register_date_format; ?></small>
 
@@ -1280,7 +1280,7 @@ function getRightProfil($pp_user=0)
 			
 			
 			
-			<?
+			<?php
 			if($user->id_user && $userprofil->id_user == $user->id_user)
 			{
 				/* recherche d'invitation amis */
@@ -1295,7 +1295,7 @@ function getRightProfil($pp_user=0)
 					<br /><div align="center">
 						<a class="link_button_urgent" href="/friends.php"><img src="/template/default/group_add.png" height="16" width="16" border="0" align="absmiddle" /> <? echo $pp_user_friends->nb_invitations.' invitation'.($pp_user_friends->nb_invitations > 1 ? 's' : '').' d\'ami(e)'.($pp_user_friends->nb_invitations > 1 ? 's' : ''); ?></a>
 					</div>
-					<?
+					<?php
 				}
 			}
 			?>
@@ -1315,7 +1315,7 @@ function getRightProfil($pp_user=0)
 			
 		</div>
 
-		<?
+		<?php
 		$class_user = array();
 		$SQL = "SELECT `pp_class_user`.`id_class`, `pp_class_user`.`id_user`, `pp_class_user`.`class`, `pp_class_user`.`evolution`
 				FROM `pp_class`
@@ -1338,21 +1338,21 @@ function getRightProfil($pp_user=0)
 
 		?>
 		<div class="profil_palmares">
-			<?
+			<?php
 			if($user->id_user || $userprofil)
 			{
 			?>
 			<div class="profil_palmares_border">
 				<table cellspacing="0" cellpadding="2" align="center">
 			    <tr>
-			      <td align="right" width="70%"><a href="class.php?id=2&rech_jpseudo=<?=urlencode($userprofil->login)?>&search_joueur=1">Classement G&eacute;n&eacute;ral</a> : </td>
+			      <td align="right" width="70%"><a href="class.php?id=2&rech_jpseudo=<?php echo urlencode($userprofil->login)?>&search_joueur=1">Classement G&eacute;n&eacute;ral</a> : </td>
 			      <td width="30%" nowrap>
-				  <?
+				  <?php
 				  if($class_user[2]['class'])
 				  {
 				  ?>
-				  <a href="class.php?id=2&rech_jpseudo=<?=urlencode($userprofil->login)?>&search_joueur=1"><?=$class_user[2]['class']?>
-					<?
+				  <a href="class.php?id=2&rech_jpseudo=<?php echo urlencode($userprofil->login)?>&search_joueur=1"><?php echo $class_user[2]['class']?>
+					<?php
 					if($class_user[2]['evolution']<0) {
 						echo "<font color=\"red\" style=\"font-family:Arial; font-size:8px;\">(".$class_user[2]['evolution'].")</font>";
 					} elseif($class_user[2]['evolution']>0) {
@@ -1360,12 +1360,12 @@ function getRightProfil($pp_user=0)
 					}
 					?>
 					</a>
-				  <?
+				  <?php
 				  } else echo '-';
 				  ?>
 				  </td>
 		        </tr>
-				<?
+				<?php
 				// recherche Classement mensuel
 				$SQL = "SELECT `id_class`, `label`
 						FROM `pp_class`
@@ -1401,14 +1401,14 @@ function getRightProfil($pp_user=0)
 						}
 				?>
                 <tr>
-                  <td align="right"><a href="class.php?id=<?=$pp_class->id_class?>&rech_jpseudo=<?=urlencode($userprofil->login)?>&search_joueur=1"><?=$pp_class->label?></a> : </td>
+                  <td align="right"><a href="class.php?id=<?php echo $pp_class->id_class?>&rech_jpseudo=<?php echo urlencode($userprofil->login)?>&search_joueur=1"><?php echo $pp_class->label?></a> : </td>
                   <td nowrap>
-				  <?
+				  <?php
 				  if($class_user[$pp_class->id_class]['class'])
 				  {
 				  ?>
-				  <a href="class.php?id=<?=$pp_class->id_class?>&rech_jpseudo=<?=urlencode($userprofil->login)?>&search_joueur=1"><?=$class_user[$pp_class->id_class]['class']?>
-					<?
+				  <a href="class.php?id=<?php echo $pp_class->id_class?>&rech_jpseudo=<?php echo urlencode($userprofil->login)?>&search_joueur=1"><?php echo $class_user[$pp_class->id_class]['class']?>
+					<?php
 					if($class_user[$pp_class->id_class]['evolution']<0) {
 						echo "<font color=\"red\" style=\"font-family:Arial; font-size:8px;\">(".$class_user[$pp_class->id_class]['evolution'].")</font>";
 					} elseif($class_user[$pp_class->id_class]['evolution']>0) {
@@ -1416,18 +1416,18 @@ function getRightProfil($pp_user=0)
 					}
 					?>
 					</a>
-				  <?
+				  <?php
 				  } else echo '-';
 				  ?>
 				  </td>
                 </tr>
-				<?
+				<?php
 					}
 				}
 				?>
 				</table>
 			  
-				<?
+				<?php
 				if($userprofil->id_user == $user->id_user)
 				{
 					$linkclass = "/classements.php";
@@ -1442,11 +1442,11 @@ function getRightProfil($pp_user=0)
 				</ul>
 			  
 		    </div>
-			<?
+			<?php
 			}
 			?>
 		</div>
-<?
+<?php
 }
 
 
@@ -1541,7 +1541,7 @@ function getContentRight()
 ?>
 	<div id="content_right">
 		
-	<?
+	<?php
 	getRightBulle();
 	getRightProfil();
 	?>	
@@ -1565,7 +1565,7 @@ function getContentRight()
 				<h2 class="title_green">Coup de chapeau !</h2>
 				<div class="bloc_content"><? echo CoupDeChapeau(); ?></div>
 			</li>
-			<?
+			<?php
 		}
 		?>
 		
@@ -1601,7 +1601,7 @@ function getContentRight()
 			
 			
 			
-			<?
+			<?php
 			/*
 			<li>
 				<h2 class="title_blueking">L'équipe de France</h2>
@@ -1711,7 +1711,7 @@ function getContentRight()
           <h2 class="title_orange">Les derniers articles du blog</h2>
           <div class="bloc_content"><? echo $posts; ?></div>
         </li>
-        <?
+        <?php
       }
       ?>
 			
@@ -1759,7 +1759,7 @@ function getContentRight()
 							<? echo implode(', ', $content); ?>
 						</div>
 					</li>
-					<?
+					<?php
 				}
       }
 			?>
@@ -1803,7 +1803,7 @@ function getContentRight()
 			
 		</ul>
 	</div>
-<?
+<?php
 }
 
 
@@ -2869,7 +2869,7 @@ $sqlgoto=$sqldep+$nbaff; ?>
 	
   </tr>
 </table>
-<?
+<?php
 }
 
 
@@ -2878,7 +2878,7 @@ function getLastPostFromForum()
 	global $db;
 ?>
 <table width="100%" border="0" cellspacing="1" cellpadding="4">
-		<?
+		<?php
 		/*
 		<tr>		  
 		  <th width="60%">Sujets</th>
@@ -2887,7 +2887,7 @@ function getLastPostFromForum()
 		</tr>
 		*/
 		?>
-<?
+<?php
 $resmsg=mysql_query("SELECT forum.*, forum_theme.label AS label_theme, forum_theme.url AS url_theme FROM forum INNER JOIN forum_theme ON forum_theme.id_forum_theme=forum.id_forum_theme
 					WHERE forum.Nquest=0 AND forum.supp=0 AND forum.bloque=0
 					ORDER BY dateder DESC LIMIT 7");
@@ -2921,14 +2921,14 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 
 		<tr class="<? echo $class = ($class != 'ligne_blanche' ? 'ligne_blanche' : 'ligne_grise'); ?>">		
 		  <td width="65%">
-			<h3><a href="<?=$link;?>" class="link_orange">
+			<h3><a href="<?php echo $link;?>" class="link_orange">
 			<? echo htmlspecialchars($lmsg["sujet"]); ?>
 			<img src="/template/default/last.gif" alt="Aller au dernier message" align="absmiddle" width="16" height="16" border="0" />
 			</a></h3>
 			
 			<? echo htmlspecialchars($message); ?>
 
-			<?
+			<?php
 			/*			//pages
 			$nbmsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]);
 			$nbtotalmsg=mysql_num_rows($nbmsg);
@@ -2937,36 +2937,36 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			if($nbtotalmsg > 10) {
 			?>
 			[ 
-			<?
+			<?php
 			for($i=1; $i<=$nbpage; $i++) {
 				$ldeb=(($i-1)*$nbaff);
 			?>
-			<a href="/forum-football/<?=$lmsg["url"]?>-<?=$lmsg["Nmsg"]?><?=$ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
-			<?=$i?>
+			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
+			<?php echo $i?>
 			</a> 
 			<?	if($i!=$nbpage) echo ".";
 			} ?>
 			]
 			<? } */ ?>
 			</td>
-			<? /* <td>Dans <a href="/forum-football/<?=$lmsg["url_theme"]?>/" class="link_orange"><?=$lmsg["label_theme"]?></a></td> */ ?>
+			<? /* <td>Dans <a href="/forum-football/<?php echo $lmsg["url_theme"]?>/" class="link_orange"><?php echo $lmsg["label_theme"]?></a></td> */ ?>
 		  <td width="35%">
-		<a href="/user.php?q=<?=urlencode(htmlspecialchars($lnmsg["login"]))?>" class="link_orange">
-		<?
+		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($lnmsg["login"]))?>" class="link_orange">
+		<?php
 		if($avatar = getAvatar($lnmsg["id_user"], $lnmsg["avatar_key"], $lnmsg["avatar_ext"], 'small')) {
 		?>
-			<img src="/avatars/<?=$avatar?>" height="30" width="30" border="0" style="float:left; margin-right:2px;"  />
+			<img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" style="float:left; margin-right:2px;"  />
 		<? } else { ?>
 			<img src="/template/default/_profil.png" height="30" width="30" border="0" style="float:left; margin-right:2px;" />
 		<? } ?>
-		<?=$lnmsg["login"]; ?></a><br /><span style="font-size:10px;"><?=formatdateheure($lmsg["dateder"])?></span>
+		<?php echo $lnmsg["login"]; ?></a><br /><span style="font-size:10px;"><?php echo formatdateheure($lmsg["dateder"])?></span>
 		
 		  </td>
 		</tr>
 		<? } ?>
 		
 		
-		<?
+		<?php
 			$forum_themes = array();
 			$SQL = "SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` ORDER BY `order`";
 			$result = $db->query($SQL);
@@ -2986,7 +2986,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			<th align="right" colspan="2">
 				<span style="float:left"><a href="/forum_recherche.php" class="link_orange"><img src="/template/default/search.png" border="0" align="absmiddle" /> Rechercher</a></span>
 			
-			<?
+			<?php
 				echo "<select onchange=\"if(this.value != '') document.location.href=this.value\">";
 				echo "<option value=\"\">Aller au forum...</option>";
 				foreach($forum_themes as $forum_theme)
@@ -2999,7 +2999,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 		</tr>
 		
 		<tr><th colspan="2" align="right"><a class="link_orange" href="#" onclick="$('selection_theme_forum').show(); return false;"><img src="/template/default/comment_new.gif" height="16" width="16" alt="Ouvrir au sujet" border="0" align="absmiddle"> <b>Ouvrir un sujet</b></a>
-		<?
+		<?php
 			echo "<select id=\"selection_theme_forum\" style=\"display:none;\" onchange=\"if(this.value != '') document.location.href=this.value\">";
 			echo "<option value=\"\">Dans le forum...</option>";
 			foreach($forum_themes as $forum_theme)
@@ -3010,7 +3010,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 		?>
 		</th></tr>
 	  </table>
-<?
+<?php
 }
 
 

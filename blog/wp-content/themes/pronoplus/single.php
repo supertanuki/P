@@ -2,7 +2,7 @@
 	<div id="content" class="narrowcolumn">
 	
 	
-<?
+<?php
 require_once($_SERVER[DOCUMENT_ROOT].'/init.php');
 require_once($_SERVER[DOCUMENT_ROOT].'/mainfunctions.php');
 require_once($_SERVER[DOCUMENT_ROOT].'/contentfunctions.php');
@@ -27,7 +27,7 @@ echo '<div style="padding:10px; background:#ffffff">'.alaune().'</div>';
 		
 		
 		
-<?
+<?php
 /*	
 <div align="center">
 <script language="JavaScript" type="text/javascript" src="/lib/flash/flash.js"></script>

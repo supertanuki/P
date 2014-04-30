@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 
@@ -27,7 +27,7 @@ if($_POST[action] == "connect")
 	} else {
 		if($pp_user = $result->fetchRow())
 		{
-			$contenthtml = "Bonjour !<br /><br />Voici vos identifiants pour vous connecter à Prono+ :<br /><br />Login : ".$pp_user->login."<br />Mot de passe : ".$pp_user->pwd."<br />";
+			$contenthtml = "Bonjour !<br /><br />Voici vos identifiants pour vous connecter ï¿½ Prono+ :<br /><br />Login : ".$pp_user->login."<br />Mot de passe : ".$pp_user->pwd."<br />";
 			sendemail($_POST[email], 'Liline de Prono+', 'noreply@pronoplus.com', 'Prono+ : Rappel de vos identifiants', $contenthtml);
 			echo "{'response':200}";
 			exit;

@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -212,7 +212,7 @@ if($_POST[save_prono] && $_POST[id] && $user)
 			location.href='pronostic_ok.php';
 			-->
 			</script>
-			<?
+			<?php
 		}
 	}
 }
@@ -345,7 +345,7 @@ pageheader("Pronostiquer ".formatDbData($pp_matches->label)." | Prono+", array('
 <style type="text/css" media="screen">@import url(template/default/pronostiquer.css?v=1.2);</style>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -355,10 +355,10 @@ echo getOnglets();
 <div id="content">
 
 
-<h1 class="title_green"><?='Pronostics ' . formatDbData($pp_matches->label)?></h1>
+<h1 class="title_green"><?php echo 'Pronostics ' . formatDbData($pp_matches->label)?></h1>
 
 <? if($error!="") { ?>
-<div id="msg_error" class="message_error" style="padding:10px; margin-bottom:20px; border:solid 1px #ffff00"><?=$error?></div>
+<div id="msg_error" class="message_error" style="padding:10px; margin-bottom:20px; border:solid 1px #ffff00"><?php echo $error?></div>
 <script type="text/javascript">
 <!--
 new Effect.Highlight('msg_error', {startcolor:'#ffff00', duration:1});
@@ -367,7 +367,7 @@ new Effect.Highlight('msg_error', {startcolor:'#ffff00', duration:1});
 <? } ?>
 
 
-<?
+<?php
 echo "<table width=\"100%\" border=\"0\" cellspacing=\"4\" cellpadding=\"0\"><tr>
 		<td valign=\"top\" width=\"1%\"><img src=\"template/default/".$pp_matches->image."\" class=\"preview_matches_image\" border=\"0\" /></td>
 		<td  valign=\"top\" width=\"99%\">";
@@ -396,7 +396,7 @@ echo "<div id=\"comment_pronostiquer\" class=\"message_error\" style=\"display:n
 
 <form id="form_pronostiquer" method="post" action="pronostiquer.php" onsubmit="alert('save ?'); return saveprono();">
 <input type="hidden" name="save_prono" value="1" />
-<input type="hidden" name="id" value="<?=$_GET[id]?>" />
+<input type="hidden" name="id" value="<?php echo $_GET[id]?>" />
 
 
 <table width="100%" cellpadding="2" cellspacing="1">
@@ -407,7 +407,7 @@ echo "<div id=\"comment_pronostiquer\" class=\"message_error\" style=\"display:n
 		<th class="grille_mise_slider" align="center" style="padding:2px;">Mise</th>
 		<th class="grille_mise" style="padding:2px;">&nbsp;</th>
 	</tr>
-<?
+<?php
 $date_tmp = "";
 if(is_array($matches)) foreach($matches as $i=>$match)
 {
@@ -426,7 +426,7 @@ if(is_array($matches)) foreach($matches as $i=>$match)
 ?>
 	<tr>
 		<td colspan="5" class="popup" style="padding-top:16px; border-bottom:solid 1px #ccc">
-		<?
+		<?php
 		if(substr($date_tmp, 0, 10) != substr($match->date_match, 0, 10))
 		{
 			$dayweek = $match->date_match_dayweek;
@@ -435,37 +435,37 @@ if(is_array($matches)) foreach($matches as $i=>$match)
 			echo get_date_complete($dayweek, $match->date_match_day, $match->date_match_month-1, $match->date_match_year);
 		}
 		?>
-		&agrave; <?=$match->time_match_format?>
+		&agrave; <?php echo $match->time_match_format?>
 		</td>
 	</tr>
 
-<?
+<?php
 		$date_tmp = $match->date_match;
 	}
 
 	if(substr($match->diff_date_match, 0, 1) == '-')
 	{
 ?>
-	<input type="hidden" name="id_match[<?=$match->id_match?>]" value="<?=$i?>" />
-	<tr id="match_line_<?=$i?>" class="<?=$class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'">
-		<td class="grille_equipe_gauche" valign="top"><?=formatDbData($match->team_host_label)?><? if($match->team_host_flag && $match->team_visitor_flag) echo ' <img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" />'; ?></td>
+	<input type="hidden" name="id_match[<?php echo $match->id_match?>]" value="<?php echo $i?>" />
+	<tr id="match_line_<?php echo $i?>" class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
+		<td class="grille_equipe_gauche" valign="top"><?php echo formatDbData($match->team_host_label)?><? if($match->team_host_flag && $match->team_visitor_flag) echo ' <img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" />'; ?></td>
 		
-		<td class="grille_score" nowrap="nowrap" valign="top"><div id="div_score_match_<?=$i?>"><select id="score_team_host_<?=$i?>" onchange="setScore(<?=$i?>);">
+		<td class="grille_score" nowrap="nowrap" valign="top"><div id="div_score_match_<?php echo $i?>"><select id="score_team_host_<?php echo $i?>" onchange="setScore(<?php echo $i?>);">
 					<? for($j=0; $j<=9; $j++) echo "<option value=\"$j\" ".(substr($score[$match->id_match]->score, 0, 1)*1 == $j ? "selected=\"selected\"" : "").">$j</option>"; ?>
-				</select>&nbsp;-&nbsp;<select id="score_team_visitor_<?=$i?>" onchange="setScore(<?=$i?>);">
+				</select>&nbsp;-&nbsp;<select id="score_team_visitor_<?php echo $i?>" onchange="setScore(<?php echo $i?>);">
 					<? for($j=0; $j<=9; $j++) echo "<option value=\"$j\"".(substr($score[$match->id_match]->score, 2, 1)*1 == $j ? "selected=\"selected\"" : "").">$j</option>"; ?>
-				</select><input id="score_match_<?=$i?>" name="score_match[<?=$i?>]" type="hidden" value="<?=$score[$match->id_match]->score ? $score[$match->id_match]->score : '0-0'; ?>" /></div>
+				</select><input id="score_match_<?php echo $i?>" name="score_match[<?php echo $i?>]" type="hidden" value="<?php echo $score[$match->id_match]->score ? $score[$match->id_match]->score : '0-0'; ?>" /></div>
       <?php if($match->report === '1') echo '<div style="margin:4px 0 0 0; color:red">(reporté)</div>'; ?>
     </td>
 		
-		<td class="grille_equipe_droite" valign="top"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" /> '; ?><?=formatDbData($match->team_visitor_label)?></td>
+		<td class="grille_equipe_droite" valign="top"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" /> '; ?><?php echo formatDbData($match->team_visitor_label)?></td>
 		
-		<td class="grille_mise_slider" valign="top"><div id="div_slider_<?=$i?>"><div id="track_<?=$i?>" class="grille_track"><div id="handle_<?=$i?>" class="grille_handle"> </div></div></div></td>
+		<td class="grille_mise_slider" valign="top"><div id="div_slider_<?php echo $i?>"><div id="track_<?php echo $i?>" class="grille_track"><div id="handle_<?php echo $i?>" class="grille_handle"> </div></div></div></td>
 		
-		<td class="grille_mise" valign="top"><input id="mise_match_<?=$i?>" name="mise_match[<?=$i?>]" type="text" value="<?=$score[$match->id_match]->pts ? $score[$match->id_match]->pts : '10'; ?>" size="2" maxlength="2" class="grille_score_input" onblur="SliderMise_<?=$i?>.setValue(this.value); updateMise();" onfocus="open_match(<?=$i?>); this.select();" /></td>
+		<td class="grille_mise" valign="top"><input id="mise_match_<?php echo $i?>" name="mise_match[<?php echo $i?>]" type="text" value="<?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '10'; ?>" size="2" maxlength="2" class="grille_score_input" onblur="SliderMise_<?php echo $i?>.setValue(this.value); updateMise();" onfocus="open_match(<?php echo $i?>); this.select();" /></td>
 	</tr>
 	
-<?
+<?php
 		$tendance = array();
 		$SQL = "SELECT COUNT(`id_user`) AS NBUSERS,
 				IF(SUBSTRING(`score`, 1, 1)*1 = SUBSTRING(`score`, 3, 1)*1, 2, IF(SUBSTRING(`score`, 1, 1)*1 > SUBSTRING(`score`, 3, 1)*1, 1, 3)) AS `type`,
@@ -496,26 +496,26 @@ if(is_array($matches)) foreach($matches as $i=>$match)
 	} else {
 	?>
 
-	<input type="hidden" name="id_match[<?=$match->id_match?>]" value="<?=$i?>" />
-	<tr id="match_line_<?=$i?>" class="<?=$class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?=$class_line?>'">
-		<td class="grille_equipe_gauche"><span id="team_host_<?=$i?>" class="grille_match_off"><?=formatDbData($match->team_host_label)?></span><? if($match->team_host_flag && $match->team_visitor_flag) echo ' <img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" />'; ?></td>
+	<input type="hidden" name="id_match[<?php echo $match->id_match?>]" value="<?php echo $i?>" />
+	<tr id="match_line_<?php echo $i?>" class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
+		<td class="grille_equipe_gauche"><span id="team_host_<?php echo $i?>" class="grille_match_off"><?php echo formatDbData($match->team_host_label)?></span><? if($match->team_host_flag && $match->team_visitor_flag) echo ' <img src="/image/flags/'.$match->team_host_flag.'" align="absmiddle" />'; ?></td>
 		
-		<td class="grille_score"><div id="div_score_match_<?=$i?>" class="grille_score_off"><input id="score_match_<?=$i?>" type="text" value="<?=$score[$match->id_match]->score ? $score[$match->id_match]->score : '-'; ?>" size="3" maxlength="3" class="grille_info_mise" onfocus="blur();" /></div></td>
+		<td class="grille_score"><div id="div_score_match_<?php echo $i?>" class="grille_score_off"><input id="score_match_<?php echo $i?>" type="text" value="<?php echo $score[$match->id_match]->score ? $score[$match->id_match]->score : '-'; ?>" size="3" maxlength="3" class="grille_info_mise" onfocus="blur();" /></div></td>
 		
-		<td class="grille_equipe_droite"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" /> '; ?><span id="team_visitor_<?=$i?>" class="grille_match_off"><?=formatDbData($match->team_visitor_label)?></span></td>
+		<td class="grille_equipe_droite"><? if($match->team_host_flag && $match->team_visitor_flag) echo '<img src="/image/flags/'.$match->team_visitor_flag.'" align="absmiddle" /> '; ?><span id="team_visitor_<?php echo $i?>" class="grille_match_off"><?php echo formatDbData($match->team_visitor_label)?></span></td>
 		
-		<td class="grille_mise_slider"><div id="div_slider_<?=$i?>" class="grille_mise_slider_off">
-		<div id="track_<?=$i?>" class="grille_track">
-			<div id="handle_<?=$i?>" class="grille_handle_off"> </div>
+		<td class="grille_mise_slider"><div id="div_slider_<?php echo $i?>" class="grille_mise_slider_off">
+		<div id="track_<?php echo $i?>" class="grille_track">
+			<div id="handle_<?php echo $i?>" class="grille_handle_off"> </div>
 		</div></div>
 		</td>
 		
-		<td class="grille_mise"><div id="div_mise_<?=$i?>" class="grille_mise_off"><input id="mise_match_<?=$i?>" type="text" value="<?=$score[$match->id_match]->pts ? $score[$match->id_match]->pts : '0'; ?>" size="2" maxlength="2" class="grille_info_mise" onfocus="blur();" /></div></td>
+		<td class="grille_mise"><div id="div_mise_<?php echo $i?>" class="grille_mise_off"><input id="mise_match_<?php echo $i?>" type="text" value="<?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '0'; ?>" size="2" maxlength="2" class="grille_info_mise" onfocus="blur();" /></div></td>
 	</tr>
 <? } ?>
 	
 
-<?
+<?php
 }
 ?>
 	<tr>
@@ -538,7 +538,7 @@ if(is_array($matches)) foreach($matches as $i=>$match)
 </form>
 
 
-<?
+<?php
 $points_mises = 0;
 $nb_matchs_joues = 0;
 for($i=1; $i<=$nb_matchs_total; $i++)
@@ -568,46 +568,46 @@ $pts_max = $pts_max > 50 ? 50 : $pts_max;
 
 <script type="text/javascript" language="javascript">
 // <![CDATA[
-var nb_matchs = <?=$nb_matchs_total; ?>;
-var pts_a_miser = <?=$pts_a_miser; ?>;
+var nb_matchs = <?php echo $nb_matchs_total; ?>;
+var pts_a_miser = <?php echo $pts_a_miser; ?>;
 var id_match_focused = 0;
 
 var SliderMise = new Array();
 
 function init_sliders()
 {
-<?
+<?php
 for($i=1; $i<=$nb_matchs_total; $i++)
 {
 	if(substr($matches[$i-1]->diff_date_match, 0, 1) == '-')
 	{
 ?>
-SliderMise_<?=$i?> = new Control.Slider('handle_<?=$i?>','track_<?=$i?>',
+SliderMise_<?php echo $i?> = new Control.Slider('handle_<?php echo $i?>','track_<?php echo $i?>',
 		{
-			range:$R(5,<?=$pts_max?>),
-			sliderValue: Math.round($('mise_match_<?=$i?>').value),
+			range:$R(5,<?php echo $pts_max?>),
+			sliderValue: Math.round($('mise_match_<?php echo $i?>').value),
 			values:[5<? for($j=6; $j<=$pts_max; $j++) echo ", $j"; ?>],
-			onSlide:function(v) { $('mise_match_<?=$i?>').value=Math.round(v); updateMise(); },
-        	onChange:function(v) { $('mise_match_<?=$i?>').value=Math.round(v); updateMise(); }
+			onSlide:function(v) { $('mise_match_<?php echo $i?>').value=Math.round(v); updateMise(); },
+        	onChange:function(v) { $('mise_match_<?php echo $i?>').value=Math.round(v); updateMise(); }
 		});
 		
 		<? if($pts_max == 5) { ?>
-		SliderMise_<?=$i?>.setDisabled();
+		SliderMise_<?php echo $i?>.setDisabled();
 		<? } ?>
 		
-<?
+<?php
 	} else {
 ?>
-SliderMise_<?=$i?> = new Control.Slider('handle_<?=$i?>','track_<?=$i?>',
+SliderMise_<?php echo $i?> = new Control.Slider('handle_<?php echo $i?>','track_<?php echo $i?>',
 		{
-			range:$R(5,<?=$pts_max_total?>),
-			sliderValue: Math.round($('mise_match_<?=$i?>').value),
+			range:$R(5,<?php echo $pts_max_total?>),
+			sliderValue: Math.round($('mise_match_<?php echo $i?>').value),
 			values:[5<? for($j=6; $j<=$pts_max_total; $j++) echo ", $j"; ?>],
-			onSlide:function(v) { $('mise_match_<?=$i?>').value=Math.round(v); updateMise(); },
-        	onChange:function(v) { $('mise_match_<?=$i?>').value=Math.round(v); updateMise(); }
+			onSlide:function(v) { $('mise_match_<?php echo $i?>').value=Math.round(v); updateMise(); },
+        	onChange:function(v) { $('mise_match_<?php echo $i?>').value=Math.round(v); updateMise(); }
 		});
-		SliderMise_<?=$i?>.setDisabled();
-<?
+		SliderMise_<?php echo $i?>.setDisabled();
+<?php
 	}
 }
 ?>
@@ -698,7 +698,7 @@ function pronostiquer_pour_moi()
       {
         ?>
         setScoreAndSetSelects(<? echo $i; ?>, getScoreRandom('domicile'), getScoreRandom('exterieur'));
-        <?
+        <?php
       }
     }
     ?>
@@ -710,7 +710,7 @@ document.observe('dom:loaded', function() {
 	init_sliders();
 	updateMise();
 	
-<?
+<?php
 for($i=1; $i<=$nb_matchs_total; $i++) if($tooltip[$i])
 {
 ?>
@@ -725,7 +725,7 @@ for($i=1; $i<=$nb_matchs_total; $i++) if($tooltip[$i])
 		hideOthers:true
 	});
 	
-<?
+<?php
 }
 ?>
 });
@@ -738,7 +738,7 @@ for($i=1; $i<=$nb_matchs_total; $i++) if($tooltip[$i])
 <a name="comments"></a>
 <h2 class="title_orange">Réagir...</h2>
 <br />
-<?
+<?php
 $pp_comments_id_type = substr($pp_matches->date_first_match, 0, 4) . $pp_matches->id_matches;
 $date_viewed = pp_comments_get_dateviewed('classj', $pp_comments_id_type);
 echo pp_comments_afficher('classj', $pp_comments_id_type, array('url_param' => 'pronostiquer.php?id='.$pp_matches->id_matches, 'date_viewed' => $date_viewed));
@@ -750,6 +750,6 @@ if($nb_comments) pp_comments_viewed('classj', $pp_comments_id_type);
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Profil d'un utilisateur
@@ -102,7 +102,7 @@ pageheader("Mes amis");
 	?>
 	<div id="content">
 		<ul id="list_left" class="list_sortable">
-			<?
+			<?php
 			if(!$user)
 			{
 				$content = "<p>Inscris-toi à Prono+. Pronostique les matchs de foot.<br />Invite tes amis et consulte ton classement et ceux de tes amis !</p>
@@ -432,12 +432,12 @@ pageheader("Mes amis");
 </div>
 
 <div id="content_right">
-	<?
+	<?php
 	getRightBulle($user);
 	getRightProfil($user);
 	?>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

@@ -28,7 +28,7 @@ if (parent.frames.length > 0) window.top.location.href = location.href;
 
 <body>
 
-<?
+<?php
 $strUser = $_COOKIE[user];
 if($strUser)
 {
@@ -44,7 +44,7 @@ if($strUser)
 	if($joueur = mysql_fetch_assoc($result))
 	{
 		$joueur_avatar = $joueur["avatar_key"] ? '/avatars/'.$joueur["id_user"].'-'.$joueur["avatar_key"].'-30.'.$joueur["avatar_ext"] : '/template/default/_profil.png';
-		$joueur_nom = "<li class=\"header_link_green\"><div style=\"display:block; width:150px; overflow:hidden; text-align:left; color:#fff\"><div style=\"float:left;\"><img src=\"".$joueur_avatar."\" height=\"29\" width=\"29\" border=\"0\" align=\"absmiddle\" style=\"border-right:solid 1px #fff\" /></div><div style=\"float:left; padding:9px 5px 6px 5px; font-weight:bold; width:105px; overflow:hidden;\">".$joueur["login"]."&nbsp;<a href=\"/logout.php\" class=\"logout_link\" title=\"Se déconnecter\" onclick=\"return confirm('Souhaitez-vous vous déconnecter ?');\"><img src=\"/template/default/close.gif\" height=\"12\" width=\"12\" border=\"0\" align=\"absmiddle\" /></a></div><div class=\"clear\"></div></li>";
+		$joueur_nom = "<li class=\"header_link_green\"><div style=\"display:block; width:150px; overflow:hidden; text-align:left; color:#fff\"><div style=\"float:left;\"><img src=\"".$joueur_avatar."\" height=\"29\" width=\"29\" border=\"0\" align=\"absmiddle\" style=\"border-right:solid 1px #fff\" /></div><div style=\"float:left; padding:9px 5px 6px 5px; font-weight:bold; width:105px; overflow:hidden;\">".$joueur["login"]."&nbsp;<a href=\"/logout.php\" class=\"logout_link\" title=\"Se dï¿½connecter\" onclick=\"return confirm('Souhaitez-vous vous dï¿½connecter ?');\"><img src=\"/template/default/close.gif\" height=\"12\" width=\"12\" border=\"0\" align=\"absmiddle\" /></a></div><div class=\"clear\"></div></li>";
 		$CookieBon = true;
 	}
 }
@@ -55,7 +55,7 @@ if($strUser)
 	<div id="header_links">		
 		<ul>
 			
-			<?
+			<?php
 			if($CookieBon == true)
 			{
 				echo $joueur_nom;

@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -86,7 +86,7 @@ window.onload = init_tables_sorter;
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -143,6 +143,6 @@ echo getOnglets();
 
 
 
-<?
+<?php
 pagefooter();
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 if(substr($_SERVER['HTTP_HOST'], 0, 3)!='www' && $_SERVER['HTTP_HOST']!="127.0.0.12")
 {

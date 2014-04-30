@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Accueil version iphone
@@ -37,7 +37,7 @@ echo pp_iphone_header("Se connecter", $is_menu=false, $is_retour=true);
 	
 	<script type="text/javascript" language="javascript">
 	// <![CDATA[
-	var redirect = '<?=$_GET[redirect]; ?>';
+	var redirect = '<?php echo $_GET[redirect]; ?>';
 	$('msgbugsafari').hide();
 	$('login_form').show();
 	// ]]>

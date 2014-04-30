@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -9,7 +9,7 @@ pageheader("Rechercher | Forum football Prono+");
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('forum');
 ?>
@@ -35,17 +35,17 @@ a:hover {
 	<table cellpadding="4" cellspacing="1">
 	<tr>
 		<td>Mots clés</td>
-		<td><input name="keywords" type="text" value="<?=htmlspecialchars(stripslashes($_GET[keywords]))?>" maxlength="200" size="50" /></td>
+		<td><input name="keywords" type="text" value="<?php echo htmlspecialchars(stripslashes($_GET[keywords]))?>" maxlength="200" size="50" /></td>
 	</tr>
 	<tr>
 		<td>Utilisateur</td>
-		<td><input name="user" type="text" value="<?=htmlspecialchars(stripslashes($_GET[user]))?>" maxlength="200" size="20" /></td>
+		<td><input name="user" type="text" value="<?php echo htmlspecialchars(stripslashes($_GET[user]))?>" maxlength="200" size="20" /></td>
 	</tr>
 	<tr>
 		<td>Thème</td>
 		<td><select name="id_forum_theme">
 			<option value="">Tous les forums</option>
-			<?
+			<?php
 				$SQL = "SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` ORDER BY `order`";
 				$result = $db->query($SQL);
 				//echo "<li>$SQL";
@@ -73,7 +73,7 @@ a:hover {
 
 <h2 class="title_orange">Résultats de la recherche</h2>	
 
-<?
+<?php
 	$nouser = true;
 	if($_GET[user])
 	{
@@ -83,8 +83,8 @@ a:hover {
 		{
 			$nouser = false;
 			?>
-			<p class="message_error">Utilisateur <strong><?=htmlspecialchars($_GET[user])?></strong> non trouvé !</p>
-			<?
+			<p class="message_error">Utilisateur <strong><?php echo htmlspecialchars($_GET[user])?></strong> non trouvé !</p>
+			<?php
 		}
 	}
 	
@@ -137,7 +137,7 @@ if(!mysql_num_rows($resmsg))
 	<th width="20%">Auteur</th>
 	<th width="20%">Date message</th>
 </tr>
-<?
+<?php
 while($lmsg=mysql_fetch_assoc($resmsg))
 {
 	if($class_line=="ligne_grise") {
@@ -168,15 +168,15 @@ while($lmsg=mysql_fetch_assoc($resmsg))
 		$url = $lmsg["url"]."-".$lmsg["Nmsg"].".html";
 	}
 ?>	
-<tr class="<?=$class_line?>">
-	<td><a href="/forum-football/<?=$lmsg["url_theme"]?>/"><?=$lmsg["label_theme"]?></a></td>
-	<td><a href="/forum-football/<?=$url?>"><?=htmlspecialchars($lmsg["sujet"]);?></a></td>
-	<td><?=htmlspecialchars($lmsg["login"]);?></td>
-	<td><?=formatdateheure($lmsg["datemsg"])?><a href="/forum-football/<?=$url?>"><img src="/template/default/last.gif" alt="Aller au message" hspace="2" border="0" align="absmiddle"></a></td>
+<tr class="<?php echo $class_line?>">
+	<td><a href="/forum-football/<?php echo $lmsg["url_theme"]?>/"><?php echo $lmsg["label_theme"]?></a></td>
+	<td><a href="/forum-football/<?php echo $url?>"><?php echo htmlspecialchars($lmsg["sujet"]);?></a></td>
+	<td><?php echo htmlspecialchars($lmsg["login"]);?></td>
+	<td><?php echo formatdateheure($lmsg["datemsg"])?><a href="/forum-football/<?php echo $url?>"><img src="/template/default/last.gif" alt="Aller au message" hspace="2" border="0" align="absmiddle"></a></td>
 	</tr>
 <? } ?>
 </table>
-<?
+<?php
 
 		//if($_GET[user] && !$_GET[keywords])		{
 			$SQL = "SELECT COUNT(forum.Nmsg) AS NBPOST
@@ -260,6 +260,6 @@ while($lmsg=mysql_fetch_assoc($resmsg))
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

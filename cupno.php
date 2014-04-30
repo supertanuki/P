@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Coupe Prono+
@@ -17,7 +17,7 @@ pageheader("Coupe | Prono+", array('meta_description' => 'Coupe des meilleurs pr
 ?>
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('coupe');
 ?>
@@ -28,6 +28,6 @@ echo getOnglets('coupe');
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

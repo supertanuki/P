@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('../init.php');
 require_once('../mainfunctions.php');
 require_once('../contentfunctions.php');
@@ -10,7 +10,7 @@ pageheader($title_page, array('meta_description' => 'L\'heure est à la détente
 
 ?>
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets();
 ?>
@@ -38,6 +38,6 @@ echo getOnglets();
 </div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>

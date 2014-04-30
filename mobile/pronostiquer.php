@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Pronostiquer
@@ -220,7 +220,7 @@ if($_POST[save_prono] && $_POST[id] && $user)
 			location.href='index.php?msg=p';
 			-->
 			</script>
-			<?
+			<?php
 		}
 	}
 }
@@ -361,7 +361,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 	
 	<form id="pronoform" method="post" action="pronostiquer.php" onsubmit="return saveprono()" style="display:none">
 	<input type="hidden" name="save_prono" value="1" />
-	<input type="hidden" name="id" value="<?=$_GET[id]?>" />
+	<input type="hidden" name="id" value="<?php echo $_GET[id]?>" />
 	<ul class="pageitem">
 		<li class="textbox">
 			<span class="header">Pronostiquer <?php echo $pp_matches->label; ?></span>
@@ -383,12 +383,12 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 						<th align="center">Classement</th>
 					</tr>
 					<tr<?php echo $cup_user->id_user_host == $cup_user->id_user_won ? ' style="background:yellow"' : ''; ?>>
-						<td align="center" width="10%"><img src="<?=$avatar_host; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
+						<td align="center" width="10%"><img src="<?php echo $avatar_host; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
 						<td width="50%"><?php echo $cup_user->login_host; ?></td>
 						<td align="center" width="40%"><?php echo $cup_user->host_class . '<sup>' . ($cup_user->host_class > 1 ? 'ème' : 'er') . '</sup>'; ?></td>
 					</tr>
 					<tr<?php echo $cup_user->id_user_visitor == $cup_user->id_user_won ? ' style="background:yellow"' : ''; ?>>
-						<td align="center"><img src="<?=$avatar_visitor; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
+						<td align="center"><img src="<?php echo $avatar_visitor; ?>" height="30" width="30" border="0" align="absmiddle" /></td>
 						<td><?php echo $cup_user->login_visitor; ?></td>
 						<td align="center"><?php echo $cup_user->visitor_class . '<sup>' . ($cup_user->visitor_class > 1 ? 'ème' : 'er') . '</sup>'; ?></td>
 					</tr>
@@ -412,7 +412,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 					<th>&nbsp;</th>
 					<th>Mise</th>
 				</tr>
-			<?
+			<?php
 			$date_tmp = "";
 			if(is_array($matches)) foreach($matches as $i=>$match)
 			{
@@ -423,7 +423,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 			?>
 				<tr>
 					<td colspan="4" style="color:#888">
-					<?
+					<?php
 					if(substr($date_tmp, 0, 10) != substr($match->date_match, 0, 10))
 					{
 						$dayweek = $match->date_match_dayweek;
@@ -432,24 +432,24 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 						echo get_date_complete($dayweek, $match->date_match_day, $match->date_match_month-1, $match->date_match_year);
 					}
 					?>
-					&agrave; <?=$match->time_match_format?>
+					&agrave; <?php echo $match->time_match_format?>
 					</td>
 				</tr>
 
-			<?
+			<?php
 					$date_tmp = $match->date_match;
 				}
 
 				if(substr($match->diff_date_match, 0, 1) == '-')
 				{
 			?>
-				<input type="hidden" name="id_match[<?=$match->id_match?>]" value="<?=$i?>" />
+				<input type="hidden" name="id_match[<?php echo $match->id_match?>]" value="<?php echo $i?>" />
 				<tr>
-					<td align="right"><span class="overflowed"><?=formatDbData($match->team_host_label)?></span></td>
+					<td align="right"><span class="overflowed"><?php echo formatDbData($match->team_host_label)?></span></td>
 					
 					<td align="center" nowrap="nowrap">
-						<input id="score_match_<?=$i?>" name="score_match[<?=$i?>]" type="hidden" value="<?=$score[$match->id_match]->score ? $score[$match->id_match]->score : '0-0'; ?>" />
-						<select id="score_team_host_<?=$i?>" onchange="setScore(<?=$i?>)">
+						<input id="score_match_<?php echo $i?>" name="score_match[<?php echo $i?>]" type="hidden" value="<?php echo $score[$match->id_match]->score ? $score[$match->id_match]->score : '0-0'; ?>" />
+						<select id="score_team_host_<?php echo $i?>" onchange="setScore(<?php echo $i?>)">
 							<?php
 							for($j=0; $j<=9; $j++)
 							{
@@ -457,7 +457,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 							}
 							?>
 						</select>
-						<select id="score_team_visitor_<?=$i?>" onchange="setScore(<?=$i?>)">
+						<select id="score_team_visitor_<?php echo $i?>" onchange="setScore(<?php echo $i?>)">
 							<?php
 							for($j=0; $j<=9; $j++)
 							{
@@ -467,10 +467,10 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 						</select>
 					</td>
 					
-					<td><span class="overflowed"><?=formatDbData($match->team_visitor_label)?></span></td>
+					<td><span class="overflowed"><?php echo formatDbData($match->team_visitor_label)?></span></td>
 					
 					<td align="right">
-						<select id="mise_match_<?=$i?>" name="mise_match[<?=$i?>]" onchange="updateMise();">
+						<select id="mise_match_<?php echo $i?>" name="mise_match[<?php echo $i?>]" onchange="updateMise();">
 							<?php
 							for($j=5; $j<=50; $j++)
 							{
@@ -483,18 +483,18 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 
 			<? } else { ?>
 
-				<input type="hidden" name="id_match[<?=$match->id_match?>]" value="<?=$i?>" />
-				<input type="hidden" id="mise_match_<?=$i?>" name="mise_match[<?=$i?>]" value="<?=$score[$match->id_match]->pts ? $score[$match->id_match]->pts : '0'; ?>" />
+				<input type="hidden" name="id_match[<?php echo $match->id_match?>]" value="<?php echo $i?>" />
+				<input type="hidden" id="mise_match_<?php echo $i?>" name="mise_match[<?php echo $i?>]" value="<?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '0'; ?>" />
 				<tr>
-					<td align="right"><?=formatDbData($match->team_host_label)?></td>					
-					<td align="center"><?=$score[$match->id_match]->score ? $score[$match->id_match]->score : '-'; ?></td>		
-					<td><?=formatDbData($match->team_visitor_label)?></td>					
-					<td align="right"><?=$score[$match->id_match]->pts ? $score[$match->id_match]->pts : '-'; ?></td>
+					<td align="right"><?php echo formatDbData($match->team_host_label)?></td>
+					<td align="center"><?php echo $score[$match->id_match]->score ? $score[$match->id_match]->score : '-'; ?></td>
+					<td><?php echo formatDbData($match->team_visitor_label)?></td>
+					<td align="right"><?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '-'; ?></td>
 				</tr>
 			<? } ?>
 				
 
-			<?
+			<?php
 			}
 			?>
 				<tr>
@@ -546,8 +546,8 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 
 	<script type="text/javascript" language="javascript">
 	// <![CDATA[
-	var nb_matchs = <?=$nb_matchs_total; ?>;
-	var pts_a_miser = <?=$pts_a_miser; ?>;
+	var nb_matchs = <?php echo $nb_matchs_total; ?>;
+	var pts_a_miser = <?php echo $pts_a_miser; ?>;
 	var id_match_focused = 0;
 
 	window.onload = updateMise;

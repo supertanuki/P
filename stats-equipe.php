@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -57,14 +57,14 @@ pageheader($titrepage);
 
 
 <div id="content_fullscreen">
-	<?
+	<?php
 	// affichage des onglets
 	echo getOnglets();
 	?>
 	<div id="content">
 	
 	
-	<?
+	<?php
 	echo '<h2 class="title_green">' . $titrepage . '</h2>';	
 	
 	
@@ -210,12 +210,12 @@ pageheader($titrepage);
 	?>
 	
 	
-	<?
+	<?php
 	// Classement
 	get_classement_league('Classement '.$pp_team->label, $saison_en_cours, $pp_team->id_league, $pp_team->id_team);
 	?>
 	
-	<?
+	<?php
 	echo '<br /><h2 class="title_orange">Résultats championnats</h2>';	
 	
 	// Liste championnats
@@ -242,7 +242,7 @@ pageheader($titrepage);
 <script type="text/javascript" language="javascript">
 // <![CDATA[
 document.observe('dom:loaded', function() {	
-<?
+<?php
 foreach($tooltip as $i=>$var)
 {
 ?>
@@ -257,7 +257,7 @@ foreach($tooltip as $i=>$var)
 		hideOthers:true
 	});
 	
-<?
+<?php
 }
 ?>
 });
@@ -270,6 +270,6 @@ foreach($tooltip as $i=>$var)
 
 
 
-<?
+<?php
 pagefooter();
 ?>

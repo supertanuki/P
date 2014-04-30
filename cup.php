@@ -1,4 +1,4 @@
-<?
+<?php
 /**
 * Project: PRONOPLUS
 * Description: Coupe Prono+
@@ -154,21 +154,21 @@ function showCupDetails(id_cup, cup_sub, number_tour)
 
 
 <div id="content_fullscreen">
-<?
+<?php
 // affichage des onglets
 echo getOnglets('coupe');
 ?>
 	<div id="content">
-		<h2 class="title_green"><?=$title_page?></h2>
+		<h2 class="title_green"><?php echo $title_page?></h2>
 		
 		<div style="float:left; width:58%; margin-right:10px;"><? echo $content; ?></div>
 		<div style="float:left; width:36%;">
 		<div style="padding:4px 10px 10px 10px; margin-top:10px; border:1px solid #CCCCCC">
 		<h3>Les autres divisions</h3>
 		<form method="get" action="cup.php">
-		<input type="hidden" name="id" value="<?=$_GET[id]?>" />
+		<input type="hidden" name="id" value="<?php echo $_GET[id]?>" />
 		<select name="division">
-<?
+<?php
 $SQL = "SELECT DISTINCT `cup_sub`
 		FROM `pp_cup_match_opponents`
 		WHERE `id_cup`='".$_GET[id]."'
@@ -183,8 +183,8 @@ if(DB::isError($result_division))
 	while($cup_division = $result_division->fetchRow())
 	{
 ?>
-			<option value="<?=$cup_division->cup_sub?>" <?=$cup_division->cup_sub==$cup_sub ? 'selected="selected"' : ''?>><?=getCupDivisionLabel($cup_division->cup_sub)?></option>
-<?
+			<option value="<?php echo $cup_division->cup_sub?>" <?php echo $cup_division->cup_sub==$cup_sub ? 'selected="selected"' : ''?>><?php echo getCupDivisionLabel($cup_division->cup_sub)?></option>
+<?php
 	}
 }
 ?>
@@ -195,7 +195,7 @@ if(DB::isError($result_division))
 		
 
 		
-<?
+<?php
 $SQL = "SELECT `id_cup`, `label`
 		FROM `pp_cup`
 		WHERE `id_cup`!='".$_GET[id]."'
@@ -214,19 +214,19 @@ if(DB::isError($result_cup))
 		<h3>Les autres coupes</h3>
 		<form method="get" action="cup.php">
 		<select name="id">
-<?
+<?php
 		while($cup = $result_cup->fetchRow())
 		{
 ?>
-			<option value="<?=$cup->id_cup?>"><?=$cup->label?></option>
-<?
+			<option value="<?php echo $cup->id_cup?>"><?php echo $cup->label?></option>
+<?php
 		}
 ?>
 		</select>
 		<input type="submit" value="Ok" class="link_button" />
 		</form>
 		</div>
-<?
+<?php
 	}
 }
 ?>
@@ -236,7 +236,7 @@ if(DB::isError($result_cup))
 	
 		<br />
 
-<?
+<?php
 // matchs
 $match_cup = array();
 $SQL = "SELECT `pp_cup_match_opponents`.`id_user_host`, `pp_cup_match_opponents`.`id_user_visitor`, `pp_cup_match_opponents`.`number_tour`,
@@ -297,14 +297,14 @@ $libelles_tour = array(1=>'Huitièmes de finale', 2=>'Quarts de finale', 3=>'Dem
 			?>
                 <th width="25%">
                 <? if($match_cup[$key][0]->id_user_won) { ?>
-                <a href="#a_cup_details" class="link_orange" onclick="showCupDetails(<?=$_GET[id]?>, <?=$cup_sub?>, <?=$key?>); return false;"><?=$value?></a>
+                <a href="#a_cup_details" class="link_orange" onclick="showCupDetails(<?php echo $_GET[id]?>, <?php echo $cup_sub?>, <?php echo $key?>); return false;"><?php echo $value?></a>
                 <? } else { ?>
-                <?=$value?>
+                <?php echo $value?>
                 <? } ?>
             	</th>
             <? } ?>
 		</tr>
-<?
+<?php
 $line = 1;
 $idquart = 0;
 $iddemi = 0;
@@ -318,7 +318,7 @@ foreach($tableau as $idmatch)
 	$bgcolor[1] = $bgcolor[1]=="#eeeeee" ? "#dddddd" : "#eeeeee";	
 ?>
 		<tr>
-			<?
+			<?php
 			// 1/8 ème
 			echo showPlayerTableau(	$match_cup[1][$idmatch-1]->id_user_host,
 									$match_cup[1][$idmatch-1]->login_host,
@@ -380,12 +380,12 @@ foreach($tableau as $idmatch)
 			?>
 		</tr>
 		
-		<?
+		<?php
 		$line++;		
 		?>	
 	
 		<tr>
-			<?
+			<?php
 			// 1/8
 			echo showPlayerTableau(	$match_cup[1][$idmatch-1]->id_user_visitor,
 									$match_cup[1][$idmatch-1]->login_visitor,
@@ -437,7 +437,7 @@ foreach($tableau as $idmatch)
 			} else echo '<td></td>';			
 			?>
 		</tr>
-<?
+<?php
 	$line++;
 }
 ?>
@@ -456,6 +456,6 @@ foreach($tableau as $idmatch)
 	</div>
 </div>
 
-<?
+<?php
 pagefooter();
 ?>
