@@ -7,6 +7,9 @@
 * Version: 1.0
 */
 
+define('URL_RESULTAT', '%ID%.html');
+define('URL_GROUPE', '%ID%.html');
+define('EMAIL_MASTER', 'mail@domain');
 
 
 if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')

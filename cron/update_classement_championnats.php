@@ -36,7 +36,7 @@ $idleague = 1;
 for($i=1; $i<=38; $i++)
 {
 	$idleq = $i+45018;
-	$url = str_replace('%ID%', URL_RESULTAT, $idleq);
+	$url = str_replace('%ID%', $idleq, URL_RESULTAT);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url, $debug);
 }
@@ -48,7 +48,7 @@ $idleague = 3;
 for($i=1; $i<=38; $i++)
 {
 	$idleq = $i+45056;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -59,7 +59,7 @@ $idleague = 2;
 for($i=1; $i<=38; $i++)
 {
 	$idleq = $i+45208;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -70,7 +70,7 @@ $idleague = 8;
 for($i=1; $i<=34; $i++)
 {
 	$idleq = $i+45389;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -82,7 +82,7 @@ $idleague = 10;
 for($i=1; $i<=38; $i++)
 {
     $idleq = $i+45866;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -93,7 +93,7 @@ $idleague = 6;
 for($i=1; $i<=38; $i++)
 {
 	$idleq = $i+45610;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -104,7 +104,7 @@ $idleague = 7;
 for($i=1; $i<=9; $i++)
 {
 	$idleq = $i+4715;
-    $url = str_replace('%ID%', URL_GROUPE, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -115,7 +115,7 @@ $idleague = 12;
 for($i=1; $i<=5; $i++)
 {
     $idleq = $i+45523;
-    $url = str_replace('%ID%', URL_RESULTAT, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
@@ -126,7 +126,7 @@ $idleague = 4;
 for($i=1; $i<=8; $i++)
 {
 	$idleq = $i+5573;
-    $url = str_replace('%ID%', URL_GROUPE, $idleq);
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
