@@ -29,6 +29,18 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 // DEBUT TRAITEMENT
 
+// CDM 2014
+echo "<li><b>CDM 2014</b>";
+$idleague = 7;
+for($i=1; $i<=8; $i++)
+{
+    $idleq = $i+5867;
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url, $debug);
+}
+/*
+
 
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
@@ -151,7 +163,7 @@ echo "<li><b>FIN Extract !!!!</b>";
 
 maj_classements();
 
-
+*/
 
 
 

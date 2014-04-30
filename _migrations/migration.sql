@@ -1,0 +1,1 @@
+UPDATE `pronoplu`.`pp_team` SET `xlabels` = 'Côte d''Ivoire;CÔTE D IVOIRE' WHERE `pp_team`.`id_team` = 313;
