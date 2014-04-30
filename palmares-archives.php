@@ -65,7 +65,7 @@ echo getOnglets();
 			while($pp_class = $result->fetchRow())
 			{
 				?>
-				<option value="<? echo $pp_class->saison_annee; ?>" <? echo $annee==$pp_class->saison_annee ? 'selected="selected"' : ''; ?>><? echo $pp_class->saison_annee . ' - ' . ($pp_class->saison_annee+1); ?></option>
+				<option value="<?php echo $pp_class->saison_annee; ?>" <?php echo $annee==$pp_class->saison_annee ? 'selected="selected"' : ''; ?>><?php echo $pp_class->saison_annee . ' - ' . ($pp_class->saison_annee+1); ?></option>
 				<?php
 			}
 			?>
@@ -105,9 +105,9 @@ if($pp_user->id_user)
 	if($avatar = getAvatar($pp_user->id_user, $pp_user->avatar_key, $pp_user->avatar_ext, 'small')) {
 	?>
 		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
-	<? } else { ?>
+	<?php } else { ?>
 		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" align="absmiddle" style="float:left; margin-right:6px;" /></a>
-	<? } ?>
+	<?php } ?>
 	Palmarès de : <br/><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?php echo htmlspecialchars($pp_user->login); ?></a> | <a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange">Voir le profil</a>
 	</p>
 	<?php

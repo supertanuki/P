@@ -69,7 +69,7 @@ a:hover {
 	</form><br />
 
 
-<? if($_GET[user] || $_GET[keywords]) { ?>
+<?php if($_GET[user] || $_GET[keywords]) { ?>
 
 <h2 class="title_orange">Résultats de la recherche</h2>	
 
@@ -128,7 +128,7 @@ if(!mysql_num_rows($resmsg))
 {
 ?>
 <p class="message_error"><strong>Aucun résultat trouvé</strong></p>
-<? } else { ?>
+<?php } else { ?>
 <a name="results"></a>
 <table width="100%" border="0" cellspacing="1" cellpadding="4">
 <tr> 
@@ -174,7 +174,7 @@ while($lmsg=mysql_fetch_assoc($resmsg))
 	<td><?php echo htmlspecialchars($lmsg["login"]);?></td>
 	<td><?php echo formatdateheure($lmsg["datemsg"])?><a href="/forum-football/<?php echo $url?>"><img src="/template/default/last.gif" alt="Aller au message" hspace="2" border="0" align="absmiddle"></a></td>
 	</tr>
-<? } ?>
+<?php } ?>
 </table>
 <?php
 

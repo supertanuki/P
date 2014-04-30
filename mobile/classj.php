@@ -244,7 +244,7 @@ echo pp_iphone_header(!$pp_matches->id_cup_matches ? 'Classement' : $pp_cup_matc
 				}
 				?>
 				<tr style="font-weight:bold;">
-					<td align="right" valign="top"><? echo $match->team_host_label; ?></td>
+					<td align="right" valign="top"><?php echo $match->team_host_label; ?></td>
 					<td align="center" valign="top">
 					<?php
 					if($match->score == "R-R") {
@@ -254,7 +254,7 @@ echo pp_iphone_header(!$pp_matches->id_cup_matches ? 'Classement' : $pp_cup_matc
 					}
 					?>
 					</td>
-					<td valign="top"><? echo $match->team_visitor_label; ?></td>
+					<td valign="top"><?php echo $match->team_visitor_label; ?></td>
 				</tr>
 				<?php
 				if($match_user[$id_match]->score) {

@@ -185,7 +185,7 @@ function show_update_match(id_matches, id_match)
 -->
 </script>
 
-<? if($message) echo "<p class=\"info\">$message</p>"; ?>
+<?php if($message) echo "<p class=\"info\">$message</p>"; ?>
 
 <?php
 liste_matches_calcul('Grille de pronostics', $is_calcul='', $limit=0, $order='date_last_match', $ordertype='ASC');
@@ -197,7 +197,7 @@ function liste_matches_calcul($libelle, $is_calcul='', $limit=0, $order='date_la
 	global $db, $txtlang
 	?>
 	<fieldset>
-		<legend><? echo $libelle ?></legend>
+		<legend><?php echo $libelle ?></legend>
 
 		<?php
 		$SQL = "SELECT `pp_matches`.`id_matches`, `pp_matches`.`label`, `pp_matches`.`id_cup_matches`,
@@ -293,11 +293,11 @@ function liste_matches_calcul($libelle, $is_calcul='', $limit=0, $order='date_la
 }
 ?>
 
-<? if($_POST[id_matches]) { ?>
+<?php if($_POST[id_matches]) { ?>
 <script language="javascript">
 showTableMatches(<?php echo $_POST[id_matches]?>);
 </script>
-<? } ?>
+<?php } ?>
 
 
 <?php

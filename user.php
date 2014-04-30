@@ -147,7 +147,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 		<li>
 			<h2 class="title_orange">Être ami...</h2>
 			<div class="bloc_content">
-				<? echo $content; ?>
+				<?php echo $content; ?>
 			</div>
 		</li>
 		<?php
@@ -158,7 +158,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 		<li>
 			<h2 class="title_blue">Amis au hasard</h2>
 			<div class="bloc_content">
-				<? echo getRandomFriends($pp_user); ?>
+				<?php echo getRandomFriends($pp_user); ?>
 			</div>
 		</li>
 		
@@ -169,7 +169,7 @@ pageheader("Profil de ".$pp_user->login, array('meta_description' => 'Mur de '.$
 			<li>
 				<h2 class="title_grey">Amis en commun</h2>
 				<div class="bloc_content">
-					<? echo getSameFriends($user, $pp_user); ?>
+					<?php echo getSameFriends($user, $pp_user); ?>
 				</div>
 			</li>
 			<?php

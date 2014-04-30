@@ -111,9 +111,9 @@ pageheader("Récompenses de ".$pp_user->login, array('meta_description' => 'Mur 
 			if($avatar = getAvatar($pp_user->id_user, $pp_user->avatar_key, $pp_user->avatar_ext, 'small')) {
 			?>
 				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" style="vertical-align:middle" /></a>
-			<? } else { ?>
+			<?php } else { ?>
 				<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><img src="/template/default/_profil.png" height="30" width="30" border="0" style="vertical-align:middle" /></a>
-			<? } ?>
+			<?php } ?>
 			<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_user->login))?>" class="link_orange"><?php echo htmlspecialchars($pp_user->login); ?></a>
 			</p>
 			<?php

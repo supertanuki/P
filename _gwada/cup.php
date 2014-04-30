@@ -111,7 +111,7 @@ echo AdminName($admin_user);
 
 
 
-<? if($message) echo "<p class=\"info\">$message</p>"; ?>
+<?php if($message) echo "<p class=\"info\">$message</p>"; ?>
 
 
 
@@ -143,9 +143,9 @@ if(DB::isError($result))
 	
 	Classement mensuel concerné<br />
 	<select name="id_class">
-	<? foreach($class_month as $id_class=>$label) { ?>
+	<?php foreach($class_month as $id_class=>$label) { ?>
 		<option value="<?php echo $id_class?>"><?php echo $label?></option>
-	<? } ?>
+	<?php } ?>
 	</select><br /><br />
 	
 	<input type="submit" value="Valider" />

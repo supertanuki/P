@@ -684,7 +684,7 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 	{
 		?>
 		<br />
-		<h2 class="title_green"><? echo $titre; ?></h2>
+		<h2 class="title_green"><?php echo $titre; ?></h2>
 		
 
 		<table width="100%" cellpadding="2" cellspacing="1">
@@ -724,17 +724,17 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 				$diff = $pp_team_class->nb_goals_for - $pp_team_class->nb_goals_against;
 				?>
 				<tr class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
-					<td align="center"><b><? echo ($index+1) ?></b></td>
-					<td><a href="/stats-equipe.php?id=<? echo $pp_team_class->id_team; ?>" class="link_orange"><? echo ($pp_team_class->flag ? '<img src="/image/flags/'.$pp_team_class->flag.'"  align="absmiddle" border="0" />' : '').' '.$pp_team_class->label.($pp_team_class->nb_points_sanction != 0 ? '*' : '') ?></a></td>
+					<td align="center"><b><?php echo ($index+1) ?></b></td>
+					<td><a href="/stats-equipe.php?id=<?php echo $pp_team_class->id_team; ?>" class="link_orange"><?php echo ($pp_team_class->flag ? '<img src="/image/flags/'.$pp_team_class->flag.'"  align="absmiddle" border="0" />' : '').' '.$pp_team_class->label.($pp_team_class->nb_points_sanction != 0 ? '*' : '') ?></a></td>
 					
-					<td align="center"><? echo $pp_team_class->nb_points ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_points ?></td>
 					
-					<td align="left"><? echo $points_max > 0 && $pp_team_class->nb_points > 0 ? '<span style="background:'.$bg_blue.'"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_points * $taille_points / $points_max).'" height="5" /></span>' : ''; ?></td>
+					<td align="left"><?php echo $points_max > 0 && $pp_team_class->nb_points > 0 ? '<span style="background:'.$bg_blue.'"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_points * $taille_points / $points_max).'" height="5" /></span>' : ''; ?></td>
 					
-					<td align="center"><? echo $pp_team_class->nb_matches ?></td>
-					<td align="center"><? echo $pp_team_class->nb_won ?></td>
-					<td align="center"><? echo $pp_team_class->nb_tie ?></td>
-					<td align="center"><? echo $pp_team_class->nb_lost ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_matches ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_won ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_tie ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_lost ?></td>
 					
 					<td align="center" nowrap="nowrap"><?php
 						echo $pp_team_class->nb_won > 0 && $pp_team_class->nb_matches > 0 ? '<span class="result_gagne"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_won * $taille_points / $pp_team_class->nb_matches).'" height="5" /></span>' : '';
@@ -742,12 +742,12 @@ function get_classement_league($titre, $saison_en_cours, $id_league, $id_team_fo
 						echo $pp_team_class->nb_lost > 0 && $pp_team_class->nb_matches > 0 ? '<span class="result_defaite"><img src="/template/default/pixel.gif" width="'.round($pp_team_class->nb_lost * $taille_points / $pp_team_class->nb_matches).'" height="5" /></span>' : '';
 					?></td>
 					
-					<td align="center"><? echo $pp_team_class->nb_goals_for ?></td>
-					<td align="center"><? echo $pp_team_class->nb_goals_against ?></td>
-					<td align="center"><? echo ($diff >= 0 ? '+' : '') . $diff ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_goals_for ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_goals_against ?></td>
+					<td align="center"><?php echo ($diff >= 0 ? '+' : '') . $diff ?></td>
 					
-					<td align="center"><? echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_for / $pp_team_class->nb_matches, 1) : ''; ?></td>
-					<td align="center"><? echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_against / $pp_team_class->nb_matches, 1) : ''; ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_for / $pp_team_class->nb_matches, 1) : ''; ?></td>
+					<td align="center"><?php echo $pp_team_class->nb_matches > 0 ? round($pp_team_class->nb_goals_against / $pp_team_class->nb_matches, 1) : ''; ?></td>
 				</tr>
 				<?php
 			}

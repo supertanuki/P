@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<? $pub = 0; ?>
+<?php $pub = 0; ?>
 	<div id="content" class="narrowcolumn">
 	
 	<?php
@@ -46,7 +46,7 @@
 				<?php
 				}
 				?>
-				<? /*<p align="center">Lien direct vers cette page :<br /><input type="text" value="<?php the_permalink() ?>" style="width:100%" onFocus="select();" /></p> */ ?>
+				<?php /*<p align="center">Lien direct vers cette page :<br /><input type="text" value="<?php the_permalink() ?>" style="width:100%" onFocus="select();" /></p> */ ?>
 			</div>
 			<p class="postmetadata">Le <?php the_time('l j F Y') ?><br /><?php the_tags('Tags: ', ', ', '<br />'); ?> Publié par <strong><?php the_author(); ?></strong> dans <?php the_category(', ') ?> <?php edit_post_link('[Modifier]', '', ' | '); ?><br />
 			<span class="a_comment"><?php comments_popup_link('Soyez le premier à commenter cet article »', '1 commentaire »', '% commentaires »', 'comments-link', 'Les commentaires sont fermés'); ?></span></p>

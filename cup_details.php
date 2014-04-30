@@ -198,17 +198,17 @@ foreach($matches as $id_match=>$match)
 	$nb_joueurs_tendance = $tendances[1]->NBUSERS + $tendances[2]->NBUSERS + $tendances[3]->NBUSERS;
 ?>
 	<tr> 
-	<td bgcolor="#eeeeee" align="center"><b>M<? echo $n ?></b></td>
+	<td bgcolor="#eeeeee" align="center"><b>M<?php echo $n ?></b></td>
 	
-	<td align="right"><? echo $match->team_host_label; ?></td>
+	<td align="right"><?php echo $match->team_host_label; ?></td>
 	<td bgcolor="#eeeeee" align="center">
-	<? if($match->score == "R-R") {
+	<?php if($match->score == "R-R") {
 		echo "<font color=\"red\">Annul&eacute;</font>";
 	} else {
 		echo $match->score;
 	} ?>
 	</td>
-	<td><? echo $match->team_visitor_label; ?></td>
+	<td><?php echo $match->team_visitor_label; ?></td>
 	<td align="center">
 	<?php
 	if($match->score != "R-R" && $nb_joueurs_tendance>0) {
@@ -221,16 +221,16 @@ foreach($matches as $id_match=>$match)
 	if($match->score != "R-R" && $nb_joueurs_tendance>0) { ?>
 	<table width="100%" cellpadding="2">
 		<tr>
-			<? $totalpercent = 0; ?>
-			<? $percent = round(100 * $tendances[1]->NBUSERS / $nb_joueurs_tendance); ?>
-			<? if($percent) { ?><td class="result_gagne" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont trouvé le bon score. Ils ont misé une moyenne de <?php echo $tendances[1]->PTSAVG?> points et ont gagné une moyenne de <?php echo $tendances[1]->PTSWONAVG?> points."><?php echo $percent?>%</a></td><? } ?>
-			<? $percent = round(100 * $tendances[2]->NBUSERS / $nb_joueurs_tendance); ?>
-			<? if($percent) { ?><td class="result_nul" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont trouvé le bon résultat. Ils ont misé une moyenne de <?php echo $tendances[2]->PTSAVG?> points et ont gagné une moyenne de <?php echo $tendances[2]->PTSWONAVG?> points."><?php echo $percent?>%</a></td><? } ?>
-			<? $percent = round(100 * $tendances[3]->NBUSERS / $nb_joueurs_tendance); ?>
-			<? if($percent) { ?><td class="result_defaite" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont mal joué ce match et ont misé une moyenne de <?php echo $tendances[3]->PTSAVG?> points."><?php echo $percent?>%</a></td><? } ?>
+			<?php $totalpercent = 0; ?>
+			<?php $percent = round(100 * $tendances[1]->NBUSERS / $nb_joueurs_tendance); ?>
+			<?php if($percent) { ?><td class="result_gagne" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont trouvé le bon score. Ils ont misé une moyenne de <?php echo $tendances[1]->PTSAVG?> points et ont gagné une moyenne de <?php echo $tendances[1]->PTSWONAVG?> points."><?php echo $percent?>%</a></td><?php } ?>
+			<?php $percent = round(100 * $tendances[2]->NBUSERS / $nb_joueurs_tendance); ?>
+			<?php if($percent) { ?><td class="result_nul" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont trouvé le bon résultat. Ils ont misé une moyenne de <?php echo $tendances[2]->PTSAVG?> points et ont gagné une moyenne de <?php echo $tendances[2]->PTSWONAVG?> points."><?php echo $percent?>%</a></td><?php } ?>
+			<?php $percent = round(100 * $tendances[3]->NBUSERS / $nb_joueurs_tendance); ?>
+			<?php if($percent) { ?><td class="result_defaite" width="<?php echo $percent?>%"><a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $percent?>% des joueurs ont mal joué ce match et ont misé une moyenne de <?php echo $tendances[3]->PTSAVG?> points."><?php echo $percent?>%</a></td><?php } ?>
 		</tr>
 	</table>
-	<? } else echo '&nbsp;'; ?>
+	<?php } else echo '&nbsp;'; ?>
 	</td>
 <?php
 	$n++;
@@ -252,7 +252,7 @@ foreach($matches as $id_match=>$match)
 {
 ?>
 	<th width="5%" align="center"><a href="javascript:" style="color:#000; text-decoration:none; font-weight:bold;" title="<?php echo $matches[$id_match]->team_host_label.' '.$matches[$id_match]->score.' '.$matches[$id_match]->team_visitor_label?>">M<?php echo $i?><br />
-	<? if($match->score == "R-R") {
+	<?php if($match->score == "R-R") {
 		echo "<span style=\"color:red\">Ann.</span>";
 	} else {
 		echo $match->score;
@@ -402,7 +402,7 @@ foreach($matches as $id_match=>$match)
 		}
 ?>
 <td align="center" class="<?php echo $color?>">
-<? if($match_user[$id_user_line][$id_match]->type_result > 0) { ?>
+<?php if($match_user[$id_user_line][$id_match]->type_result > 0) { ?>
 	<a href="javascript:" style="color:#fff; text-decoration:none; font-weight:bold;" title="<?php echo $match_user[$id_user_line][$id_match]->team_host_label.' '.$match_user[$id_user_line][$id_match]->score.' '.$match_user[$id_user_line][$id_match]->team_visitor_label.". Points gagnés : ".$match_user[$id_user_line][$id_match]->pts." x ".$fact." = ".$match_user[$id_user_line][$id_match]->pts_won?>"><?php echo $match_user[$id_user_line][$id_match]->score?></a>
 <?php
 } else {

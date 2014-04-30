@@ -75,14 +75,14 @@ echo getOnglets('mon_profil');
 	<div id="content">
 	<h2 class="title_grey">Modifier mon profil</h2>
 
-<? if($message) { ?>
+<?php if($message) { ?>
 <p id="message_ok" class="message_error"><?php echo $message?></p>
 <script type="text/javascript">
 <!--
 new Effect.Highlight('message_ok', {startcolor:'#ff5555', duration:1});
 -->
 </script>
-<? } ?>
+<?php } ?>
 
 	<form method="post" action="/profil.php">
 	<input type="hidden" name="update_profil" value="1" />
@@ -136,7 +136,7 @@ new Effect.Highlight('message_ok', {startcolor:'#ff5555', duration:1});
 	<tr><td align="right"><input type="checkbox" name="no_mail" id="no_mail" value="1" <?php echo !$user->no_mail ? 'checked="checked"' : ''; ?> /></td>
 	<td><label for="no_mail">Recevoir les emails de Prono+ (rappel pour pronostiquer une grille notamment)</label></td></tr>
 	
-	<? /*
+	<?php /*
 	<tr><td align="right"><input type="checkbox" name="no_mail_end_matches" id="no_mail_end_matches"  value="1" <?php echo !$user->no_mail_end_matches ? 'checked="checked"' : ''; ?> /></td>
 	<td><label for="no_mail_end_matches">Recevoir un email d'alerte lorsqu'un classement d'une grille est en ligne</label></td></tr>	
 	*/
@@ -160,9 +160,9 @@ new Effect.Highlight('message_ok', {startcolor:'#ff5555', duration:1});
 	if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'normal')) {
 	?>
 		<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0"/>
-	<? } else { ?>
+	<?php } else { ?>
 		<img src="/template/default/_profil.png" height="118" width="118" border="0" />
-	<? } ?>
+	<?php } ?>
 	</div>
 	</td>
 	<td width="60%" valign="top">

@@ -149,7 +149,7 @@ new Effect.Highlight('msg_alert', {startcolor:'#ffff00', duration:2});
 </script>
 
 
-<? if(!$user) { ?>
+<?php if(!$user) { ?>
 <p>&nbsp;</p>
 <div id="msg_error" class="message_error" style="padding:10px; margin-bottom:20px; border:solid 1px #ffff00">Veuillez vous identifier afin de faire la simulation.</div>
 <p>&nbsp;</p>
@@ -161,7 +161,7 @@ new Effect.Highlight('msg_error', {startcolor:'#ffff00', duration:1});
 -->
 </script>
 
-<? } else { ?>
+<?php } else { ?>
 
 
 

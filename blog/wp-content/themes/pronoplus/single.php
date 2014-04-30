@@ -71,7 +71,7 @@ echo '<div style="padding:10px; background:#ffffff">'.alaune().'</div>';
 		
 			<h2><a href="<?php echo get_permalink() ?>" rel="bookmark" title="Lien permanent vers <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 			<div class="entry">
-<? /*
+<?php /*
 <script type="text/javascript"><!--
 google_ad_client = "pub-4614826582647836";
 // Rectangle Prono+ 336x280, date de création 03/01/09 

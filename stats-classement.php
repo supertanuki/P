@@ -271,7 +271,7 @@ pageheader($titrepage);
 	?>
   
   
-<? if(is_array($tooltip) && count($tooltip)) { ?>
+<?php if(is_array($tooltip) && count($tooltip)) { ?>
 <script type="text/javascript" language="javascript">
 // <![CDATA[
 document.observe('dom:loaded', function() {	
@@ -279,12 +279,12 @@ document.observe('dom:loaded', function() {
 foreach($tooltip as $i=>$var)
 {
 ?>
-	new Tip('match_line_<? echo $i; ?>', '<? echo str_replace("'", "\'", str_replace("\n", "", $tooltip[$i]['content'])); ?>', {
+	new Tip('match_line_<?php echo $i; ?>', '<?php echo str_replace("'", "\'", str_replace("\n", "", $tooltip[$i]['content'])); ?>', {
 		style: 'protogrey',
 		stem: 'bottomMiddle',
 		hook: { target: 'topMiddle', tip: 'bottomMiddle' },
 		offset: { x: 0, y: 0 },
-		target: 'div_score_match_<? echo $i; ?>',
+		target: 'div_score_match_<?php echo $i; ?>',
 		radius: 5,
 		width: 470,
 		hideOthers:true

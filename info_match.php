@@ -153,7 +153,7 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 		<h1 class="title_green"><?php echo formatDbData($title_page)?></h1>
 		
 		<p>
-			<? echo ($match->afficher_classement ? '<a href="/stats-classement.php?id='.$match->id_league.'&j='.$match->day_number.'" class="link_orange">' : '')
+			<?php echo ($match->afficher_classement ? '<a href="/stats-classement.php?id='.$match->id_league.'&j='.$match->day_number.'" class="link_orange">' : '')
 				. ($match->flag ? '<img src="/image/flags/'.$match->flag.'" border="0" align="absmiddle" /> ' : '')
 				. $match->league
 				. ($match->day_number ? ' - ' . $match->day_number . ($match->day_number > 1 ? '<sup>ème</sup>' : '<sup>ère</sup>') . ' journée' : '')
@@ -163,7 +163,7 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 			?>
 		</p>
 		
-		<h3 style="color:#555" align="center">La note du match <? echo formatDbData($match->team_host.' - '.$match->team_visitor); ?> <?php echo $match->score ? '('.$match->score.')' : ''; ?> : <? echo $notedumatch ? round($notedumatch, 2) . ' / 20' : ''; ?></h3>		
+		<h3 style="color:#555" align="center">La note du match <?php echo formatDbData($match->team_host.' - '.$match->team_visitor); ?> <?php echo $match->score ? '('.$match->score.')' : ''; ?> : <?php echo $notedumatch ? round($notedumatch, 2) . ' / 20' : ''; ?></h3>
 		
 		
 		<?php
@@ -195,7 +195,7 @@ if($pp_info_match_note = get_note_match($match->id_info_match))
 		?>
 			<p align="center">Aucun joueur n'a noté ce match. Soyez le premier !</p>
 			<br /><br />
-		<? } ?>
+		<?php } ?>
 		
 
 		
@@ -273,7 +273,7 @@ if($nb_votants > 0) {
 	new Control.Slider('handle_note','track_note',
 		{
 			range:$R(0,20),
-			values: [<? for($i=0; $i<=19; $i++) echo $i.', '; ?>, 20],
+			values: [<?php for($i=0; $i<=19; $i++) echo $i.', '; ?>, 20],
 			sliderValue: <?php echo $note_perso_match?>,
         	onChange:function(note) { noter(note); }
 		});
@@ -281,10 +281,10 @@ if($nb_votants > 0) {
 
 function noter(note)
 {
-<? if(!$user->id_user) { ?>
+<?php if(!$user->id_user) { ?>
 		$('note_du_match').update('<a href="javascript:" onclick="SeConnecter();" class="link_orange">Connectez-vous pour noter ce match</a>');
 	
-<? } else { ?>
+<?php } else { ?>
 	note = Math.round(note);
 	new Ajax.Request('/actions.php', {
 		parameters: { action: 'noter_match', note: note, id_info_match: <?php echo $_GET[id]?> },
@@ -298,7 +298,7 @@ function noter(note)
 		}
 
 	});
-<? } ?>
+<?php } ?>
 }
 
 window.onload = init_sliders;

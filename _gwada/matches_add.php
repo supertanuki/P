@@ -179,9 +179,9 @@ function ValidAddMatches()
 -->
 </script>
 
-<? if($message) echo "<p class=\"info\">$message</p>"; ?>
+<?php if($message) echo "<p class=\"info\">$message</p>"; ?>
 
-<? /*<fieldset style="width:70%; float:left">*/ ?>
+<?php /*<fieldset style="width:70%; float:left">*/ ?>
 <fieldset>
 	<legend>Créer une grille de pronostics</legend>
 	<form method="post" action="matches_add.php" onsubmit="return ValidAddMatches();">

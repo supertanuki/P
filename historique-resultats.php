@@ -198,15 +198,15 @@ if(!$nb_matches)
 <div id="container" style="width:98%; height:300px; margin:10px;"></div>
 
 <div align="center">
-<? if($nb_begin > 0) {
+<?php if($nb_begin > 0) {
 		$param = (($nb_begin - $nb_step) > 0 ? "start=".($nb_begin - $nb_step) : "start=0");
 		$param = ($param != '' ? '?'.$param : '');
 ?>
 <a href="/historique-resultats.php?start=0" class="link_button">&lt;&lt; Les plus anciens</a>
 <a href="/historique-resultats.php<?php echo $param?>" class="link_button">&lt; <?php echo (($nb_begin - $nb_step) >= 0 ? $nb_step : $nb_step + ($nb_begin - $nb_step)); ?> précédents</a>
-<? } ?>
+<?php } ?>
 
-<? if($nb_matches > ($nb_begin + $nb_limit)) {
+<?php if($nb_matches > ($nb_begin + $nb_limit)) {
 		$param = "start=".(($nb_begin + $nb_step + $nb_limit) > $nb_matches ? $nb_begin + ($nb_matches - ($nb_begin + $nb_limit)) : ($nb_begin + $nb_step));
 		$param = ($param != '' ? '?'.$param : '');
 		
@@ -215,13 +215,13 @@ if(!$nb_matches)
 ?>
 <a href="/historique-resultats.php<?php echo $param?>" class="link_button"><?php echo ($nb_begin + $nb_step + $nb_limit) > $nb_matches ? ($nb_matches - ($nb_begin + $nb_limit)) : $nb_step; ?> suivants &gt;</a>
 <a href="/historique-resultats.php<?php echo $paramLimit?>" class="link_button">Les plus récents &gt;&gt;</a>
-<? } ?>
+<?php } ?>
 </div>
 
 <br />
 
 <div style="overflow:auto; height:200px; border:1px solid #ccc">
-<? echo $content; ?>
+<?php echo $content; ?>
 </div>
 
 
@@ -233,12 +233,12 @@ document.observe('dom:loaded', function(){
 	var i = <?php echo $nb_begin+1?>;
 	var tooltip = [];
 	
-	<? foreach($myStats as $matches) { ?>
+	<?php foreach($myStats as $matches) { ?>
 	d1.push([i,<?php echo $matches['nb_points']?>]);
 	d2.push([i,<?php echo $matches['sum_nb_points']?>]);
 	tooltip[i] = '<?php echo str_replace("'", "\\\'", $matches['tooltip'])?>';
 	i++;
-	<? } ?>
+	<?php } ?>
     
     for(var j=d1.length; j<<?php echo $nb_limit?>; j++)
     {

@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<? $pub = 0; ?>
+<?php $pub = 0; ?>
 	<div id="content" class="narrowcolumn">
 	
 	
@@ -17,7 +17,7 @@
 				<h2><a name="post_<?php the_ID(); ?>" href="<?php the_permalink() ?>" rel="bookmark" title="Lien permanent vers <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 				<div class="entry">
 
-<? /* if($pub < 1) { $pub++; ?>
+<?php /* if($pub < 1) { $pub++; ?>
 
 <script type="text/javascript"><!--
 google_ad_client = "pub-4614826582647836";
@@ -31,7 +31,7 @@ google_ad_height = 280;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<? } else if($pub < 3) { $pub++; ?>
+<?php } else if($pub < 3) { $pub++; ?>
 
 <script type="text/javascript"><!--
 google_ad_client = "pub-4614826582647836";
@@ -45,7 +45,7 @@ google_ad_height = 60;
 src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
 
-<? }*/ ?>
+<?php }*/ ?>
 					<?php $is_sexy = get_post_meta($post->ID, 'sexy', true);
 					if($is_sexy=='1')
 					{
@@ -61,11 +61,11 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					<?php
 					}
 					?>
-					<? /*<p align="center">Lien direct vers cette page :<br /><input type="text" value="<?php the_permalink() ?>" style="width:100%" onFocus="select();" /></p>*/ ?>
+					<?php /*<p align="center">Lien direct vers cette page :<br /><input type="text" value="<?php the_permalink() ?>" style="width:100%" onFocus="select();" /></p>*/ ?>
 				</div>
 				
 				
-<? if($pub < 3) { $pub++; ?>	
+<?php if($pub < 3) { $pub++; ?>
 	<script type="text/javascript"><!--
 	google_ad_client = "pub-4614826582647836";
 	// LigneProno+ 468x60, date de création 03/01/09 
@@ -77,7 +77,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	<script type="text/javascript"
 	src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 	</script>
-<? } ?>		
+<?php } ?>
 				
 				<p class="postmetadata">Le <?php the_time('j F Y') ?><br /><?php the_tags('Tags: ', ', ', '<br />'); ?> Publié par <strong><?php the_author(); ?></strong> dans <?php the_category(', ') ?> <?php edit_post_link('[Modifier]', '', ''); ?><br />
 				<span class="a_comment"><?php comments_popup_link('Soyez le premier à commenter cet article »', '1 commentaire »', '% commentaires »', 'comments-link', 'Les commentaires sont fermés'); ?></span></p>

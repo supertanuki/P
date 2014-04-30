@@ -22,8 +22,8 @@ function pageheader($title, $options=false)
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php echo $title?></title>
 
-<meta name="description" content="<? echo $options[meta_description]; ?>" />
-<?php if($options[meta_keywords]) { ?><meta name="keywords" content="<? echo $options[meta_keywords]; ?>"><?php } ?>
+<meta name="description" content="<?php echo $options[meta_description]; ?>" />
+<?php if($options[meta_keywords]) { ?><meta name="keywords" content="<?php echo $options[meta_keywords]; ?>"><?php } ?>
 
 
 <link rel="stylesheet" href="/template/default/styles.css?v=2.5" type="text/css" media="all" />
@@ -59,10 +59,10 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 <div id="all">
 	<div id="header_links">		
 		<ul>
-		<? if(!$user) { ?>
+		<?php if(!$user) { ?>
 			<li class="header_link_grey"><a id="login_link" href="javascript:" onclick="SeConnecter(this);">Se connecter</a></li>
 			<li class="header_link_green" id="btn_inscrire"><a href="javascript:" onclick="Sinscrire(this);">S'inscrire</a></li>
-		<? } else { 
+		<?php } else {
 				echo "<li class=\"header_link_green\"><div style=\"display:block; width:150px; overflow:hidden; text-align:left; color:#fff\">";
 
 				if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'small'))
@@ -86,11 +86,11 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	
 	<div id="header_space"></div>
 	
-	<? if($options['equipe-de-france'] == true) { ?>
+	<?php if($options['equipe-de-france'] == true) { ?>
 	<div class="logo_edf"><a href="/" onfocus="if(this.blur()) this.blur();">PRONO+</a></div>
-	<? } else { ?>
+	<?php } else { ?>
 	<div class="logo"><a href="/" onfocus="if(this.blur()) this.blur();">PRONO+</a></div>	
-	<? } ?>
+	<?php } ?>
 	
 
 	
@@ -252,11 +252,11 @@ function pagefooter($options=false)
 	<!--footer-->
 	<div class="clear"></div>
 	<div id="whosonline">
-	<? /*if(!$user && ($_SERVER[REQUEST_URI]=='/' || $_SERVER[REQUEST_URI]=='' || $_SERVER[REQUEST_URI]=='/index.php')) { // si on est sur la home ?>
+	<?php /*if(!$user && ($_SERVER[REQUEST_URI]=='/' || $_SERVER[REQUEST_URI]=='' || $_SERVER[REQUEST_URI]=='/index.php')) { // si on est sur la home ?>
 		<div style="float:right; width:230px; border:1px solid #ccc; padding:6px; margin-left:10px;">
 			Passé pro dans l'art des pronostics du ballon rond grâce à Pronoplus?  Faites confiance à Betway pour vos prochains <a href="http://betway.com/fr" target="_blank" class="link_orange">paris sportifs</a> ou détendez vous en jouant à un des nombreux <a href="http://betway.com/fr/casino" target="_blank" class="link_orange">jeux de casino</a> spécial foot.
 		</div>
-	<? }*/ ?>
+	<?php }*/ ?>
     <img src="/template/default/whosonline.png" height="25" width="37" border="0" alt="" align="absmiddle" style="margin-right:6px;" /><strong>Qui est en ligne ?</strong>
     
 <?php
@@ -306,13 +306,13 @@ else echo $nb_online . " joueur" .($nb_online > 1 ? "s" : ""). " en ligne<hr>" .
 				
 				<li><a href="/cup.php">Coupe Prono+</a></li>
                 
-                <? if($user->id_user) { ?>
+                <?php if($user->id_user) { ?>
 					<li><a href="/user.php?q=<?php echo htmlspecialchars(urlencode($user->login));?>">Mon profil</a></li>
 					<li><a href="/profil.php">Modifier mon profil</a></li>					
-				<? } else if(!$options['forblog']) { ?>                
+				<?php } else if(!$options['forblog']) { ?>
 					<li><a href="javascript:" onclick="SeConnecter(this);">Se connecter à Prono+</a></li>
 					<li><a href="javascript:" onclick="Sinscrire(this);">S'inscrire gratuitement à Prono+</a></li>
-                <? } ?>
+                <?php } ?>
                 <li><a href="/friends.php">Mes amis</a></li>
 				<?php /* <li><a href="http://recherche.pronoplus.com/">Rechercher</a></li> */ ?>
 				<li><a href="http://www.pronoplus.com/mobile/">Version iPhone / Android</a></li>
@@ -821,7 +821,7 @@ Je gagne : 50 x 10 = 500 points.
 			</ul>
 		</div>
 	</div>
-	<? /*
+	<?php /*
 	<script language="javascript">
 	<!--
 	Sortable.create('list_left', { handle:'list_handle', scroll: window });
@@ -1136,65 +1136,65 @@ function getRightBulle($pp_user=0)
 				?>
 					&laquo;&nbsp;Chaque minute en Amazonie, on déboise l'équivalent de 60 terrains de football. C'est un peu idiot. Il n'y aura jamais assez de joueurs&nbsp;&raquo;
 					<br /><em>Le chat de Philippe Geluck</em>
-				<? } else if($rnd == 2) { ?>
+				<?php } else if($rnd == 2) { ?>
 					&laquo;&nbsp;Il ne faut pas brûler la peau de l'ours avant de l'avoir vendue&nbsp;&raquo;
 					<br /><em>Abdeslam Ouaddou</em>
-				<? } else if($rnd == 3) { ?>
+				<?php } else if($rnd == 3) { ?>
 					&laquo;&nbsp;En première mi-temps ça sentait le pâté... et maintenant, ça sent le boudin&nbsp;&raquo;
 					<br /><em>Thierry Roland</em>
-				<? } else if($rnd == 4) { ?>
+				<?php } else if($rnd == 4) { ?>
 					&laquo;&nbsp;Après cela on peut mourir tranquille, mais le plus tard sera le mieux !&nbsp;&raquo;
 					<br /><em>Thierry Roland, finale France - Brésil en 1998</em>
-				<? } else if($rnd == 5) { ?>
+				<?php } else if($rnd == 5) { ?>
 					&laquo;&nbsp;Allez, mon petit bonhomme !&nbsp;&raquo;
 					<br /><em>Thierry Roland</em>
-				<? } else if($rnd == 6) { ?>
+				<?php } else if($rnd == 6) { ?>
 					&laquo;&nbsp;A gauche, à gauche, à gauche !&nbsp;&raquo;
 					<br /><em>Jean-Michel Larqué</em>
-				<? } else if($rnd == 7) { ?>
+				<?php } else if($rnd == 7) { ?>
 					&laquo;&nbsp;Pas de faute ! Pas de faute ! Pas de faute !&nbsp;&raquo;
 					<br /><em>Jean-Michel Larqué</em>
-				<? } else if($rnd == 8) { ?>
+				<?php } else if($rnd == 8) { ?>
 					&laquo;&nbsp;Le ballon, c'est comme une femme, il aime les caresses&nbsp;&raquo;
 					<br /><em>Eric Cantona</em>
-				<? } else if($rnd == 9) { ?>
+				<?php } else if($rnd == 9) { ?>
 					&laquo;&nbsp;Va falloir mettre nos couilles sur le terrain&nbsp;&raquo;
 					<br /><em>Jérôme Rothen, alors au PSG</em>
-				<? } else if($rnd == 10) { ?>
+				<?php } else if($rnd == 10) { ?>
 					&laquo;&nbsp;Je suis parti pour rester à vie à Arsenal&nbsp;&raquo;
 					<br /><em>Thierry Henry</em>
-				<? } else if($rnd == 11) { ?>
+				<?php } else if($rnd == 11) { ?>
 					&laquo;&nbsp;Je ne suis pas venu à Munich pour que le Bayern soit un intermède&nbsp;&raquo;
 					<br /><em>Franck Ribéry</em>
-				<? } else if($rnd == 12) { ?>
+				<?php } else if($rnd == 12) { ?>
 					&laquo;&nbsp;Tu peux changer de femme, tu peux changer de religion mais tu ne peux pas changer d'équipe de foot&nbsp;&raquo;
 					<br /><em>Extrait du film Looking for Eric</em>
-				<? } else if($rnd == 13) { ?>
+				<?php } else if($rnd == 13) { ?>
 					&laquo;&nbsp;Je ne suis pas un homme, je suis Cantona&nbsp;&raquo;
 					<br /><em>Eric Cantona</em>
-				<? } else if($rnd == 14) { ?>
+				<?php } else if($rnd == 14) { ?>
 					&laquo;&nbsp;C'est seulement dans un stade qu'on peut voir des Anglais s'embrasser&nbsp;&raquo;
 					<br /><em>Eric Cantona</em>
-				<? } else if($rnd == 15) { ?>
+				<?php } else if($rnd == 15) { ?>
 					&laquo;&nbsp;Il faut prendre les matchs les uns après les autres&nbsp;&raquo;
 					<br /><em>La majorité des footballeurs</em>
-				<? } else if($rnd == 16) { ?>
+				<?php } else if($rnd == 16) { ?>
 					&laquo;&nbsp;Je crois que bon...&nbsp;&raquo;
 					<br /><em>Laurent Blanc</em>
-				<? } else if($rnd == 17) { ?>
+				<?php } else if($rnd == 17) { ?>
 					&laquo;&nbsp;C'était un match difficile mais on a pris les 3 points, c'est l'essentiel&nbsp;&raquo;
 					<br /><em>Franck Ribéry, après un match de Coupe de France</em>
-				<? } else { ?>
+				<?php } else { ?>
 					&laquo;&nbsp;Au football seul le ballon n'est pas payé, c'est pourtant lui qui se prend le plus de coups&nbsp;&raquo;
 					<br /><em>Vincent Roca</em>
-				<? }
+				<?php }
 			}
 			?>
 			
-		<? /*if($user->id_user) { ?>
-		<? } else { ?>
+		<?php /*if($user->id_user) { ?>
+		<?php } else { ?>
 		Bienvenue sur Prono+ !
-		<? } */ ?>
+		<?php } */ ?>
 		</div></div>
 	</div>
 	<div class="bulle_bottom"></div>
@@ -1236,7 +1236,7 @@ function getRightProfil($pp_user=0)
 ?>
 		<div class="profil">
 		
-			<? if(!$avatar && $userprofil->id_user && $user->id_user == $userprofil->id_user) { ?><div class="message_error"><? } ?>
+			<?php if(!$avatar && $userprofil->id_user && $user->id_user == $userprofil->id_user) { ?><div class="message_error"><?php } ?>
 			
 			<div class="profil_img">
 				<div class="profil_img_top"></div>
@@ -1247,9 +1247,9 @@ function getRightProfil($pp_user=0)
 							if($avatar) {
 							?>
 								<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0" />
-							<? } else { ?>
+							<?php } else { ?>
 								<img src="/template/default/_profil.png" height="118" width="118" border="0" />
-							<? }
+							<?php }
 						if($user->id_user == $userprofil->id_user) echo '</a>';
 						?>
 					</div>
@@ -1257,26 +1257,26 @@ function getRightProfil($pp_user=0)
 				<div class="profil_img_bottom"></div>
 			</div>
 			
-			<? if(!$avatar && $userprofil->id_user && $user->id_user == $userprofil->id_user) { ?><br /><a href="/avatar.php">Choisis maintenant un avatar qui te représente !</a></div><? } ?>
+			<?php if(!$avatar && $userprofil->id_user && $user->id_user == $userprofil->id_user) { ?><br /><a href="/avatar.php">Choisis maintenant un avatar qui te représente !</a></div><?php } ?>
 			
 			<div class="pseudo_joueur">
-				<? if($userprofil) { ?>
+				<?php if($userprofil) { ?>
 					<?php echo formatDbData($userprofil->login)?> <?php /*<img src="template/default/status_online.png" alt="En ligne" title="En ligne" height="16" width="16" />*/ ?>
-                    <br /><p class="<?php echo $nb_recompenses != 0 ? 'recompense-star' : 'recompense-star-disabled'; ?>"><a href="/recompenses.php?q=<? echo urlencode($userprofil->login); ?>"><?php echo $nb_recompenses; ?> <?php echo $nb_recompenses > 1 ? 'étoiles' : 'étoile'; ?></a></p>
-                    <br /><small>Inscrit(e) depuis le <? echo $userprofil->register_date_format; ?></small>
+                    <br /><p class="<?php echo $nb_recompenses != 0 ? 'recompense-star' : 'recompense-star-disabled'; ?>"><a href="/recompenses.php?q=<?php echo urlencode($userprofil->login); ?>"><?php echo $nb_recompenses; ?> <?php echo $nb_recompenses > 1 ? 'étoiles' : 'étoile'; ?></a></p>
+                    <br /><small>Inscrit(e) depuis le <?php echo $userprofil->register_date_format; ?></small>
 
 
 					
-				<? } else if(!$user) { ?>
+				<?php } else if(!$user) { ?>
 					<a href="javascript:" onclick="SeConnecter(this);" class="link_button_urgent">M'inscrire</a>
-				<? } ?>
+				<?php } ?>
 			</div>
 
-            <? if($user->id_user && $userprofil->id_user == $user->id_user) { ?>
+            <?php if($user->id_user && $userprofil->id_user == $user->id_user) { ?>
 			<div class="btn_ajouter_contenu" align="center">
 			    <a href="/profil.php"><img src="template/default/user_edit.png" align="absmiddle" alt="Modifier mon profil" height="16" width="16" border="0" /> Modifier mon profil</a>
 			</div>
-            <? } ?>
+            <?php } ?>
 			
 			
 			
@@ -1293,25 +1293,25 @@ function getRightProfil($pp_user=0)
 				{
 					?>
 					<br /><div align="center">
-						<a class="link_button_urgent" href="/friends.php"><img src="/template/default/group_add.png" height="16" width="16" border="0" align="absmiddle" /> <? echo $pp_user_friends->nb_invitations.' invitation'.($pp_user_friends->nb_invitations > 1 ? 's' : '').' d\'ami(e)'.($pp_user_friends->nb_invitations > 1 ? 's' : ''); ?></a>
+						<a class="link_button_urgent" href="/friends.php"><img src="/template/default/group_add.png" height="16" width="16" border="0" align="absmiddle" /> <?php echo $pp_user_friends->nb_invitations.' invitation'.($pp_user_friends->nb_invitations > 1 ? 's' : '').' d\'ami(e)'.($pp_user_friends->nb_invitations > 1 ? 's' : ''); ?></a>
 					</div>
 					<?php
 				}
 			}
 			?>
 			
-			<? /*
+			<?php /*
 			<div class="btn_ajouter_contenu">
-				<? if($user) { ?>
+				<?php if($user) { ?>
 					<img src="template/default/add.png" align="absmiddle" alt="Ajouter contenu" height="16" width="16" border="0" /> <strike>Ajouter du contenu &agrave; ma page</strike><br />
                     Cette fonction n'est pas encore disponible !
-				<? } else { ?>
+				<?php } else { ?>
 					<a href="javascript:" onclick="SeConnecter(this);"><img src="template/default/add.png" align="absmiddle" alt="Ajouter contenu" height="16" width="16" border="0" /> Ajouter du contenu &agrave; ma page</a>
-				<? } ?>
+				<?php } ?>
 			</strike></div>
 			*/ ?>
 			
-			<? /*if($user) { ?><div><a href="/logout.php"><img src="/template/default/close.gif" height="12" width="12" hspace="2" border="0" align="absmiddle" /> D&eacute;connecter</a></div><? }*/ ?>
+			<?php /*if($user) { ?><div><a href="/logout.php"><img src="/template/default/close.gif" height="12" width="12" hspace="2" border="0" align="absmiddle" /> D&eacute;connecter</a></div><?php }*/ ?>
 			
 		</div>
 
@@ -1436,9 +1436,9 @@ function getRightProfil($pp_user=0)
 				}
 				?>
 				<ul>
-					<li><a href="<? echo $linkclass; ?>">+ de stats</a></li>
-					<li><a href="/recompenses.php?q=<? echo urlencode(htmlspecialchars($userprofil->login)); ?>">Récompenses</a></li>
-					<li><a href="/palmares-archives.php?q=<? echo urlencode(htmlspecialchars($userprofil->login)); ?>">Archives palmarès</a></li>
+					<li><a href="<?php echo $linkclass; ?>">+ de stats</a></li>
+					<li><a href="/recompenses.php?q=<?php echo urlencode(htmlspecialchars($userprofil->login)); ?>">Récompenses</a></li>
+					<li><a href="/palmares-archives.php?q=<?php echo urlencode(htmlspecialchars($userprofil->login)); ?>">Archives palmarès</a></li>
 				</ul>
 			  
 		    </div>
@@ -1556,14 +1556,14 @@ function getContentRight()
 			<li>
 				<h2 class="title_blue">Amis au hasard</h2>
 				<div class="bloc_content">
-				<? echo getRandomFriends($user); ?>
+				<?php echo getRandomFriends($user); ?>
 				<hr /><div style="text-align:center"><a href="/friends.php" class="link_orange">Activités de mes amis</a></div>
 				</div>
 			</li>
 		
 			<li>
 				<h2 class="title_green">Coup de chapeau !</h2>
-				<div class="bloc_content"><? echo CoupDeChapeau(); ?></div>
+				<div class="bloc_content"><?php echo CoupDeChapeau(); ?></div>
 			</li>
 			<?php
 		}
@@ -1637,7 +1637,7 @@ function getContentRight()
 			<li>
 				<h2 class="title_orange">Résultats des championnats</h2>
 				<div class="bloc_content">
-				<? echo $html; $html = ''; ?>
+				<?php echo $html; $html = ''; ?>
 				
 				<?php      
 			        $SQL = "SELECT `n`.`id_info_match`,
@@ -1709,7 +1709,7 @@ function getContentRight()
         ?>
         <li>
           <h2 class="title_orange">Les derniers articles du blog</h2>
-          <div class="bloc_content"><? echo $posts; ?></div>
+          <div class="bloc_content"><?php echo $posts; ?></div>
         </li>
         <?php
       }
@@ -1756,7 +1756,7 @@ function getContentRight()
 					<li>
 						<h2 class="title_green">Matchs à ne pas manquer</h2>
 						<div class="bloc_content">
-							<? echo implode(', ', $content); ?>
+							<?php echo implode(', ', $content); ?>
 						</div>
 					</li>
 					<?php
@@ -1769,15 +1769,15 @@ function getContentRight()
 			<?php
 			/*
 			<li>
-				<? <h2 class="title_blueking">Prono+ sur Facebook</h2> ?>
+				<?php <h2 class="title_blueking">Prono+ sur Facebook</h2> ?>
 				<div class="bloc_content" style="padding:0">
-					<? if($_SERVER['HTTP_HOST'] == 'www.pronoplus.com') { ?>
+					<?php if($_SERVER['HTTP_HOST'] == 'www.pronoplus.com') { ?>
 					<!--
 					<script type="text/javascript" src="http://static.ak.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/fr_FR"></script>
 					<script type="text/javascript">FB.init("5742344b18e179b243f7dc3fb692f59f");</script>
 					<fb:fan profile_id="134326005820" stream="false" connections="4" width="238"></fb:fan>-->
 					<iframe src="http://www.facebook.com/plugins/likebox.php?id=134326005820&amp;width=238&amp;connections=0&amp;stream=false&amp;header=false&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:238px; height:62px;" allowTransparency="true"></iframe>
-					<? } ?>
+					<?php } ?>
 				</div>
 			</li>
 			*/
@@ -2837,34 +2837,34 @@ function pagination($pagego, $sqldep, $nb_element, $nbaff=20, $extension="")
 ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<td width="5%" nowrap="nowrap"> 
-	  <? if(($sqldep-$nbaff)>=0) { // suivant // précédent
+	  <?php if(($sqldep-$nbaff)>=0) { // suivant // précédent
 $sqlgoto=$sqldep-$nbaff; ?>
-	  <a href="/<? echo $pagego."?sqldep=$sqlgoto".$extension ?>" class="link_button"><img src="/template/default/arrow_left.png" border="0" align="absmiddle" />&nbsp;Vers&nbsp;les&nbsp;premiers</a> 
-	  <? } ?>
+	  <a href="/<?php echo $pagego."?sqldep=$sqlgoto".$extension ?>" class="link_button"><img src="/template/default/arrow_left.png" border="0" align="absmiddle" />&nbsp;Vers&nbsp;les&nbsp;premiers</a>
+	  <?php } ?>
     </td>
 
-<form method="post" action="<? echo $pagego."?".$extension; ?>">
+<form method="post" action="<?php echo $pagego."?".$extension; ?>">
 	<td width="90%" align="center">
 	Rang : 
 	<select name="sqldep">
-	<? // pages
+	<?php // pages
 	$nbpage=ceil($nb_element/$nbaff);
 	for($i=1; $i<=$nbpage; $i++) {
 		$ldeb=(($i-1)*$nbaff);
 	?>
 	
-	<option value="<? echo $ldeb; ?>"<? if($ldeb==$sqldep) echo " selected=\"selected\" style=\"font-weight: bold; background-color: #eeeeee;\""; ?>><? echo ($ldeb+1)." - ".($ldeb+$nbaff); ?></option>
-	<? } ?>
+	<option value="<?php echo $ldeb; ?>"<?php if($ldeb==$sqldep) echo " selected=\"selected\" style=\"font-weight: bold; background-color: #eeeeee;\""; ?>><?php echo ($ldeb+1)." - ".($ldeb+$nbaff); ?></option>
+	<?php } ?>
 	</select>
 	<input type="submit" class="link_button" value="Ok">
 	 </td>
 </form>
 
 	<td align="right width="5%" nowrap="nowrap"> 
-	  <? if(($sqldep+$nbaff) < $nb_element) {
+	  <?php if(($sqldep+$nbaff) < $nb_element) {
 $sqlgoto=$sqldep+$nbaff; ?>
-	  <a href="/<? echo $pagego."?sqldep=$sqlgoto".$extension ?>" class="link_button">Vers&nbsp;les&nbsp;derniers&nbsp;<img src="/template/default/arrow_right.png" border="0" align="absmiddle" /></a> 
-	  <? } ?>
+	  <a href="/<?php echo $pagego."?sqldep=$sqlgoto".$extension ?>" class="link_button">Vers&nbsp;les&nbsp;derniers&nbsp;<img src="/template/default/arrow_right.png" border="0" align="absmiddle" /></a>
+	  <?php } ?>
     </td>
 	
   </tr>
@@ -2919,14 +2919,14 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 		$message .= '...';
 ?>
 
-		<tr class="<? echo $class = ($class != 'ligne_blanche' ? 'ligne_blanche' : 'ligne_grise'); ?>">		
+		<tr class="<?php echo $class = ($class != 'ligne_blanche' ? 'ligne_blanche' : 'ligne_grise'); ?>">
 		  <td width="65%">
 			<h3><a href="<?php echo $link;?>" class="link_orange">
-			<? echo htmlspecialchars($lmsg["sujet"]); ?>
+			<?php echo htmlspecialchars($lmsg["sujet"]); ?>
 			<img src="/template/default/last.gif" alt="Aller au dernier message" align="absmiddle" width="16" height="16" border="0" />
 			</a></h3>
 			
-			<? echo htmlspecialchars($message); ?>
+			<?php echo htmlspecialchars($message); ?>
 
 			<?php
 			/*			//pages
@@ -2947,23 +2947,23 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			<?	if($i!=$nbpage) echo ".";
 			} ?>
 			]
-			<? } */ ?>
+			<?php } */ ?>
 			</td>
-			<? /* <td>Dans <a href="/forum-football/<?php echo $lmsg["url_theme"]?>/" class="link_orange"><?php echo $lmsg["label_theme"]?></a></td> */ ?>
+			<?php /* <td>Dans <a href="/forum-football/<?php echo $lmsg["url_theme"]?>/" class="link_orange"><?php echo $lmsg["label_theme"]?></a></td> */ ?>
 		  <td width="35%">
 		<a href="/user.php?q=<?php echo urlencode(htmlspecialchars($lnmsg["login"]))?>" class="link_orange">
 		<?php
 		if($avatar = getAvatar($lnmsg["id_user"], $lnmsg["avatar_key"], $lnmsg["avatar_ext"], 'small')) {
 		?>
 			<img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" style="float:left; margin-right:2px;"  />
-		<? } else { ?>
+		<?php } else { ?>
 			<img src="/template/default/_profil.png" height="30" width="30" border="0" style="float:left; margin-right:2px;" />
-		<? } ?>
+		<?php } ?>
 		<?php echo $lnmsg["login"]; ?></a><br /><span style="font-size:10px;"><?php echo formatdateheure($lmsg["dateder"])?></span>
 		
 		  </td>
 		</tr>
-		<? } ?>
+		<?php } ?>
 		
 		
 		<?php

@@ -16,4 +16,4 @@ echo adminheader("Login", " onLoad=\"document.getElementById('login').focus()\""
 Vous êtes déconnecté !
 
 
-<? echo adminfooter(); ?>
+<?php echo adminfooter(); ?>

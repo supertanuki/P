@@ -165,7 +165,7 @@ Numéro journée : <input type="text" name="day_number" size="2" /><br /><br />
 Numéro tour : <input type="text" name="number_tour" size="2" /><br /><br />
 
 <div id="list_matchs">
-<? for($i=1; $i<=10; $i++) echo $html; ?>
+<?php for($i=1; $i<=10; $i++) echo $html; ?>
 </div>
 
 <br /><a href="#" onclick="new Insertion.Bottom('list_matchs', $('line_add_match').innerHTML); return false;">Ajouter un match <img src="images/add.png" border="0" /></a><br /><br />

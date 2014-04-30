@@ -157,7 +157,7 @@ $classement = "1.  	    SERBIE;  	22; 	10; 	7; 	1; 	2; 	22; 	8; 	+14
 		<li>
 			<h2 class="title_blueking">L'équipe de France sur le blog</h2>
 			<div class="bloc_content">
-			<? echo PreviewBlog(array(	'category_id' => 12,
+			<?php echo PreviewBlog(array(	'category_id' => 12,
 										'twocolumns' => true,
 										'nbelements' => 8)); ?>
 			</div>
@@ -191,7 +191,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			echo htmlspecialchars($lmsg["sujet"]);
 			?>
 			</a><br />
-			<? //pages
+			<?php //pages
 $nbmsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]);
 $nbtotalmsg=mysql_num_rows($nbmsg);
 $nbaff=10;
@@ -210,7 +210,7 @@ if($nbtotalmsg > 10) {
 			<?	if($i!=$nbpage) echo ".";
 	} ?>
 			]
-			<? } ?>
+			<?php } ?>
 			</td>
 		  <td>
 		  <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -218,7 +218,7 @@ if($nbtotalmsg > 10) {
 	<td><div align="center"><font size="1">
 	<?php echo formatdateheure($lmsg["dateder"])?></font>
 	</div></td>
-	<? // dernier message du topic
+	<?php // dernier message du topic
 	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]." order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
@@ -228,7 +228,7 @@ if($nbtotalmsg > 10) {
  
 		  </td>
 		</tr>
-		<? } ?>
+		<?php } ?>
 	  </table>
 	 	 </div>
 	  	</li>

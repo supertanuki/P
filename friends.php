@@ -97,7 +97,7 @@ pageheader("Mes amis");
 <script type="text/javascript" src="/friends.js?v=1"></script>
 
 <div id="content_left">
-	<? 
+	<?php
 	echo getOnglets('mes_amis');
 	?>
 	<div id="content">

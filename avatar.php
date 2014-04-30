@@ -326,7 +326,7 @@ if(!$image2crop)
 {
 ?>
 	<h2 class="title_orange">Choisir votre avatar</h2>
-	<? if($message_error) echo '<p class="message_error">'.$message_error.'</p>'; ?>
+	<?php if($message_error) echo '<p class="message_error">'.$message_error.'</p>'; ?>
 	<br />
 	<table width="100%">
 	<tr>
@@ -337,9 +337,9 @@ if(!$image2crop)
 	if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'normal')) {
 	?>
 		<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0"/>
-	<? } else { ?>
+	<?php } else { ?>
 		<img src="/template/default/_profil.png" height="118" width="118" border="0" />
-	<? } ?>
+	<?php } ?>
 	</div>
 	</td>
 	<td width="60%" valign="top">
@@ -358,7 +358,7 @@ if(!$image2crop)
 	</tr>
 	</table
 
-<? } else {
+<?php } else {
 
 // recadrer l'image
 list($w, $h) = getimagesize($image2crop);
@@ -368,7 +368,7 @@ list($w, $h) = getimagesize($image2crop);
 	<input type="hidden" name="image2crop" value="<?php echo basename($image2crop)?>" />
 	
 	<h2 class="title_orange">Recadrer votre avatar</h2>
-	<? if($message_error) echo '<p class="message_error">'.$message_error.'</p>'; ?>
+	<?php if($message_error) echo '<p class="message_error">'.$message_error.'</p>'; ?>
 	
 	<br />Recadrer ou redimensionner l'image pour créer votre avatar :<br /><br />
 	

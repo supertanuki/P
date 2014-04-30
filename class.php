@@ -154,7 +154,7 @@ if(!$pp_class->last_id_matches) {
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<? } else { ?>
+<?php } else { ?>
 
 
 
@@ -162,10 +162,10 @@ if(!$pp_class->last_id_matches) {
 <table width="100%" cellpadding="5" cellspacing="0" border="0">
 <tr><td colspan="2" style="padding:0;"><img src="/template/default/blocgrishaut.gif" border="0" /></td></tr>
 
-<? if($user->id_user) { ?>
+<?php if($user->id_user) { ?>
 <tr>
 <td style="background:#eee">
-<? /* Filtre amis */
+<?php /* Filtre amis */
 if($user->id_user)
 {
 	$totalfriends = 0;
@@ -223,11 +223,11 @@ if($user->id_user)
 </tr>
 
 <tr><td colspan="2" style="padding:2px; background:url(/template/default/separplus.gif) #eee repeat-x" height="3"></td></tr>
-<? } ?>
+<?php } ?>
 
 <tr>
 <td valign="top" style="background:#eee">
-<? /* Recherche classement d'un joueur */ ?>
+<?php /* Recherche classement d'un joueur */ ?>
 <form method="get" action="class.php?id=<?php echo $_GET[id]?>#arcp" style="margin:0; padding:0">
 <a name="arcp"></a>
 <?php
@@ -237,8 +237,8 @@ if($class_introuvable) echo "<font color=red><b>Pas de joueur trouvé !</b></fon
 </td>
 
 <td align="right" valign="top" style="background:#eee">
-<? /* Aller à mon classement */ ?>
-<? if($user->id_user) { ?><a href="/class.php?id=<?php echo $_GET[id]?>&rech_jpseudo=<?php echo $user->login?>&search_joueur=1" class="link_button"><img src="/template/default/last.gif" border="0" align="absmiddle" /> Aller à mon classement</a><? } ?>&nbsp;
+<?php /* Aller à mon classement */ ?>
+<?php if($user->id_user) { ?><a href="/class.php?id=<?php echo $_GET[id]?>&rech_jpseudo=<?php echo $user->login?>&search_joueur=1" class="link_button"><img src="/template/default/last.gif" border="0" align="absmiddle" /> Aller à mon classement</a><?php } ?>&nbsp;
 </td>
 </tr>
 
@@ -259,8 +259,8 @@ pagination($pagego, $sqldep, $nb_element, $nb_players_per_page, $extension);
 
 <table width="100%" cellpadding="2" cellspacing="1">
   <tr> 
-	<? if($friends_ids != '') { ?><th width="5%"><a href="javascript:alert('Mon rang dans le classement avec mes amis')" class="link_orange" title="Mon rang dans le classement avec mes amis">Rang amis</a></th><? } ?>
-	<th width="5%"><a href="/class.php?id=<?php echo $_GET[id]?>&idl=<?php echo $_GET[idl]?>#class"  class="link_orange" title="Ordonner par nombre de points décroissant">Rang <? if($friends_ids != '') { echo 'réel'; } ?></a></th>
+	<?php if($friends_ids != '') { ?><th width="5%"><a href="javascript:alert('Mon rang dans le classement avec mes amis')" class="link_orange" title="Mon rang dans le classement avec mes amis">Rang amis</a></th><?php } ?>
+	<th width="5%"><a href="/class.php?id=<?php echo $_GET[id]?>&idl=<?php echo $_GET[idl]?>#class"  class="link_orange" title="Ordonner par nombre de points décroissant">Rang <?php if($friends_ids != '') { echo 'réel'; } ?></a></th>
 	<th width="19%" colspan="2"><a href="/class.php?id=<?php echo $_GET[id]?>&idl=<?php echo $_GET[idl]?>&ordre=login#class" class="link_orange" title="Ordonner par pseudo du joueur">Joueur</a></th>
 	<th width="10%"><a href="/class.php?id=<?php echo $_GET[id]?>&idl=<?php echo $_GET[idl]?>#class"  class="link_orange" title="Ordonner par nombre de points décroissant">Points</a></th>
 	<th width="10%" nowrap="nowrap"><a href="javascript:alert('Différence du nombre de points avec le joueur classé premier')" class="link_orange" title="Différence du nombre de points avec le joueur classé premier">Diff Points 1er</a></th>
@@ -362,7 +362,7 @@ if(DB::isError($result))
 	?>
 	<tr class="<?php echo $class_line?>" onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'" style="margin-top:20px;">
 	
-		<? if($friends_ids != '') { ?><td align="center"><? echo $rang; ?></td><? } ?>	
+		<?php if($friends_ids != '') { ?><td align="center"><?php echo $rang; ?></td><?php } ?>
 		
 		<td align="center"><a name="joueur<?php echo $pp_class_user->id_user?>"></a><?php echo $pp_class_user->class?></td>
 		<td align="center"><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
@@ -370,9 +370,9 @@ if(DB::isError($result))
 		if($avatar = getAvatar($pp_class_user->id_user, $pp_class_user->avatar_key, $pp_class_user->avatar_ext, 'small')) {
 		?>
 			<img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" />
-		<? } else { ?>
+		<?php } else { ?>
 			<img src="/template/default/_profil.png" height="30" width="30" border="0" />
-		<? } ?>
+		<?php } ?>
 		</a></td>	
 		<td id="tr_line_<?php echo $pp_class_user->id_user?>"><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?php
 		if($pp_class_user->id_user != $user->id_user) {
@@ -399,7 +399,7 @@ pagination($pagego, $sqldep, $nb_element, $nb_players_per_page, $extension);
 ?>
 
 
-<? } ?>
+<?php } ?>
 
 
 <br /><br />

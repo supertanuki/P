@@ -87,7 +87,7 @@ a:hover {
 
 	<div id="content">
 	<h2 class="title_orange">Les derniers sujets actifs</h2>
-	<? getLastPostFromForum(); ?>
+	<?php getLastPostFromForum(); ?>
 	<br /><br />
 	
 	

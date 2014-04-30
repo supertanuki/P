@@ -34,7 +34,7 @@ echo adminheader("Login", " onLoad=\"document.getElementById('login').focus()\""
 <fieldset>
 	<legend>Connexion</legend>
 	<form method="post" action="login.php">
-	<? if($login_incorrect) { ?><strong>Identifiants incorrects</strong><br /><br /><? } ?>
+	<?php if($login_incorrect) { ?><strong>Identifiants incorrects</strong><br /><br /><?php } ?>
 	Login<br />
 	<input id="login" type="text" name="login" value="<?php echo stripslashes($_POST[login])?>" /><br /><br />
 	Mot de passe<br />
@@ -44,4 +44,4 @@ echo adminheader("Login", " onLoad=\"document.getElementById('login').focus()\""
 </fieldset>
 
 
-<? echo adminfooter(); ?>
+<?php echo adminfooter(); ?>

@@ -159,9 +159,9 @@ if(count($myStats) >= 2) {
 
 <br />
 
-<? /*<div style="overflow:auto; height:200px; border:1px solid #ccc"> */ ?>
+<?php /*<div style="overflow:auto; height:200px; border:1px solid #ccc"> */ ?>
 <div>
-<? echo $table; ?>
+<?php echo $table; ?>
 </div>
 
 <p align="center"><a href="/class.php?id=<?php echo $pp_class_label->id_class?>" class="link_button">Voir le <?php echo $pp_class_label->label?></a></p>
@@ -231,10 +231,10 @@ document.observe('dom:loaded', function(){
 	var maxY = 0;
 	var minY = 0;
 	
-	<? foreach($myStats as $matches) { ?>
+	<?php foreach($myStats as $matches) { ?>
 	d.push([i,-<?php echo $matches['class']?>]);
 	i++;
-	<? } ?>
+	<?php } ?>
 	
 	for(var j=0; j<d.length; j++)
 	{

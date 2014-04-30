@@ -481,7 +481,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 					</td>
 				</tr>
 
-			<? } else { ?>
+			<?php } else { ?>
 
 				<input type="hidden" name="id_match[<?php echo $match->id_match?>]" value="<?php echo $i?>" />
 				<input type="hidden" id="mise_match_<?php echo $i?>" name="mise_match[<?php echo $i?>]" value="<?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '0'; ?>" />
@@ -491,7 +491,7 @@ echo pp_iphone_header('Pronostiquer', $is_menu=false, $is_retour=true);
 					<td><?php echo formatDbData($match->team_visitor_label)?></td>
 					<td align="right"><?php echo $score[$match->id_match]->pts ? $score[$match->id_match]->pts : '-'; ?></td>
 				</tr>
-			<? } ?>
+			<?php } ?>
 				
 
 			<?php

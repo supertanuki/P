@@ -103,11 +103,11 @@ echo getOnglets('classement');
 
 
 
-<? if($user->id_user) { ?>
+<?php if($user->id_user) { ?>
 <table width="100%" cellpadding="4" cellspacing="1">
 <tr>
 <td colspan="2" style="background:#eee">
-<? /* Filtre amis */
+<?php /* Filtre amis */
 if($user->id_user)
 {
 	$totalfriends = 0;
@@ -161,7 +161,7 @@ if($user->id_user)
 ?>
 </td></tr>
 </table><br />
-<? } ?>
+<?php } ?>
 
 
 <a name="class"></a>
@@ -234,15 +234,15 @@ if(DB::isError($result))
       if($_GET[selj] == $pp_class_user->id_user) $class_line = 'ligne_selected';
   ?>
   <tr class='<?php echo $class_line?>' onmouseover="this.className='ligne_rollover'" onmouseout="this.className='<?php echo $class_line?>'">
-    <td align="center"><a name="joueur<?php echo $pp_class_user->id_user?>"></a><? echo $rang; ?></td>
+    <td align="center"><a name="joueur<?php echo $pp_class_user->id_user?>"></a><?php echo $rang; ?></td>
     <td align="center"><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange">
     <?php
     if($avatar = getAvatar($pp_class_user->id_user, $pp_class_user->avatar_key, $pp_class_user->avatar_ext, 'small')) {
     ?>
       <img src="/avatars/<?php echo $avatar?>" height="30" width="30" border="0" />
-    <? } else { ?>
+    <?php } else { ?>
       <img src="/template/default/_profil.png" height="30" width="30" border="0" />
-    <? } ?>
+    <?php } ?>
     </a>
     </td>
     <td><a href="/user.php?q=<?php echo urlencode(htmlspecialchars($pp_class_user->login))?>" class="link_orange"><?php

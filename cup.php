@@ -161,7 +161,7 @@ echo getOnglets('coupe');
 	<div id="content">
 		<h2 class="title_green"><?php echo $title_page?></h2>
 		
-		<div style="float:left; width:58%; margin-right:10px;"><? echo $content; ?></div>
+		<div style="float:left; width:58%; margin-right:10px;"><?php echo $content; ?></div>
 		<div style="float:left; width:36%;">
 		<div style="padding:4px 10px 10px 10px; margin-top:10px; border:1px solid #CCCCCC">
 		<h3>Les autres divisions</h3>
@@ -292,17 +292,17 @@ $libelles_tour = array(1=>'Huitièmes de finale', 2=>'Quarts de finale', 3=>'Dem
 		
 		<table cellpadding="4" cellspacing="0" width="100%" border="0">
 		<tr>
-        	<? foreach($libelles_tour as $key=>$value)
+        	<?php foreach($libelles_tour as $key=>$value)
 			{
 			?>
                 <th width="25%">
-                <? if($match_cup[$key][0]->id_user_won) { ?>
+                <?php if($match_cup[$key][0]->id_user_won) { ?>
                 <a href="#a_cup_details" class="link_orange" onclick="showCupDetails(<?php echo $_GET[id]?>, <?php echo $cup_sub?>, <?php echo $key?>); return false;"><?php echo $value?></a>
-                <? } else { ?>
+                <?php } else { ?>
                 <?php echo $value?>
-                <? } ?>
+                <?php } ?>
             	</th>
-            <? } ?>
+            <?php } ?>
 		</tr>
 <?php
 $line = 1;
