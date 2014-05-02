@@ -38,7 +38,7 @@ for ($i = 1; $i <= 8; $i++) {
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url, $debug);
 }
-/*
+
 
 
 // LIGUE 1
@@ -162,7 +162,7 @@ echo "<li><b>FIN Extract !!!!</b>";
 
 maj_classements();
 
-*/
+
 
 
 // MISE A JOUR CLASSEMENTS
