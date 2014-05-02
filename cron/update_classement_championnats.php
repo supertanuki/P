@@ -109,6 +109,7 @@ for($i=1; $i<=38; $i++)
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
 
+/*
 // Coupe du monde 2014
 echo "<li><b>Coupe du monde 2014</b>";
 $idleague = 7;
@@ -119,7 +120,9 @@ for($i=1; $i<=9; $i++)
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
+*/
 
+/*
 // Coupe de la Ligue
 echo "<li><b>Coupe de la Ligue</b>";
 $idleague = 12;
@@ -130,7 +133,9 @@ for($i=1; $i<=5; $i++)
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
+*/
 
+/*
 // Ligue des Champions
 echo "<li><b>Ligue des Champions</b>";
 $idleague = 4;
@@ -141,7 +146,7 @@ for($i=1; $i<=8; $i++)
 	echo "<li>$i";
 	extraction_info($idleague, $numero_journee = $i, $url);
 }
-
+*/
 
 
 // Ligue Europa
