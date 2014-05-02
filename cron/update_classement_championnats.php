@@ -18,7 +18,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/contentfunctions.php');
 
 set_time_limit(0);
 
-$debug = true;
+$debug = false;
 $email = EMAIL_MASTER;
 $saison_en_cours = getConfig('saison_en_cours');
 
@@ -481,76 +481,82 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
     }
 
     if ($debug) {
+        echo "<li>info_matches // $url<pre>";
+        print_r($info_matches);
+        echo "</pre>";
+
         echo "<li>info_match // $url<pre>";
         print_r($info_match);
         echo "</pre>";
     }
 
 
-    if (!$debug && $info_matches['date_first_match'] && $info_matches['date_last_match']) {
-
-        // recherche de la journée ? insertion ou update journée
-        $id_info_matches = 0;
-        $SQL = "SELECT `id_info_matches` FROM `pp_info_matches` WHERE `id_league`='" . $idleague . "' AND `day_number`='" . $numero_journee . "'";
-        $result = $db->query($SQL);
-        //echo "<li>$SQL";
-        if (DB::isError($result)) {
-            die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-
+    if (!$debug)
+    {
+        if(!$info_matches['date_first_match'] || !$info_matches['date_last_match']) {
+            echo "<li><b>$idleague / $numero_journee echoue : date_first_match ou date_last_match vide !</b></li>";
         } else {
-            if ($result->numRows() && $pp_info_matches = $result->fetchRow()) {
-                //if(!strstr($pp_info_matches->urls, $url)) $pp_info_matches->urls .= "\n".$url;
-                // update de la journée
-                $SQL = "UPDATE `pp_info_matches` SET `date_update`=NOW(),
-                        `date_first_match`='" . $info_matches['date_first_match'] . "', `date_last_match`='" . $info_matches['date_last_match'] . "'
-                        WHERE `id_info_matches`='" . $pp_info_matches->id_info_matches . "'";
-                $result = $db->query($SQL);
-                //echo "<li>$SQL";
-                if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-                $id_info_matches = $pp_info_matches->id_info_matches;
+
+            // recherche de la journée ? insertion ou update journée
+            $id_info_matches = 0;
+            $SQL = "SELECT `id_info_matches` FROM `pp_info_matches` WHERE `id_league`='" . $idleague . "' AND `day_number`='" . $numero_journee . "'";
+            $result = $db->query($SQL);
+            //echo "<li>$SQL";
+            if (DB::isError($result)) {
+                die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
 
             } else {
-                // insert de la journée
-                $SQL = "INSERT INTO `pp_info_matches`(`id_league`, `day_number`, `date_first_match`, `date_last_match`, `date_creation`, `date_update`)
-                        VALUES('" . $idleague . "', '" . $numero_journee . "',
-                        '" . $info_matches['date_first_match'] . "', '" . $info_matches['date_last_match'] . "', NOW(), NOW())";
-                $result = $db->query($SQL);
-                //echo "<li>$SQL";
-                if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-                $id_info_matches = $db->insertId();
-            }
-        }
-        //$result->free();
-
-        if ($id_info_matches && count($info_match) > 0) {
-            for ($i = 0; $i < count($info_match); $i++) {
-                if ($info_match[$i]['id_team_visitor'] && $info_match[$i]['id_team_host'] && $info_match[$i]['date_match']) {
-                    //update du match ?
-                    $SQL = "UPDATE `pp_info_match` SET `date_match`='" . $info_match[$i]['date_match'] . "',
-                            `score`='" . $info_match[$i]['score'] . "', `report`='" . $info_match[$i]['report'] . "', `date_update`=NOW()
-                            WHERE `id_info_matches`='" . $id_info_matches . "' AND `id_team_host`='" . $info_match[$i]['id_team_host'] . "' AND `id_team_visitor`='" . $info_match[$i]['id_team_visitor'] . "'";
+                if ($result->numRows() && $pp_info_matches = $result->fetchRow()) {
+                    //if(!strstr($pp_info_matches->urls, $url)) $pp_info_matches->urls .= "\n".$url;
+                    // update de la journée
+                    $SQL = "UPDATE `pp_info_matches` SET `date_update`=NOW(),
+                            `date_first_match`='" . $info_matches['date_first_match'] . "', `date_last_match`='" . $info_matches['date_last_match'] . "'
+                            WHERE `id_info_matches`='" . $pp_info_matches->id_info_matches . "'";
                     $result = $db->query($SQL);
                     //echo "<li>$SQL";
                     if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-                    if (!$db->affectedRows()) {
-                        // insert du match
-                        $SQL = "INSERT IGNORE INTO `pp_info_match`(`id_info_matches`, `id_team_host`, `id_team_visitor`, `date_match`, `date_creation`, `date_update`, `score`, `report`)
-                                VALUES('" . $id_info_matches . "', '" . $info_match[$i]['id_team_host'] . "', '" . $info_match[$i]['id_team_visitor'] . "', '" . $info_match[$i]['date_match'] . "',
-                  NOW(), NOW(), '" . $info_match[$i]['score'] . "', '" . $info_match[$i]['report'] . "')";
+                    $id_info_matches = $pp_info_matches->id_info_matches;
+
+                } else {
+                    // insert de la journée
+                    $SQL = "INSERT INTO `pp_info_matches`(`id_league`, `day_number`, `date_first_match`, `date_last_match`, `date_creation`, `date_update`)
+                            VALUES('" . $idleague . "', '" . $numero_journee . "',
+                            '" . $info_matches['date_first_match'] . "', '" . $info_matches['date_last_match'] . "', NOW(), NOW())";
+                    $result = $db->query($SQL);
+                    //echo "<li>$SQL";
+                    if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
+                    $id_info_matches = $db->insertId();
+                }
+            }
+            //$result->free();
+
+            if ($id_info_matches && count($info_match) > 0) {
+                for ($i = 0; $i < count($info_match); $i++) {
+                    if ($info_match[$i]['id_team_visitor'] && $info_match[$i]['id_team_host'] && $info_match[$i]['date_match']) {
+                        //update du match ?
+                        $SQL = "UPDATE `pp_info_match` SET `date_match`='" . $info_match[$i]['date_match'] . "',
+                                `score`='" . $info_match[$i]['score'] . "', `report`='" . $info_match[$i]['report'] . "', `date_update`=NOW()
+                                WHERE `id_info_matches`='" . $id_info_matches . "' AND `id_team_host`='" . $info_match[$i]['id_team_host'] . "' AND `id_team_visitor`='" . $info_match[$i]['id_team_visitor'] . "'";
                         $result = $db->query($SQL);
                         //echo "<li>$SQL";
                         if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
+                        if (!$db->affectedRows()) {
+                            // insert du match
+                            $SQL = "INSERT IGNORE INTO `pp_info_match`(`id_info_matches`, `id_team_host`, `id_team_visitor`, `date_match`, `date_creation`, `date_update`, `score`, `report`)
+                                    VALUES('" . $id_info_matches . "', '" . $info_match[$i]['id_team_host'] . "', '" . $info_match[$i]['id_team_visitor'] . "', '" . $info_match[$i]['date_match'] . "',
+                      NOW(), NOW(), '" . $info_match[$i]['score'] . "', '" . $info_match[$i]['report'] . "')";
+                            $result = $db->query($SQL);
+                            //echo "<li>$SQL";
+                            if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
+                        }
+                    } else {
+                        echo "<li><strong>Il y a une erreur</strong> : id_info_matches = " . $id_info_matches . " // id_team_host = " . $info_match[$i]['id_team_host'] . " // id_team_visitor = " . $info_match[$i]['id_team_visitor'] . " // date_match = " . $info_match[$i]['date_match'];
                     }
-                } else {
-                    echo "<li><strong>Il y a une erreur</strong> : id_info_matches = " . $id_info_matches . " // id_team_host = " . $info_match[$i]['id_team_host'] . " // id_team_visitor = " . $info_match[$i]['id_team_visitor'] . " // date_match = " . $info_match[$i]['date_match'];
                 }
             }
+
+            echo "<li>$idleague / $numero_journee termine !</li>";
         }
-
-        echo "<li>$idleague / $numero_journee termine !</li>";
-
-    } else {
-        echo "<li>$idleague / $numero_journee echoue : date_first_match ou date_last_match vide !</li>";
     }
 
     ob_implicit_flush();
@@ -566,7 +572,7 @@ function getTeamByApproxName($teamName)
             OR `xlabels` LIKE '%" . trim($db->escapeSimple($teamName)) . "%;'
             ";
     $result = $db->query($SQL);
-    echo "<li>$SQL";
+    //echo "<li>$SQL";
     if (DB::isError($result)) {
         die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
 
