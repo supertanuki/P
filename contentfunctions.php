@@ -2377,8 +2377,9 @@ function CurrentMatches($id_matches=false, $options=false)
 			WHERE
 			".($id_matches ? "`pp_matches`.`id_matches`='".$id_matches."'" : "
 			`pp_matches`.`is_calcul`!='1'
-			AND DATE_ADD(`pp_matches`.`date_first_match`, INTERVAL -31 DAY) < NOW()
 			ORDER BY `date_first_match`");
+			// AND DATE_ADD(`pp_matches`.`date_first_match`, INTERVAL -31 DAY) < NOW()
+
 	$result_matches = $db->query($SQL);
 	//echo "<!-- $SQL -->";
 	if(DB::isError($result_matches))
