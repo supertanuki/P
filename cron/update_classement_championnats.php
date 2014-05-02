@@ -351,7 +351,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                         $score = explode('</div>', $score[1], 2);
                         $score = strip_tags($score[0]);
                         // echo "<li>score = ".htmlspecialchars($score);
-                        if (preg_match('|([0-9]{2})h([0-9]{2})|i', $score, $matches)) {
+                        if (preg_match('|([0-9]+)h([0-9]+)|i', $score, $matches)) {
                             $this_info_match['heure_match'] = $matches[1] . ':' . $matches[2] . ':00';
                             // echo "<li>$numero_journee / heure_match = ".$this_info_match['heure_match']."</li>";
                         }
@@ -370,7 +370,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                     if (count($heure) == 2) {
                         $heure = explode('</div>', $heure[1], 2);
                         $heure = strip_tags($heure[0]);
-                        if (preg_match('|([0-9]{2})h([0-9]{2})|i', $heure, $matches)) {
+                        if (preg_match('|([0-9]+)h([0-9]+)|i', $heure, $matches)) {
                             $this_info_match['heure_match'] = $matches[1] . ':' . $matches[2] . ':00';
                         }
                     }
@@ -408,20 +408,13 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                             echo $msg;
 
                         } else {
-                            $SQL = "SELECT `id_team` FROM `pp_team` WHERE `xlabels` LIKE '%" . trim($db->escapeSimple($equipeDom)) . "%'";
-                            $result = $db->query($SQL);
-                            if (DB::isError($result)) {
-                                die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-
+                            if ($pp_team = getTeamByApproxName($equipeDom)) {
+                                $this_match['id_team_host'] = $pp_team->id_team;
+                                $this_match['team_host'] = $equipeDom;
                             } else {
-                                if ($pp_team = $result->fetchRow()) {
-                                    $this_match['id_team_host'] = $pp_team->id_team;
-                                    $this_match['team_host'] = $equipeDom;
-                                } else {
-                                    $msg = "<li><strong>Equipe non trouvee</strong> : *" . $equipeDom . "*";
-                                    if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
-                                    echo $msg;
-                                }
+                                $msg = "<li><strong>Equipe non trouvee</strong> : *" . $equipeDom . "*";
+                                if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
+                                echo $msg;
                             }
                         }
                     }
@@ -449,20 +442,13 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                             echo $msg;
 
                         } else {
-                            $SQL = "SELECT `id_team` FROM `pp_team` WHERE `xlabels` LIKE '%" . trim($db->escapeSimple($equipeExt)) . "%'";
-                            $result = $db->query($SQL);
-                            if (DB::isError($result)) {
-                                die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-
+                            if ($pp_team = getTeamByApproxName($equipeExt)) {
+                                $this_match['id_team_visitor'] = $pp_team->id_team;
+                                $this_match['team_visitor'] = $equipeExt;
                             } else {
-                                if ($pp_team = $result->fetchRow()) {
-                                    $this_match['id_team_visitor'] = $pp_team->id_team;
-                                    $this_match['team_visitor'] = $equipeExt;
-                                } else {
-                                    $msg = "<li><strong>Equipe non trouvee</strong> : *" . $equipeExt . "*";
-                                    if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
-                                    echo $msg;
-                                }
+                                $msg = "<li><strong>Equipe non trouvee</strong> : *" . $equipeExt . "*";
+                                if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
+                                echo $msg;
                             }
                         }
                     }
@@ -474,7 +460,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                     }
 
                     if (!$this_info_match['heure_match']) {
-                        $msg = "<li><strong>heure non trouvee</strong> : $equipeDom - $equipeExt";
+                        $msg = "<li><strong>heure non trouvee</strong> (".$this_info_match['heure_match'].") pour $equipeDom - $equipeExt";
                         if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
                         echo $msg;
 
@@ -569,6 +555,24 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
 
     ob_implicit_flush();
     usleep(1000 + rand(0, 1000));
+}
+
+function getTeamByApproxName($teamName)
+{
+    global $db;
+    $SQL = "SELECT `id_team` FROM `pp_team` WHERE
+            `label` = '" . trim($db->escapeSimple($teamName)) . "'
+            OR `xlabels` LIKE '%;" . trim($db->escapeSimple($teamName)) . "%'
+            OR `xlabels` LIKE '%" . trim($db->escapeSimple($teamName)) . "%;'
+            ";
+    $result = $db->query($SQL);
+    echo "<li>$SQL";
+    if (DB::isError($result)) {
+        die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
+
+    } else {
+        return $result->fetchRow();
+    }
 }
 
 

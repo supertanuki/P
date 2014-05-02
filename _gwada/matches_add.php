@@ -211,7 +211,7 @@ function ValidAddMatches()
 	</select><br /><br />
 	
 	<?php
-  // tous les matchs dans un délai d'un mois
+  // tous les matchs dans un délai de 2 mois
   $matches = array();
   $SQL = "SELECT `pp_info_match`.`id_info_match`, `pp_info_match`.`id_info_matches`, IF(`pp_match`.`score` != 'R-R', `pp_match`.`id_match`, 0) AS `id_match`,
         `pp_info_match`.`id_team_host`, `pp_info_match`.`id_team_visitor`,
@@ -221,7 +221,7 @@ function ValidAddMatches()
         INNER JOIN `pp_team` AS `team_host` ON `team_host`.`id_team`=`pp_info_match`.`id_team_host`
         INNER JOIN `pp_team` AS `team_visitor` ON `team_visitor`.`id_team`=`pp_info_match`.`id_team_visitor`
         LEFT JOIN `pp_match` ON `pp_match`.`id_info_match` = `pp_info_match`.`id_info_match`
-      WHERE DATE_ADD(`pp_info_match`.`date_match`, INTERVAL -1 month) < NOW() AND `pp_info_match`.`date_match` > NOW()
+      WHERE DATE_ADD(`pp_info_match`.`date_match`, INTERVAL -2 month) < NOW() AND `pp_info_match`.`date_match` > NOW()
       ORDER BY `pp_info_match`.`date_match`";
   $result = $db->query($SQL);
   //echo "<li>$SQL";
