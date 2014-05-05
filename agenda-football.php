@@ -4,13 +4,13 @@ require_once('mainfunctions.php');
 require_once('contentfunctions.php');
 
 /* draws a calendar */
-function draw_calendar($month,$year){
+function draw_calendar($month, $year, $selected, $today){
 
     /* draw table */
     $calendar = '<table cellpadding="2" cellspacing="0" class="calendar">';
 
     /* table headings */
-    $headings = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi', 'Dimanche');
+    $headings = array('Lun','Mar','Mer','Jeu','Ven','Sam', 'Dim');
     $calendar.= '<tr class="calendar-row"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
 
     /* days and weeks vars now ... */
@@ -33,7 +33,24 @@ function draw_calendar($month,$year){
     for($list_day = 1; $list_day <= $days_in_month; $list_day++):
         $calendar.= '<td class="calendar-day">';
         /* add in the day number */
-        $calendar.= '<div class="day-number"><a href="?date='.sprintf("%02s", $list_day).'-'.sprintf("%02s", $month).'-'.$year.'" class="link_button">'.$list_day.'</a></div>';
+        $date_param = sprintf("%02s", $list_day).'-'.sprintf("%02s", $month).'-'.$year;
+        $calendar.= '<div class="day-number">';
+
+        if($selected === $date_param)
+        {
+            $calendar.= '<a href="?date='.$date_param.'" class="link_orange">'.$list_day.'</a>';
+        }
+        elseif($today === $date_param)
+        {
+            $calendar.= '<a href="?date='.$date_param.'" class="link_button"><u><b>'.$list_day.'</b></u></a>';
+        }
+        else
+        {
+            $calendar.= '<a href="?date='.$date_param.'" class="link_button">'.$list_day.'</a>';
+        }
+
+        $calendar.= '</a>';
+        $calendar.= '</div>';
 
         $calendar.= '</td>';
         if($running_day == 6):
@@ -75,8 +92,8 @@ if(!isset($_GET['date']) || !checkdate($date_array[1], $date_array[0], $date_arr
     HeaderRedirect('/agenda-football.php?date='.date("d-m-Y"));
 }
 
-$now = mktime(0, 0, 0, $date_array[1], $date_array[0], $date_array[2]);
-$titrepage = 'Agenda football du '.get_date_complete(date("N", $now)-1, $date_array[0]*1, $date_array[1]*1, $date_array[2]*1);
+$selected_day = mktime(0, 0, 0, $date_array[1], $date_array[0], $date_array[2]);
+$titrepage = 'Agenda football du '.get_date_complete(date("N", $selected_day)-1, $date_array[0]*1, $date_array[1]*1-1, $date_array[2]*1);
 
 $user = user_authentificate();
 pageheader($titrepage);
@@ -86,21 +103,23 @@ pageheader($titrepage);
     <div id="content_fullscreen">
         <?php
         // affichage des onglets
-        echo getOnglets();
+        echo getOnglets('agenda');
         ?>
         <div id="content">
 
-
+            <style>
+                .day-number { text-align:center }
+            </style>
             <?php
 
-            echo '<h2 class="title_green">Agenda football</h2>
+            echo '<h2 class="title_green">Calendrier football</h2>
             <p>';
 
             $today = mktime(0,0,0);
 
             echo '<table width="100%"><tr><td width="50%" align="center" valign="top">';
-            echo $txtlang['MONTH_'.(1*date('m', $today)-1)] . ' ' . date('Y', $today);
-            echo draw_calendar(date('m', $today), date('Y', $today));
+            echo '<b>' . $txtlang['MONTH_'.(1*date('m', $today)-1)] . ' ' . date('Y', $today) . '</b>';
+            echo draw_calendar(date('m', $today), date('Y', $today), date('d-m-Y', $selected_day), date('d-m-Y', $today));
 
             echo '</td><td width="50%" align="center" valign="top">';
 
@@ -112,46 +131,12 @@ pageheader($titrepage);
                 $next_month_year++;
             }
             $next_month = mktime(0,0,0,$next_month,1,$next_month_year);
-            echo $txtlang['MONTH_'.(1*date('m', $next_month)-1)] . ' ' . date('Y', $next_month);
-            echo draw_calendar(date('m', $next_month), date('Y', $next_month));
+            echo '<b>' . $txtlang['MONTH_'.(1*date('m', $next_month)-1)] . ' ' . date('Y', $next_month) . '</b>';
+            echo draw_calendar(date('m', $next_month), date('Y', $next_month), date('d-m-Y', $selected_day), date('d-m-Y', $today));
             echo '</td></tr></table>';
             echo '</p>';
 
             echo '<h2 class="title_orange">' . $titrepage . '</h2>';
-
-            /*
-            // Liste journées
-            $pp_info_matches_arr = array();
-            $SQL = "SELECT `day_number`, `id_info_matches`
-				FROM `pp_info_matches`
-				WHERE `pp_info_matches`.`id_league`='" . $_GET[id] . "' AND `day_number`>0
-				ORDER BY `day_number`";
-            $result = $db->query($SQL);
-            //echo "<li>$SQL";
-            if (DB::isError($result)) {
-                die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
-
-            } else {
-                while ($pp_info_matches = $result->fetchRow()) {
-                    $pp_info_matches_arr[] = $pp_info_matches;
-                }
-            }
-
-            echo '<br /><table width="100%"><tr>';
-            foreach ($pp_info_matches_arr as $pp_info_matches) {
-                echo '<td align="center">';
-
-                if ($pp_info_matches->day_number != $pp_day_number->day_number)
-                    echo '<a href="/stats-classement.php?id=' . $pp_league->id_league . '&j=' . $pp_info_matches->day_number . '" class="link_button">' . $pp_info_matches->day_number . '</a>';
-                else
-                    echo '&nbsp;<b>' . $pp_info_matches->day_number . '</b>&nbsp;';
-
-                echo '</td>';
-
-                if ((count($pp_info_matches_arr) / 2) == $pp_info_matches->day_number) echo '</tr><tr>';
-            }
-            echo '</tr></table><br />';
-            */
 
 
             // Liste matchs
@@ -171,10 +156,11 @@ pageheader($titrepage);
                 INNER JOIN `pp_team` AS `team_host` ON `team_host`.`id_team`=`pp_info_match`.`id_team_host`
                 INNER JOIN `pp_team` AS `team_visitor` ON `team_visitor`.`id_team`=`pp_info_match`.`id_team_visitor`
                 INNER JOIN `pp_info_matches` ON `pp_info_match`.`id_info_matches`=`pp_info_matches`.`id_info_matches`
-                    AND `pp_info_matches`.`day_number`='" . $pp_day_number->day_number . "' AND `pp_info_matches`.`id_league`='" . $pp_league->id_league . "'
+                    AND `pp_info_match`.`date_match` >= '" . date('Y-m-d', $selected_day) . " 0:0:0'
+                    AND `pp_info_match`.`date_match` <= '" . date('Y-m-d', $selected_day) . " 23:59:59'
                 ORDER BY `pp_info_match`.`date_match`";
             $result_match = $db->query($SQL);
-            //echo "<li>$SQL";
+            // echo "<li>$SQL";
             if (DB::isError($result_match)) {
                 die ("<li>ERROR : " . $result_match->getMessage() . "<li>$SQL");
 
@@ -237,6 +223,9 @@ pageheader($titrepage);
                         echo '</tr>';
                     }
                     echo '</table>';
+
+                } else {
+                    echo "<p>Sorry ! Aucun match trouvé. Sors prendre l'air ou joue au foot avec des amis !";
                 }
             }
             ?>

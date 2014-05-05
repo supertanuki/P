@@ -585,8 +585,11 @@ function getOnglets($onglet_actif = false)
 	$onglets[] = array('id' => 'classement', 'title' => 'Classements', 'url' => '/classements.php', 'alt' => 'Tous les classements de Prono+', 'richcontent' => listClassements());
   
 	$onglets[] = array('id' => 'coupe', 'title' => 'Coupe', 'url' => '/cup.php', 'alt' => 'La Coupe Prono+', 'richcontent' => listDivisionsCup());
-  
+
+
 	$onglets[] = array('id' => 'stats', 'title' => 'Stats', 'url' => '#', 'alt' => '', 'richcontent' => listStatsMenu());
+
+    $onglets[] = array('id' => 'agenda', 'title' => 'Agenda', 'url' => '/agenda-football.php?date='.date("d-m-Y"), 'alt' => 'Agenda football');
   
 	if($user) $onglets[] = array('id' => 'mon_profil', 'title' => 'Mur'.$html_nb_msg_wall, 'url' => '/user.php?q='.htmlspecialchars(urlencode($user->login)), 'alt' => $alt_msg_wall ? $alt_msg_wall : 'Mon profil et mon mur');
   
@@ -2206,7 +2209,7 @@ function LiveScore()
 function LiveScoreTable($title, $matches)
 {
 	$content = '';
-	$content .= '<tr><th colspan="3" align="left">' .$title. '</th><th width="1%"></th><th></th></tr>';
+	$content .= '<tr><th colspan="3" align="left">' .$title. '</th><th width="1%"></th><th align="right"><a href="/agenda-football.php" class="link_orange" style="font-weight:normal">Tout l\'agenda football</a></th></tr>';
 	
 	$nmatch=0;
 	
