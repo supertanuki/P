@@ -4,7 +4,7 @@ require_once('mainfunctions.php');
 require_once('contentfunctions.php');
 
 /* draws a calendar */
-function draw_calendar($month, $year, $selected, $today){
+function draw_calendar($month, $year, $selected, $today, $available_dates){
 
     /* draw table */
     $calendar = '<table cellpadding="2" cellspacing="0" class="calendar">';
@@ -44,9 +44,13 @@ function draw_calendar($month, $year, $selected, $today){
         {
             $calendar.= '<a href="?date='.$date_param.'" class="link_button"><u><b>'.$list_day.'</b></u></a>';
         }
-        else
+        elseif(isset($available_dates[$date_param]))
         {
             $calendar.= '<a href="?date='.$date_param.'" class="link_button">'.$list_day.'</a>';
+        }
+        else
+        {
+            $calendar.= ''.$list_day.'';
         }
 
         $calendar.= '</a>';
@@ -92,10 +96,57 @@ if(!isset($_GET['date']) || !checkdate($date_array[1], $date_array[0], $date_arr
     HeaderRedirect('/agenda-football.php?date='.date("d-m-Y"));
 }
 
+
+
+
+// selected day ?
 $selected_day = mktime(0, 0, 0, $date_array[1], $date_array[0], $date_array[2]);
-$titrepage = 'Agenda football du '.get_date_complete(date("N", $selected_day)-1, $date_array[0]*1, $date_array[1]*1-1, $date_array[2]*1);
+
+// today ?
+$today = mktime(0,0,0);
+
+// next month ?
+$next_month = date('m', $today)+1;
+$next_month_year = date('Y', $today);
+if($next_month>12)
+{
+    $next_month = 1;
+    $next_month_year++;
+}
+$next_month = mktime(0,0,0,$next_month,1,$next_month_year);
+
+// Liste des jours de match entre mois courant et mois prochain
+$available_dates = array();
+$SQL = "SELECT
+            DATE_FORMAT(`pp_info_match`.`date_match`, '%d-%m-%Y') AS `only_date_match`
+        FROM `pp_info_match`
+        WHERE
+            `pp_info_match`.`date_match`
+            BETWEEN DATE_FORMAT(NOW() ,'%Y-%m-01')
+            AND LAST_DAY(DATE_ADD(NOW(), INTERVAL 1 MONTH))
+        GROUP BY DATE_FORMAT(`pp_info_match`.`date_match`, '%Y-%m-%d')
+        ORDER BY `pp_info_match`.`date_match`";
+$result_date_match = $db->query($SQL);
+//echo "<li>$SQL";
+if (DB::isError($result_date_match))
+{
+    die ("<li>ERROR : " . $result_date_match->getMessage() . "<li>$SQL");
+
+} else {
+    if ($result_date_match->numRows())
+    {
+        while ($pp_date_match = $result_date_match->fetchRow())
+        {
+            //echo "<li>".$pp_date_match->only_date_match;
+            $available_dates[$pp_date_match->only_date_match] = true;
+        }
+    }
+}
+//echo "<pre>";
+//print_r($available_dates);
 
 $user = user_authentificate();
+$titrepage = 'Agenda football du '.get_date_complete(date("N", $selected_day)-1, $date_array[0]*1, $date_array[1]*1-1, $date_array[2]*1);
 pageheader($titrepage);
 ?>
 
@@ -115,24 +166,17 @@ pageheader($titrepage);
             echo '<h2 class="title_green">Calendrier football</h2>
             <p>';
 
-            $today = mktime(0,0,0);
+
 
             echo '<table width="100%"><tr><td width="50%" align="center" valign="top">';
             echo '<b>' . $txtlang['MONTH_'.(1*date('m', $today)-1)] . ' ' . date('Y', $today) . '</b>';
-            echo draw_calendar(date('m', $today), date('Y', $today), date('d-m-Y', $selected_day), date('d-m-Y', $today));
+            echo draw_calendar(date('m', $today), date('Y', $today), date('d-m-Y', $selected_day), date('d-m-Y', $today), $available_dates);
 
             echo '</td><td width="50%" align="center" valign="top">';
 
-            $next_month = date('m', $today)+1;
-            $next_month_year = date('Y', $today);
-            if($next_month>12)
-            {
-                $next_month = 1;
-                $next_month_year++;
-            }
-            $next_month = mktime(0,0,0,$next_month,1,$next_month_year);
+
             echo '<b>' . $txtlang['MONTH_'.(1*date('m', $next_month)-1)] . ' ' . date('Y', $next_month) . '</b>';
-            echo draw_calendar(date('m', $next_month), date('Y', $next_month), date('d-m-Y', $selected_day), date('d-m-Y', $today));
+            echo draw_calendar(date('m', $next_month), date('Y', $next_month), date('d-m-Y', $selected_day), date('d-m-Y', $today), $available_dates);
             echo '</td></tr></table>';
             echo '</p>';
 
@@ -155,8 +199,8 @@ pageheader($titrepage);
                 FROM `pp_info_match`
                 INNER JOIN `pp_team` AS `team_host` ON `team_host`.`id_team`=`pp_info_match`.`id_team_host`
                 INNER JOIN `pp_team` AS `team_visitor` ON `team_visitor`.`id_team`=`pp_info_match`.`id_team_visitor`
-                INNER JOIN `pp_info_matches` ON `pp_info_match`.`id_info_matches`=`pp_info_matches`.`id_info_matches`
-                    AND `pp_info_match`.`date_match` >= '" . date('Y-m-d', $selected_day) . " 0:0:0'
+                WHERE
+                    `pp_info_match`.`date_match` >= '" . date('Y-m-d', $selected_day) . " 0:0:0'
                     AND `pp_info_match`.`date_match` <= '" . date('Y-m-d', $selected_day) . " 23:59:59'
                 ORDER BY `pp_info_match`.`date_match`";
             $result_match = $db->query($SQL);
