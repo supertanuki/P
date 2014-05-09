@@ -89,7 +89,19 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	<?php if($options['equipe-de-france'] == true) { ?>
 	<div class="logo_edf"><a href="/" onfocus="if(this.blur()) this.blur();">PRONO+</a></div>
 	<?php } else { ?>
-	<div class="logo"><a href="/" onfocus="if(this.blur()) this.blur();">PRONO+</a></div>	
+	<div class="logo">
+        <a href="/" onfocus="if(this.blur()) this.blur();" style="float:left">PRONO+</a>
+
+        <?php if( date("Ymd") <= 20140713 ) { ?>
+        <div style="border-radius:4px;float:right; text-indent:0; text-align:center; margin:10px 0; padding:10px 20px; background:#97af45">
+            <div style="padding:4px 20px; background:#ffff00">
+                <a href="/agenda-football.php" style="border-radius:20px;float:none;width:auto;height:auto;background:#2E59BB; color:#fff; text-decoration:none; padding:5px 20px">
+                    Pronostiquer la Coupe du Monde Brésil 2014<br>Du jeudi 12 juin au dimanche 13 juillet
+                </a>
+            </div>
+        </div>
+        <?php } ?>
+    </div>
 	<?php } ?>
 	
 
