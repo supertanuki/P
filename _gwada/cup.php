@@ -198,6 +198,6 @@ if(DB::isError($result_cup))
 ?>
 </fieldset>
 
-<?	
+<?php
 echo adminfooter();
 ?>

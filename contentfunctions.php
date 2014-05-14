@@ -26,7 +26,7 @@ function pageheader($title, $options=false)
 <?php if($options[meta_keywords]) { ?><meta name="keywords" content="<?php echo $options[meta_keywords]; ?>"><?php } ?>
 
 
-<link rel="stylesheet" href="/template/default/styles.css?v=2.5" type="text/css" media="all" />
+<link rel="stylesheet" href="/template/default/styles.css?v=2.6" type="text/css" media="all" />
 
 <?php
 // sapin
@@ -95,7 +95,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
         <?php if( date("Ymd") <= 20140713 ) { ?>
         <div style="border-radius:4px;float:right; text-indent:0; text-align:center; margin:10px 0; padding:10px 20px; background:#97af45">
             <div style="padding:4px 20px; background:#ffff00">
-                <a href="/agenda-football.php" style="border-radius:20px;float:none;width:auto;height:auto;background:#2E59BB; color:#fff; text-decoration:none; padding:5px 20px">
+                <a href="/agenda-football.php" style="border-radius:20px;float:none;width:auto;height:auto;background:#3aa0b6; color:#fff; text-decoration:none; padding:5px 20px">
                     Pronostiquer la Coupe du Monde Brésil 2014<br>Du jeudi 12 juin au dimanche 13 juillet
                 </a>
             </div>
@@ -110,7 +110,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	if(navigator_is_mobile())
 	{
 		?>
-		<p align="center" style="padding: 10px; background: none repeat scroll 0% 0% rgb(255, 255, 170); font-size:24px;"><b>
+		<p align="center" style="clear:left; padding: 10px; background: none repeat scroll 0% 0% rgb(255, 255, 170); font-size:24px;"><b>
 			Tu es sur ton mobile ?<br /><a href="/mobile/" class="link_orange">Utilise la version mobile de Prono+</a> !
 		</b></p>
 		<?php
@@ -1261,9 +1261,9 @@ function getRightProfil($pp_user=0)
 						if($user->id_user == $userprofil->id_user) echo '<a href="/avatar.php">';
 							if($avatar) {
 							?>
-								<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0" />
+								<img src="/avatars/<?php echo $avatar?>" height="118" width="118" border="0" class="zoom" />
 							<?php } else { ?>
-								<img src="/template/default/_profil.png" height="118" width="118" border="0" />
+								<img src="/template/default/_profil.png" height="118" width="118" border="0" class="zoom" />
 							<?php }
 						if($user->id_user == $userprofil->id_user) echo '</a>';
 						?>
@@ -2960,7 +2960,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
 			<?php echo $i?>
 			</a> 
-			<?	if($i!=$nbpage) echo ".";
+			<?php if($i!=$nbpage) echo ".";
 			} ?>
 			]
 			<?php } */ ?>

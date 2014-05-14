@@ -248,7 +248,7 @@ if($nbtotalmsg > 10) {
 			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html">
 			<?php echo $i?>
 			</a> 
-			<?	if($i!=$nbpage) echo ".";
+			<?php if($i!=$nbpage) echo ".";
 	} ?>
 			] </font>
 			<?php } ?>
@@ -455,7 +455,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
   </tr>
   		<tr> 
 		  <td colspan="2"> 
-			<?			
+			<?php
 			if(!$repaff) {
 				echo '<div align="center">' . facebook_libe_button('forum-football/' . $uri_begin . '.html', 450) . '</div><br /><br />';
 			}

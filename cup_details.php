@@ -217,7 +217,7 @@ foreach($matches as $id_match=>$match)
 	} else echo '-'; ?>
 	</td>
 	<td style="padding:0">
-	<?	
+	<?php
 	if($match->score != "R-R" && $nb_joueurs_tendance>0) { ?>
 	<table width="100%" cellpadding="2">
 		<tr>

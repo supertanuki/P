@@ -207,7 +207,7 @@ if($nbtotalmsg > 10) {
 			<a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo $ldeb>0?"page".$ldeb:""?>.html" class="link_orange">
 			<?php echo $i?>
 			</a> 
-			<?	if($i!=$nbpage) echo ".";
+			<?php if($i!=$nbpage) echo ".";
 	} ?>
 			]
 			<?php } ?>

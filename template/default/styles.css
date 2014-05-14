@@ -8,7 +8,7 @@ outline:none;
 body {
   font-family:Verdana, Arial, Helvetica, sans-serif;
   background: #ddd;
-  font-size:13px;
+  font-size:14px;
   padding:0;
   margin:0;
   }
@@ -489,27 +489,9 @@ h2 a:hover
 {
 	margin-left:auto;
 	margin-right:auto;
-	width:132px;
-}
-.profil_img_top
-{
-	background:url(profil_img_top.png) no-repeat;
-	height:7px;
-}
-.profil_img_left
-{
-	background:url(profil_img_left.png) left repeat-y;
-	padding-left:7px;
-}
-.profil_img_right
-{
-	background:url(profil_img_right.png) right repeat-y;
-	padding-right:7px;
-}
-.profil_img_bottom
-{
-	background:url(profil_img_bottom.png) no-repeat;
-	height:7px;
+	width:118px;
+	height:118px;
+    overflow: hidden;
 }
 
 .profil a
@@ -1004,4 +986,20 @@ input[type="text"]:focus
 {
     border: 1px solid orange;
     background: #fff;
+}
+
+.zoom {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.zoom:hover {
+    -moz-transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand',
+    M11=1.2, M12=-0, M21=0, M22=1.2);
 }
