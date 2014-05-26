@@ -1,11 +1,11 @@
 <?php
 /**
-* Project: PRONOPLUS
-* Description: Déconnexion de l'admin
-* Author: Richard HANNA <supertanuki@gmail.com>
-* Date: 2008-07-07
-* Version: 1.0
-*/
+ * Project: PRONOPLUS
+ * Description: Déconnexion de l'admin
+ * Author: Richard HANNA <supertanuki@gmail.com>
+ * Date: 2008-07-07
+ * Version: 1.0
+ */
 session_start();
 require_once('adminfunctions.php');
 $_SESSION[admin] = "";
@@ -13,7 +13,7 @@ $_SESSION[admin] = "";
 echo adminheader("Login", " onLoad=\"document.getElementById('login').focus()\"");
 ?>
 
-Vous êtes déconnecté !
+    Vous êtes déconnecté !
 
 
 <?php echo adminfooter(); ?>

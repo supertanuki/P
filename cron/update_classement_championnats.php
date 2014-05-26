@@ -40,59 +40,53 @@ for ($i = 1; $i <= 8; $i++) {
 }
 
 
-
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
 $idleague = 1;
-for($i=1; $i<=38; $i++)
-{
-	$idleq = $i+45018;
-	$url = str_replace('%ID%', $idleq, URL_RESULTAT);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url, $debug);
+for ($i = 1; $i <= 38; $i++) {
+    $idleq = $i + 45018;
+    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url, $debug);
 }
 
 
 // LIGUE 2
 echo "<li><b>LIGUE 2</b>";
 $idleague = 3;
-for($i=1; $i<=38; $i++)
-{
-	$idleq = $i+45056;
+for ($i = 1; $i <= 38; $i++) {
+    $idleq = $i + 45056;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url);
 }
 
 // Angleterre
 echo "<li><b>Angleterre</b>";
 $idleague = 2;
-for($i=1; $i<=38; $i++)
-{
-	$idleq = $i+45208;
+for ($i = 1; $i <= 38; $i++) {
+    $idleq = $i + 45208;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url);
 }
 
 // Allemagne
 echo "<li><b>Allemagne</b>";
 $idleague = 8;
-for($i=1; $i<=34; $i++)
-{
-	$idleq = $i+45389;
+for ($i = 1; $i <= 34; $i++) {
+    $idleq = $i + 45389;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url);
 }
 
 // Italie
 //http://www.lequipe.fr/Football/FootballResultat45867.html
 echo "<li><b>Italie</b>";
 $idleague = 10;
-for($i=1; $i<=38; $i++)
-{
-    $idleq = $i+45866;
+for ($i = 1; $i <= 38; $i++) {
+    $idleq = $i + 45866;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
@@ -101,12 +95,11 @@ for($i=1; $i<=38; $i++)
 // Espagne
 echo "<li><b>Espagne</b>";
 $idleague = 6;
-for($i=1; $i<=38; $i++)
-{
-	$idleq = $i+45610;
+for ($i = 1; $i <= 38; $i++) {
+    $idleq = $i + 45610;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url);
 }
 
 /*
@@ -161,13 +154,9 @@ for($i=1; $i<=8; $i++)
 // }
 
 
-
-
 echo "<li><b>FIN Extract !!!!</b>";
 
 maj_classements();
-
-
 
 
 // MISE A JOUR CLASSEMENTS
@@ -465,7 +454,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                     }
 
                     if (!$this_info_match['heure_match']) {
-                        $msg = "<li><strong>heure non trouvee</strong> (".$this_info_match['heure_match'].") pour $equipeDom - $equipeExt";
+                        $msg = "<li><strong>heure non trouvee</strong> (" . $this_info_match['heure_match'] . ") pour $equipeDom - $equipeExt";
                         if (!$debug) mail($email, 'Alerte Prono+', strip_tags($msg));
                         echo $msg;
 
@@ -496,9 +485,8 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
     }
 
 
-    if (!$debug)
-    {
-        if(!$info_matches['date_first_match'] || !$info_matches['date_last_match']) {
+    if (!$debug) {
+        if (!$info_matches['date_first_match'] || !$info_matches['date_last_match']) {
             echo "<li><b>$idleague / $numero_journee echoue : date_first_match ou date_last_match vide !</b></li>";
         } else {
 
