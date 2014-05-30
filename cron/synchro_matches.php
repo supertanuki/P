@@ -22,7 +22,7 @@ if (DB::isError($result)) {
 } else {
     $str = '';
     while ($pp_matches = $result->fetchRow()) {
-        //echo "<li>synchroniser_matches ".$pp_matches->id_matches;
+        echo "<li>synchroniser_matches ".$pp_matches->id_matches;
         synchroniser_matches($pp_matches->id_matches);
         $str .= $pp_matches->label . "\n";
     }
