@@ -342,7 +342,7 @@ pageheader("Pronostiquer ".formatDbData($pp_matches->label)." | Prono+", array('
 
 
 
-<style type="text/css" media="screen">@import url(template/default/pronostiquer.css?v=1.2);</style>
+<style type="text/css" media="screen">@import url(template/default/pronostiquer.css?v=1.3);</style>
 
 <div id="content_fullscreen">
 <?php
