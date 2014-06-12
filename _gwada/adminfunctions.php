@@ -590,7 +590,7 @@ function synchroniser_matches($id_matches)
 								`id_team_host`=" . $pp_info_match->id_team_host . ",
 								`id_team_visitor`=" . $pp_info_match->id_team_visitor . ",
 								`date_match`='" . $pp_info_match->date_match . "',
-								`score`='" . $pp_info_match->score . "',
+								".($pp_info_match->score ? "`score`='" . $pp_info_match->score . "'," : '')."
 								`penalties`='" . $pp_info_match->penalties . "'
 							WHERE `id_match`='" . $pp_match->id_match . "'";
                     $result_update = $db->query($SQL);

@@ -26,7 +26,7 @@ function pageheader($title, $options=false)
 <?php if($options[meta_keywords]) { ?><meta name="keywords" content="<?php echo $options[meta_keywords]; ?>"><?php } ?>
 
 
-<link rel="stylesheet" href="/template/default/styles.css?v=2.6" type="text/css" media="all" />
+<link rel="stylesheet" href="/template/default/styles.css?v=2.7" type="text/css" media="all" />
 
 <?php
 // sapin
@@ -60,10 +60,10 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	<div id="header_links">		
 		<ul>
 		<?php if(!$user) { ?>
-			<li class="header_link_grey"><a id="login_link" href="javascript:" onclick="SeConnecter(this);">Se connecter</a></li>
-			<li class="header_link_green" id="btn_inscrire"><a href="javascript:" onclick="Sinscrire(this);">S'inscrire</a></li>
+			<li class="header_link_orange"><a id="login_link" href="javascript:" onclick="SeConnecter(this);">Se connecter</a></li>
+			<li class="header_link_blue" id="btn_inscrire"><a href="javascript:" onclick="Sinscrire(this);">S'inscrire</a></li>
 		<?php } else {
-				echo "<li class=\"header_link_green\"><div style=\"display:block; width:150px; overflow:hidden; text-align:left; color:#fff\">";
+				echo "<li class=\"header_link_blue\"><div style=\"display:block; width:150px; overflow:hidden; text-align:left; color:#fff\">";
 
 				if($avatar = getAvatar($user->id_user, $user->avatar_key, $user->avatar_ext, 'small'))
 				{
@@ -92,7 +92,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 	<div class="logo">
         <a href="/" onfocus="if(this.blur()) this.blur();" style="float:left">PRONO+</a>
 
-        <?php if( date("Ymd") <= 20140713 ) { ?>
+        <?php /* if( date("Ymd") <= 20140713 ) { ?>
         <div style="border-radius:4px;float:right; text-indent:0; text-align:center; margin:10px 0; padding:10px 20px; background:#97af45">
             <div style="padding:4px 20px; background:#ffff00">
                 <a href="/agenda-football.php" style="border-radius:20px;float:none;width:auto;height:auto;background:#3aa0b6; color:#fff; text-decoration:none; padding:5px 20px">
@@ -100,7 +100,7 @@ if($_SERVER['REMOTE_ADDR'] == '127.0.0.1')
                 </a>
             </div>
         </div>
-        <?php } ?>
+        <?php } */ ?>
     </div>
 	<?php } ?>
 	
@@ -590,7 +590,7 @@ function getOnglets($onglet_actif = false)
 	// liste onglets
 	$onglets = array();
   
-	$onglets[] = array('id' => 'accueil', 'title' => 'Accueil', 'url' => '/', 'richcontent' => listGrillesEnCours() . '<br />'. listDerniersResultats());
+	$onglets[] = array('id' => 'accueil', 'title' => 'Prono+', 'url' => '/', 'richcontent' => listGrillesEnCours() . '<br />'. listDerniersResultats());
   
 	//$onglets[] = array('id' => 'euro2012', 'title' => '<i>Euro 2012</i>', 'url' => '/euro2012-diffusion-tele.php', 'alt' => 'Diffusion de l\'Euro 2012 à la télé');
 	
