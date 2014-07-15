@@ -26,7 +26,7 @@ function pageheader($title, $options=false)
 <?php if($options[meta_keywords]) { ?><meta name="keywords" content="<?php echo $options[meta_keywords]; ?>"><?php } ?>
 
 
-<link rel="stylesheet" href="/template/default/styles.css?v=2.7" type="text/css" media="all" />
+<link rel="stylesheet" href="/template/default/styles.css?v=2.8" type="text/css" media="all" />
 
 <?php
 // sapin
@@ -609,7 +609,7 @@ function getOnglets($onglet_actif = false)
   
   if($user) $onglets[] = array('id' => 'mes_recompenses', 'title' => 'Etoiles', 'url' => '/recompenses.php?q='.htmlspecialchars(urlencode($user->login)), 'alt' => 'Mes récompenses');
   
-  $onglets[] = array('id' => 'blog', 'title' => 'Blog', 'url' => '/blog/');
+  //$onglets[] = array('id' => 'blog', 'title' => 'Blog', 'url' => '/blog/');
   
   $onglets[] = array('id' => 'forum', 'title' => 'Forum', 'url' => '/forum-football/');
 	

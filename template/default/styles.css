@@ -8,13 +8,14 @@ img, div, h1, h2, h3, a {
 
 body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    /*background: #ddd;*/
+    background: #ddd;
     font-size: 14px;
     padding: 0;
     margin: 0;
+    /*
     background:#97AD45 url("brazil.png") no-repeat top;
     background-attachment: fixed;
-
+    */
 }
 
 th {
@@ -30,7 +31,7 @@ th {
 .logo a {
     width: 390px;
     height: 111px;
-    /*background: url(logo.png?v=2.5);*/
+    background: url(logo.png?v=2.5);
     background-repeat: no-repeat;
     display: block;
 }
