@@ -134,7 +134,7 @@ if ($_POST[supprimer_saison]) {
     $SQL = "TRUNCATE TABLE `pp_info_match`";
     $result = $db->query($SQL);
 
-    $SQL = "TRUNCATE TABLE `pp_info_matches`";
+    $SQL = "TRUNCATE TABLE `pp_info_match_note`";
     $result = $db->query($SQL);
 
     $SQL = "TRUNCATE TABLE `pp_info_matches`";
@@ -157,6 +157,9 @@ if ($_POST[supprimer_saison]) {
     $result = $db->query($SQL);
 
     $SQL = "TRUNCATE TABLE `pp_match_user_temp`";
+    $result = $db->query($SQL);
+
+    $SQL = "TRUNCATE TABLE `pp_team_class`";
     $result = $db->query($SQL);
 
     echo "<p class=\"info\">Données supprimées !</p>";
