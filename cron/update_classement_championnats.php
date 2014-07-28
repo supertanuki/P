@@ -29,28 +29,17 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 // DEBUT TRAITEMENT
 
-// CDM 2014
-echo "<li><b>CDM 2014</b>";
-$idleague = 7;
-for ($i = 1; $i <= 8; $i++) {
-    $idleq = $i + 5867;
-    $url = str_replace('%ID%', $idleq, URL_GROUPE);
-    echo "<li>$i";
-    extraction_info($idleague, $numero_journee = $i, $url, $debug);
-}
-
-
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
 $idleague = 1;
 for ($i = 1; $i <= 38; $i++) {
-    $idleq = $i + 45018;
+    $idleq = $i + 47990;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url, $debug);
 }
 
-
+/*
 // LIGUE 2
 echo "<li><b>LIGUE 2</b>";
 $idleague = 3;
@@ -60,33 +49,35 @@ for ($i = 1; $i <= 38; $i++) {
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
+*/
 
 // Angleterre
 echo "<li><b>Angleterre</b>";
 $idleague = 2;
 for ($i = 1; $i <= 38; $i++) {
-    $idleq = $i + 45208;
+    $idleq = $i + 48385;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
+
 
 // Allemagne
 echo "<li><b>Allemagne</b>";
 $idleague = 8;
 for ($i = 1; $i <= 34; $i++) {
-    $idleq = $i + 45389;
+    $idleq = $i + 48571;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
+
 // Italie
-//http://www.lequipe.fr/Football/FootballResultat45867.html
 echo "<li><b>Italie</b>";
 $idleague = 10;
 for ($i = 1; $i <= 38; $i++) {
-    $idleq = $i + 45866;
+    $idleq = $i + 49161;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
@@ -96,24 +87,12 @@ for ($i = 1; $i <= 38; $i++) {
 echo "<li><b>Espagne</b>";
 $idleague = 6;
 for ($i = 1; $i <= 38; $i++) {
-    $idleq = $i + 45610;
+    $idleq = $i + 48836;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
-/*
-// Coupe du monde 2014
-echo "<li><b>Coupe du monde 2014</b>";
-$idleague = 7;
-for($i=1; $i<=9; $i++)
-{
-	$idleq = $i+4715;
-    $url = str_replace('%ID%', $idleq, URL_GROUPE);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
-}
-*/
 
 /*
 // Coupe de la Ligue
@@ -392,9 +371,11 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                     if (count($equipeDom) == 2) {
                         $equipeDom = explode('</div>', $equipeDom[1], 2);
                         $equipeDom = explode('<span class="color">', $equipeDom[0], 2);
-                        //if ($debug) echo "<li>" . $equipeDom[0];
-                        $equipeDom = trim(strip_tags(str_replace(array('&nbsp;', '"'), array('', ''), $equipeDom[0])));
-                        //if ($debug) echo "<li>equipeDom =  #" . htmlspecialchars($equipeDom) . '#';
+                        if ($debug) echo "<li>" . $equipeDom[0];
+                        if ($debug) echo "<li>" . htmlspecialchars($equipeDom[0]);
+
+                        $equipeDom = trim(strip_tags(str_replace(array('&nbsp;', '"', '\''), array('', '', ''), $equipeDom[0])));
+                        if ($debug) echo "<li>equipeDom =  #" . htmlspecialchars($equipeDom) . '#';
 
                         if (strlen($equipeDom) < 2) {
                             $msg = "<li><strong>Problème Equipe domicile</strong> : $equipeDom / $url";
@@ -426,7 +407,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                         //if ($debug) echo "<li>2. " . $equipeExt[0] . " / " . strip_tags($equipeExt[0]);
                         //if ($debug) echo "<li>2.2. " . strip_tags(str_replace(array('&nbsp;', '"'), array('', ''), $equipeExt[0]));
 
-                        $equipeExt = trim(strip_tags(str_replace(array('&nbsp;', '"'), array('', ''), $equipeExt[0])));
+                        $equipeExt = trim(strip_tags(str_replace(array('&nbsp;', '"', '\''), array('', '', ''), $equipeExt[0])));
                         //if ($debug) echo "<li>3. $equipeExt";
                         //if ($debug) echo "<li>equipeExt =  #" . htmlspecialchars($equipeExt) . '#';
 
