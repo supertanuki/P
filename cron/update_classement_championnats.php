@@ -29,6 +29,7 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 // DEBUT TRAITEMENT
 
+
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
 $idleague = 1;
@@ -39,17 +40,17 @@ for ($i = 1; $i <= 38; $i++) {
     extraction_info($idleague, $numero_journee = $i, $url, $debug);
 }
 
-/*
 // LIGUE 2
 echo "<li><b>LIGUE 2</b>";
 $idleague = 3;
 for ($i = 1; $i <= 38; $i++) {
-    $idleq = $i + 45056;
+    $idleq = $i + 48028;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
-*/
+
+
 
 // Angleterre
 echo "<li><b>Angleterre</b>";
