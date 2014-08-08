@@ -299,8 +299,9 @@ function pp_comments_nb_afficher($url, $type, $id_type)
 	$nb_comments = pp_comments_nb($type, $id_type);
 	$nb_comments_new = pp_comments_nb($type, $id_type, $new=true);
 	$nb_comments_new_html = '';
+    $content = '';
 	if($nb_comments_new) $nb_comments_new_html = ' <span class="onglet_nb_msg_left"><span class="onglet_nb_msg_right">'.$nb_comments_new.'</span></span>';
-	$content = '<a href="'.$url.'" class="link_orange"><img src="/template/default/comment.gif" align="absmiddle" border="0" /> '. ($nb_comments > 0 ? $nb_comments.' commentaire'.($nb_comments > 1 ? 's' : '') : 'réagissez !') . $nb_comments_new_html . '</a>';
+    if($nb_comments > 0) $content = '<a href="'.$url.'" class="link_orange"><img src="/template/default/comment.gif" align="absmiddle" border="0" /> '. $nb_comments .' '. $nb_comments_new_html . '</a>';
 	return $content;
 }
 
