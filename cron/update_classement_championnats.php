@@ -29,6 +29,16 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 // DEBUT TRAITEMENT
 
+// Euro
+echo "<li><b>EURO</b>";
+$idleague = 7;
+for ($i = 1; $i <= 9; $i++) {
+    $idleq = $i + 5925;
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url, $debug);
+}
+return;
 
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
