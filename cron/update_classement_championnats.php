@@ -29,15 +29,6 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 // DEBUT TRAITEMENT
 
-// Euro
-echo "<li><b>EURO</b>";
-$idleague = 7;
-for ($i = 1; $i <= 9; $i++) {
-    $idleq = $i + 5925;
-    $url = str_replace('%ID%', $idleq, URL_GROUPE);
-    echo "<li>$i";
-    extraction_info($idleague, $numero_journee = $i, $url, $debug);
-}
 
 // LIGUE 1
 echo "<li><b>LIGUE 1</b>";
@@ -103,6 +94,40 @@ for ($i = 1; $i <= 38; $i++) {
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
+// Ligue des Champions
+echo "<li><b>Ligue des Champions</b>";
+$idleague = 4;
+for($i=1; $i<=8; $i++)
+{
+	$idleq = $i+6042;
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
+	echo "<li>$i";
+	extraction_info($idleague, $numero_journee = $i, $url);
+}
+
+
+// Euro
+echo "<li><b>EURO</b>";
+$idleague = 7;
+for ($i = 1; $i <= 9; $i++) {
+    $idleq = $i + 5925;
+    $url = str_replace('%ID%', $idleq, URL_GROUPE);
+    echo "<li>$i";
+    extraction_info($idleague, $numero_journee = $i, $url, $debug);
+}
+
+
+// Ligue Europa
+echo "<li><b>Ligue Europa</b>";
+$idleague = 5;
+for($i=1; $i<=12; $i++)
+{
+	 $idleq = $i+6058;
+	 $url = str_replace('%ID%', $idleq, URL_GROUPE);
+	 echo "<li>$i";
+	 extraction_info($idleague, $numero_journee = $i, $url);
+}
+
 
 /*
 // Coupe de la Ligue
@@ -117,19 +142,6 @@ for($i=1; $i<=5; $i++)
 }
 */
 
-/*
-// Ligue des Champions
-echo "<li><b>Ligue des Champions</b>";
-$idleague = 4;
-for($i=1; $i<=8; $i++)
-{
-	$idleq = $i+5573;
-    $url = str_replace('%ID%', $idleq, URL_GROUPE);
-	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
-}
-*/
-
 
 // Ligue Europa
 // echo "<li><b>Ligue Europa</b>";
@@ -137,7 +149,7 @@ for($i=1; $i<=8; $i++)
 // for($i=1; $i<=12; $i++)
 // {
 //	 $idleq = $i+5191;
-//	 $url = "http://www.lequipe.fr/Football/FootballResultatGroupe".$idleq.".html";
+//	 $url = str_replace('%ID%', $idleq, URL_GROUPE);
 //	 echo "<li>$i";
 //	 extraction_info($idleague, $numero_journee = $i, $url);
 // }
