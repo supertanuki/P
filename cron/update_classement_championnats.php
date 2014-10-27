@@ -128,31 +128,16 @@ for($i=1; $i<=12; $i++)
 	 extraction_info($idleague, $numero_journee = $i, $url);
 }
 
-
-/*
 // Coupe de la Ligue
 echo "<li><b>Coupe de la Ligue</b>";
 $idleague = 12;
 for($i=1; $i<=5; $i++)
 {
-    $idleq = $i+45523;
+    $idleq = $i+48222;
     $url = str_replace('%ID%', $idleq, URL_RESULTAT);
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
-*/
-
-
-// Ligue Europa
-// echo "<li><b>Ligue Europa</b>";
-// $idleague = 5;
-// for($i=1; $i<=12; $i++)
-// {
-//	 $idleq = $i+5191;
-//	 $url = str_replace('%ID%', $idleq, URL_GROUPE);
-//	 echo "<li>$i";
-//	 extraction_info($idleague, $numero_journee = $i, $url);
-// }
 
 
 echo "<li><b>FIN Extract !!!!</b>";
