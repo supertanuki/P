@@ -128,6 +128,7 @@ for($i=1; $i<=12; $i++)
 	 extraction_info($idleague, $numero_journee = $i, $url);
 }
 
+/*
 // Coupe de la Ligue
 echo "<li><b>Coupe de la Ligue</b>";
 $idleague = 12;
@@ -138,6 +139,7 @@ for($i=1; $i<=5; $i++)
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
+*/
 
 
 echo "<li><b>FIN Extract !!!!</b>";
