@@ -6,6 +6,10 @@
  * Date: 2008-08-14
  * Version: 1.0
  */
+
+require_once('acl.php');
+checkAccess();
+
 chdir(dirname(__FILE__));
 chdir('../');
 $_SERVER['DOCUMENT_ROOT'] = getcwd();

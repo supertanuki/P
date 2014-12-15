@@ -6,6 +6,10 @@
  * Date: 2009-01-03
  * Version: 1.0
  */
+
+require_once('acl.php');
+checkAccess();
+
 $url_rebuild_sitemap = "http://www.pronoplus.com/blog/?sm_command=build&sm_key=7f75fc785c7dd2cabe9adf5260249a93";
 
 chdir(dirname(__FILE__));

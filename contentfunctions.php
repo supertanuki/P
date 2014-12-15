@@ -28,15 +28,15 @@ function pageheader($title, $options = false)
             <meta name="keywords" content="<?php echo $options[meta_keywords]; ?>"><?php } ?>
 
 
-        <link rel="stylesheet" href="/template/default/styles.css?v=2.9" type="text/css" media="all"/>
+        <link rel="stylesheet" href="/template/default/styles.css?v=2.9.1" type="text/css" media="all"/>
 
         <?php
-        // sapin
-        if (date("m") == 12) {
+        // habillage de noel à partir du 10/12
+        if (date("md") >= 1210) {
             ?>
             <style>
-                .logo {
-                    background: url(/template/default/sapin.png) no-repeat 350px 0px;
+                .logo a {
+                    background: url('/template/default/logo-neige.png') !important;
                 }
             </style>
         <?php } ?>

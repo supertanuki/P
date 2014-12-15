@@ -8,9 +8,14 @@
  * Version: 1.0
  */
 
+require_once('acl.php');
+checkAccess();
+
+
 chdir(dirname(__FILE__));
 chdir('../');
 $_SERVER['DOCUMENT_ROOT'] = getcwd();
+
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/init.php');
 require_once($_SERVER['DOCUMENT_ROOT'] . '/mainfunctions.php');
@@ -28,6 +33,27 @@ $saison_en_cours = getConfig('saison_en_cours');
 
 
 // DEBUT TRAITEMENT
+
+
+// Coupe de la Ligue
+echo "<li><b>Coupe de la Ligue</b>";
+$idleague = 12;
+
+$idleq = 48223; // 16émes de finale
+$url = str_replace('%ID%', $idleq, URL_RESULTAT);
+extraction_info($idleague, 1, $url);
+
+$idleq = 48222; // 8émes de finale
+$url = str_replace('%ID%', $idleq, URL_RESULTAT);
+extraction_info($idleague, 2, $url);
+
+//for($i=1; $i<=1; $i++)
+//{
+//    $idleq = $i+48221;
+//    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
+//    echo "<li>$i";
+//    extraction_info($idleague, $numero_journee = $i, $url);
+//}
 
 
 // LIGUE 1
@@ -50,8 +76,6 @@ for ($i = 1; $i <= 38; $i++) {
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
-
-
 // Angleterre
 echo "<li><b>Angleterre</b>";
 $idleague = 2;
@@ -62,7 +86,6 @@ for ($i = 1; $i <= 38; $i++) {
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
-
 // Allemagne
 echo "<li><b>Allemagne</b>";
 $idleague = 8;
@@ -72,7 +95,6 @@ for ($i = 1; $i <= 34; $i++) {
     echo "<li>$i";
     extraction_info($idleague, $numero_journee = $i, $url);
 }
-
 
 // Italie
 echo "<li><b>Italie</b>";
@@ -94,6 +116,7 @@ for ($i = 1; $i <= 38; $i++) {
     extraction_info($idleague, $numero_journee = $i, $url);
 }
 
+/*
 // Ligue des Champions
 echo "<li><b>Ligue des Champions</b>";
 $idleague = 4;
@@ -102,9 +125,9 @@ for($i=1; $i<=8; $i++)
 	$idleq = $i+6042;
     $url = str_replace('%ID%', $idleq, URL_GROUPE);
 	echo "<li>$i";
-	extraction_info($idleague, $numero_journee = $i, $url);
+	extraction_info($idleague, $numero_journee = $i, $url, $debug=false);
 }
-
+*/
 
 // Euro
 echo "<li><b>EURO</b>";
@@ -113,10 +136,10 @@ for ($i = 1; $i <= 9; $i++) {
     $idleq = $i + 5925;
     $url = str_replace('%ID%', $idleq, URL_GROUPE);
     echo "<li>$i";
-    extraction_info($idleague, $numero_journee = $i, $url, $debug);
+    extraction_info($idleague, $numero_journee = $i, $url, $debug=false);
 }
 
-
+/*
 // Ligue Europa
 echo "<li><b>Ligue Europa</b>";
 $idleague = 5;
@@ -127,19 +150,8 @@ for($i=1; $i<=12; $i++)
 	 echo "<li>$i";
 	 extraction_info($idleague, $numero_journee = $i, $url);
 }
-
-/*
-// Coupe de la Ligue
-echo "<li><b>Coupe de la Ligue</b>";
-$idleague = 12;
-for($i=1; $i<=5; $i++)
-{
-    $idleq = $i+48222;
-    $url = str_replace('%ID%', $idleq, URL_RESULTAT);
-    echo "<li>$i";
-    extraction_info($idleague, $numero_journee = $i, $url);
-}
 */
+
 
 
 echo "<li><b>FIN Extract !!!!</b>";
@@ -157,7 +169,7 @@ function maj_classements()
     $result_league = $db->query($SQL);
     //echo "<li>$SQL";
     if (DB::isError($result_league)) {
-        die ("<li>ERROR : " . $result_league->getMessage());
+        die ("<li>ERROR : " . $result_league->getMessage() .'<br>'.$SQL);
 
     } else {
         while ($pp_league = $result_league->fetchRow()) {
@@ -191,7 +203,7 @@ function maj_classements()
             $result_info_matches = $db->query($SQL);
             //echo "<li>$SQL";
             if (DB::isError($result_info_matches)) {
-                die ("<li>ERROR : " . $result_info_matches->getMessage());
+                die ("<li>ERROR : " . $result_info_matches->getMessage() . "<li>$SQL");
 
             } else {
                 while ($pp_info_match = $result_info_matches->fetchRow()) {
@@ -239,15 +251,15 @@ function maj_classements()
                             AND saison = '" . $saison_en_cours . "'";
                 $result = $db->query($SQL);
                 //echo "<li>$SQL";
-                if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage());
+                if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
 
                 foreach ($arr_team as $id_team => $team) {
                     // insert
                     $SQL = "INSERT INTO pp_team_class(id_team, id_league, saison, nb_points, nb_matches, nb_won, nb_tie, nb_lost, nb_goals_for, nb_goals_against, date_update)
-                            VALUES('" . $id_team . "', '" . $pp_league->id_league . "', '" . $saison_en_cours . "', '" . ($team['nb_points'] + $pp_team[$id_team]->nb_points_sanction) . "', '" . $team['nb_matches'] . "', '" . $team['nb_won'] . "', '" . $team['nb_tie'] . "', '" . $team['nb_lost'] . "', '" . $team['nb_goals_for'] . "', '" . $team['nb_goals_against'] . "', NOW())";
+                            VALUES(" . $id_team*1 . ", " . $pp_league->id_league*1 . ", " . $saison_en_cours*1 . ", " . ($team['nb_points'] + $pp_team[$id_team]->nb_points_sanction)*1 . ", " . $team['nb_matches']*1 . ", " . $team['nb_won']*1 . ", " . $team['nb_tie']*1 . ", " . $team['nb_lost']*1 . ", " . $team['nb_goals_for']*1 . ", " . $team['nb_goals_against']*1 . ", NOW())";
                     $result = $db->query($SQL);
                     //echo "<li>$SQL";
-                    if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage());
+                    if (DB::isError($result)) die ("<li>ERROR : " . $result->getMessage() . "<li>$SQL");
                 }
             }
         }
@@ -333,13 +345,13 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                         $score = explode('</div>', $score[1], 2);
                         $score = strip_tags($score[0]);
                         // echo "<li>score = ".htmlspecialchars($score);
-                        if (preg_match('|([0-9]+)h([0-9]+)|i', $score, $matches)) {
+                        if (preg_match('|([0-9]{1,2})h([0-9]{2})|i', $score, $matches)) {
                             $this_info_match['heure_match'] = $matches[1] . ':' . $matches[2] . ':00';
                             // echo "<li>$numero_journee / heure_match = ".$this_info_match['heure_match']."</li>";
                         }
 
                         // ou est-ce un score ?
-                        if (preg_match('|([0-9]+) ?- ?([0-9]+)|i', $score, $matches)) {
+                        if (preg_match('|([0-9]) ?- ?([0-9])|i', $score, $matches)) {
                             $this_match['score'] = $matches[1] . '-' . $matches[2];
                             // echo "<li>$numero_journee / score = ".$this_match['score']."</li>";
                         }
@@ -352,7 +364,7 @@ function extraction_info($idleague, $numero_journee, $url, $debug = false)
                     if (count($heure) == 2) {
                         $heure = explode('</div>', $heure[1], 2);
                         $heure = strip_tags($heure[0]);
-                        if (preg_match('|([0-9]+)h([0-9]+)|i', $heure, $matches)) {
+                        if (preg_match('|([0-9]{1,2})h([0-9]{2})|i', $heure, $matches)) {
                             $this_info_match['heure_match'] = $matches[1] . ':' . $matches[2] . ':00';
                         }
                     }
