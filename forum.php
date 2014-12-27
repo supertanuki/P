@@ -1,6 +1,4 @@
 <?php
-die('Forum en maintenance... Merci de revenir dans quelques minutes...');
-
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
@@ -140,7 +138,7 @@ if($sendmsg && $message) {
 			}
 		} elseif($num_msg) {
 			// modification d'un message
-			$rs_msg=mysql_query("select * from forum where Nmsg=".mysql_real_escape_string($num_msg);
+			$rs_msg=mysql_query("select * from forum where Nmsg=".mysql_real_escape_string($num_msg));
 			$lmsg=mysql_fetch_array($rs_msg);
 			$datenow = strtotime("now");
 			if((($lmsg["datemsg"]+1800) > $datenow && $lmsg["id_user"]==$user->id_user) || $user->id_user==27) {
