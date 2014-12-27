@@ -107,19 +107,19 @@ $SQL = "SELECT forum.Nmsg, forum.Nquest, forum.datemsg,
 			INNER JOIN pp_user ON pp_user.id_user=forum.id_user
 			INNER JOIN forum_theme ON forum_theme.id_forum_theme=first_msg.id_forum_theme
 		WHERE 1 
-		".($_GET[user] ? " AND forum.id_user = '".$msg_user[id_user]."'" : "")."
-		".($_GET[id_forum_theme] ? " AND first_msg.id_forum_theme = '".$_GET[id_forum_theme]."'" : "");
+		".($_GET[user] ? " AND forum.id_user = '".mysql_real_escape_string($msg_user[id_user])."'" : "")."
+		".($_GET[id_forum_theme] ? " AND first_msg.id_forum_theme = '".mysql_real_escape_string($_GET[id_forum_theme])."'" : "");
 		
 if(trim($_GET[keywords]))
 {
-	$SQL .= " AND MATCH(forum.sujet, forum.message) AGAINST('".$_GET[keywords]."' IN BOOLEAN MODE) ";
+	$SQL .= " AND MATCH(forum.sujet, forum.message) AGAINST('".mysql_real_escape_string($_GET[keywords])."' IN BOOLEAN MODE) ";
 	foreach($tabkeywords as $word)
 	{
-		$SQL .= " AND (forum.sujet LIKE '%".$word."%' OR forum.message LIKE '%".$word."%') ";
+		$SQL .= " AND (forum.sujet LIKE '%".mysql_real_escape_string($word)."%' OR forum.message LIKE '%".mysql_real_escape_string($word)."%') ";
 	}
 }
 
-$SQL .= "ORDER BY datemsg DESC LIMIT ".$_GET[p].", 20";
+$SQL .= "ORDER BY datemsg DESC LIMIT ".mysql_real_escape_string($_GET[p]*1).", 20";
 
 //echo "<li>$SQL";
 
@@ -160,7 +160,7 @@ while($lmsg=mysql_fetch_assoc($resmsg))
 	if($lmsg["Nquest"])
 	{		
 		// nb de messages avant ce message ?
-		$resdermsg = mysql_query("select COUNT(Nmsg)+1 AS NBMSG from forum where (Nmsg=".$lmsg["Nquest"]." OR Nquest=".$lmsg["Nquest"].") AND datemsg < '".$lmsg["datemsg"]."'");
+		$resdermsg = mysql_query("select COUNT(Nmsg)+1 AS NBMSG from forum where (Nmsg=".mysql_real_escape_string($lmsg["Nquest"])." OR Nquest=".mysql_real_escape_string($lmsg["Nquest"]).") AND datemsg < '".mysql_real_escape_string($lmsg["datemsg"])."'");
 		$nbmsg = mysql_fetch_assoc($resdermsg);
 		$url = $lmsg["url"]."-".$lmsg["Nquest"].(ceil($nbmsg[NBMSG]/10)>1 ? "page".(ceil($nbmsg[NBMSG]/10)*10 - 10) : "").".html#mess".$lmsg["Nmsg"];
 		
@@ -186,14 +186,14 @@ while($lmsg=mysql_fetch_assoc($resmsg))
 						INNER JOIN pp_user ON pp_user.id_user=forum.id_user
 						INNER JOIN forum_theme ON forum_theme.id_forum_theme=first_msg.id_forum_theme
 					WHERE 1 
-					".($_GET[user] ? " AND forum.id_user = '".$msg_user[id_user]."'" : "")."
-					".($_GET[id_forum_theme] ? " AND first_msg.id_forum_theme = '".$_GET[id_forum_theme]."'" : "");
+					".($_GET[user] ? " AND forum.id_user = '".mysql_real_escape_string($msg_user[id_user])."'" : "")."
+					".($_GET[id_forum_theme] ? " AND first_msg.id_forum_theme = '".mysql_real_escape_string($_GET[id_forum_theme])."'" : "");
 			if(trim($_GET[keywords]))
 			{
-				$SQL .= " AND MATCH(forum.sujet, forum.message) AGAINST('".$_GET[keywords]."' IN BOOLEAN MODE) ";
+				$SQL .= " AND MATCH(forum.sujet, forum.message) AGAINST('".mysql_real_escape_string($_GET[keywords])."' IN BOOLEAN MODE) ";
 				foreach($tabkeywords as $word)
 				{
-					$SQL .= " AND (forum.sujet LIKE '%".$word."%' OR forum.message LIKE '%".$word."%') ";
+					$SQL .= " AND (forum.sujet LIKE '%".mysql_real_escape_string($word)."%' OR forum.message LIKE '%".mysql_real_escape_string($word)."%') ";
 				}
 			}
 			

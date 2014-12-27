@@ -30,13 +30,13 @@ if(($nmsg*1)==0 && ($sqldeb*1)!=0) $beginline = $sqldeb;
 	
 if($nmsg)
 {
-	$resmsg=mysql_query("select sujet, id_forum_theme from forum where Nmsg='$nmsg'");
+	$resmsg=mysql_query("select sujet, id_forum_theme from forum where Nmsg='".mysql_real_escape_string($nmsg)."'");
 	if($lmsg=mysql_fetch_assoc($resmsg))
 	{
 		$title = $lmsg[sujet]." | Forum football Prono+";
 		$title_page = $lmsg[sujet];
 		
-		$resmsg=mysql_query("SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` WHERE id_forum_theme='".$lmsg[id_forum_theme]."'");
+		$resmsg=mysql_query("SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` WHERE id_forum_theme='".mysql_real_escape_string($lmsg[id_forum_theme])."'");
 		if($theme=mysql_fetch_assoc($resmsg))
 		{
 			$title_theme = $theme["label"];
@@ -49,7 +49,7 @@ if($nmsg)
 	
 } else if($id_forum_theme)
 {
-	$resmsg=mysql_query("SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` WHERE id_forum_theme='".$id_forum_theme."'");
+	$resmsg=mysql_query("SELECT `id_forum_theme`, `label`, `description`, `url` FROM `forum_theme` WHERE id_forum_theme='".mysql_real_escape_string($id_forum_theme)."'");
 	if($theme=mysql_fetch_assoc($resmsg))
 	{
 		$title = $theme[label]." | Forum football Prono+";
@@ -122,7 +122,7 @@ function unselect_refresh()
 if($sendmsg && $message) {
 	// vrification dernier message post
 	$datedelai=strtotime("now")-10;
-	$res_msg=mysql_query("select Nmsg from forum where id_user='".$user->id_user."' and datemsg > $datedelai") or die("select Nmsg from forum where id_user=$user->id_user and datemsg > $datedelai");
+	$res_msg=mysql_query("select Nmsg from forum where id_user='".mysql_real_escape_string($user->id_user)."' and datemsg > ".mysql_real_escape_string($datedelai)) or die("select Nmsg from forum where id_user=$user->id_user and datemsg > $datedelai");
 	$nbmsg=mysql_num_rows($res_msg);
 	
 	if($user->id_user)
@@ -130,7 +130,7 @@ if($sendmsg && $message) {
 		if(!$nmsg  && !$nbmsg) {
 			// insertion d'un sujet
 			if($sujet) {
-       $sql = "insert into forum(id_user, id_forum_theme, sujet, message, url, datemsg, dateder) values('".$user->id_user."', '".$id_forum_theme."', '".($sujet)."', '".($message)."', '".toUrlRewriting($sujet)."', '".strtotime("now")."', '".strtotime("now")."')";
+       $sql = "insert into forum(id_user, id_forum_theme, sujet, message, url, datemsg, dateder) values('".mysql_real_escape_string($user->id_user)."', '".mysql_real_escape_string($id_forum_theme)."', '".mysql_real_escape_string($sujet)."', '".mysql_real_escape_string($message)."', '".mysql_real_escape_string(toUrlRewriting($sujet))."', '".strtotime("now")."', '".strtotime("now")."')";
 				mysql_query($sql);
         
 			} else {
@@ -138,11 +138,11 @@ if($sendmsg && $message) {
 			}
 		} elseif($num_msg) {
 			// modification d'un message
-			$rs_msg=mysql_query("select * from forum where Nmsg=$num_msg");
+			$rs_msg=mysql_query("select * from forum where Nmsg=".mysql_real_escape_string($num_msg);
 			$lmsg=mysql_fetch_array($rs_msg);
 			$datenow = strtotime("now");
 			if((($lmsg["datemsg"]+1800) > $datenow && $lmsg["id_user"]==$user->id_user) || $user->id_user==27) {
-				$SQL="update forum set message='".($message)."'".($sujet ? ", sujet='".($sujet)."'" : "")." where Nmsg=$num_msg";
+				$SQL="update forum set message='".mysql_real_escape_string($message)."'".($sujet ? ", sujet='".mysql_real_escape_string($sujet)."'" : "")." where Nmsg=".mysql_real_escape_string($num_msg);
 				mysql_query($SQL);
 				//echo "<li>$SQL";
 			} else {
@@ -154,8 +154,8 @@ if($sendmsg && $message) {
 			}
 		} elseif(!$nbmsg) {
 			// réponse à un sujet
-			mysql_query("insert into forum(Nquest, id_user, message, datemsg) values('$nmsg', '".$user->id_user."', '".($message)."', '".strtotime("now")."')");
-			mysql_query("update forum set dateder='".strtotime("now")."' where Nmsg='$nmsg'");
+			mysql_query("insert into forum(Nquest, id_user, message, datemsg) values('".mysql_real_escape_string($nmsg)."', '".mysql_real_escape_string($user->id_user)."', '".mysql_real_escape_string($message)."', '".strtotime("now")."')");
+			mysql_query("update forum set dateder='".strtotime("now")."' where Nmsg='".mysql_real_escape_string($nmsg)."'");
 		}
 	}
 		
@@ -167,15 +167,15 @@ if($sendmsg && $message) {
 		</script>
 		<?php
 	} else {
-		$resnbmsg = mysql_query("select Nmsg from forum where Nmsg='$nmsg' or Nquest='$nmsg'");
+		$resnbmsg = mysql_query("select Nmsg from forum where Nmsg='".mysql_real_escape_string($nmsg)."' or Nquest='".mysql_real_escape_string($nmsg)."'");
 		$nbmsg = mysql_num_rows($resnbmsg);
 		$sqldeb = ceil($nbmsg/10)*10-10;
 		if($sqldeb<0) $sqldeb=0;
 		
-		$resdermsg = mysql_query("select Nmsg from forum where id_user='".$user->id_user."' order by Nmsg desc");
+		$resdermsg = mysql_query("select Nmsg from forum where id_user='".mysql_real_escape_string($user->id_user)."' order by Nmsg desc");
 		$lmsg = mysql_fetch_row($resdermsg);
 		
-		$sujet = mysql_query("select * from forum where Nmsg='$nmsg'");
+		$sujet = mysql_query("select * from forum where Nmsg='".mysql_real_escape_string($nmsg)."'");
 		$rowsujet = mysql_fetch_assoc($sujet);
 		?>
 		<script language="javascript">
@@ -190,7 +190,7 @@ if(!$nmsg && $id_forum_theme) { ?>
 <h1 class="title_orange"><?php echo $title_page?></h1>
 <?php
 if(!$beginline) $beginline=0;
-$resmsg=mysql_query("SELECT * FROM forum WHERE Nquest=0 AND supp=0 AND id_forum_theme=$id_forum_theme ORDER BY dateder DESC LIMIT ".$beginline.",20");
+$resmsg=mysql_query("SELECT * FROM forum WHERE Nquest=0 AND supp=0 AND id_forum_theme=".mysql_real_escape_string($id_forum_theme)." ORDER BY dateder DESC LIMIT ".mysql_real_escape_string($beginline*1).",20");
 
 if(!mysql_num_rows($resmsg)) {
 ?>
@@ -216,7 +216,7 @@ if(!mysql_num_rows($resmsg)) {
 
 $color="aaaaaa";
 while($lmsg=mysql_fetch_array($resmsg)) {
-	$resrep=mysql_query("select Nmsg from forum where Nquest=".$lmsg["Nmsg"]);
+	$resrep=mysql_query("select Nmsg from forum where Nquest=".mysql_real_escape_string($lmsg["Nmsg"]*1));
 	if($color=="eeeeee") {
 		$color="ffffff";
 	} else {
@@ -233,7 +233,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 			?>&nbsp;<img src="/template/default/cadenas.gif" alt="Sujet bloqu&eacute;" border="0" align="absmiddle"><?php } ?>
 			</a><br />
 			<?php //pages
-$nbmsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]);
+$nbmsg=mysql_query("select Nmsg from forum where Nmsg=".mysql_real_escape_string($lmsg["Nmsg"])." or Nquest=".mysql_real_escape_string($lmsg["Nmsg"]));
 $nbtotalmsg=mysql_num_rows($nbmsg);
 $nbaff=10;
 
@@ -271,7 +271,7 @@ if($nbtotalmsg > 10) {
 	<?php echo formatdateheure($lmsg["dateder"])?></font>
 	</div></td>
 	<?php // dernier message du topic
-	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".$lmsg["Nmsg"]." or Nquest=".$lmsg["Nmsg"]." order by Nmsg desc");
+	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".mysql_real_escape_string($lmsg["Nmsg"])." or Nquest=".mysql_real_escape_string($lmsg["Nmsg"])." order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
 				<td width="23" valign="middle"><a href="/forum-football/<?php echo $lmsg["url"]?>-<?php echo $lmsg["Nmsg"]?><?php echo ($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?php echo $lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a></td>
@@ -290,7 +290,7 @@ if($nbtotalmsg > 10) {
 	  </table>
 	  <br>
 <?php
-$res_nb_sujets = mysql_query("select Nmsg from forum where Nquest=0 and supp=0 AND id_forum_theme='".$id_forum_theme."'");
+$res_nb_sujets = mysql_query("select Nmsg from forum where Nquest=0 and supp=0 AND id_forum_theme='".mysql_real_escape_string($id_forum_theme)."'");
 $NbTotal = mysql_num_rows($res_nb_sujets);
 
 $NBtoShow=20;
@@ -344,8 +344,8 @@ if($NbTotal>$NBtoShow)
 <?php } else if($nmsg) {
 
 
-mysql_query("update forum set nblu=nblu+1 where Nmsg=$nmsg") or die("");
-$resmsg=mysql_query("select * from forum where Nmsg=$nmsg") or die("");
+mysql_query("update forum set nblu=nblu+1 where Nmsg=".mysql_real_escape_string($nmsg)) or die("");
+$resmsg=mysql_query("select * from forum where Nmsg=".mysql_real_escape_string($nmsg)) or die("");
 if($lmsg=mysql_fetch_array($resmsg))
 {
 	$is_bloque=$lmsg["bloque"];
@@ -354,7 +354,7 @@ if($lmsg=mysql_fetch_array($resmsg))
 }
 
 	
-$resmsg=mysql_query("select Nmsg from forum where Nmsg=$nmsg or Nquest=$nmsg");
+$resmsg=mysql_query("select Nmsg from forum where Nmsg=".mysql_real_escape_string($nmsg)." or Nquest=".mysql_real_escape_string($nmsg));
 $nbtotalmsg=mysql_num_rows($resmsg);
 
 if($_GET[gotolast])
@@ -365,7 +365,7 @@ if($_GET[gotolast])
 
 if(!$sqldeb) $sqldeb=0;
 if($sqldeb>0) $repaff=1;
-$resmsg=mysql_query("select * from forum where Nmsg=$nmsg or Nquest=$nmsg order by datemsg limit $sqldeb,$nbaff");
+$resmsg=mysql_query("select * from forum where Nmsg=".mysql_real_escape_string($nmsg)." or Nquest=".mysql_real_escape_string($nmsg)." order by datemsg limit $sqldeb,$nbaff");
 ?>
 
 <h2 class="title_orange"><a href="/forum-football/<?php echo $uri_begin_theme?>"><?php echo $title_theme?></a></h2><br />
@@ -392,7 +392,7 @@ $resmsg=mysql_query("select * from forum where Nmsg=$nmsg or Nquest=$nmsg order 
   } ?>
   
 	<?php // dernier message du topic
-	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=$nmsg or Nquest=$nmsg order by Nmsg desc");
+	$resdermsg=mysql_query("select Nmsg from forum where Nmsg=".mysql_real_escape_string($nmsg)." or Nquest=".mysql_real_escape_string($nmsg)." order by Nmsg desc");
 	$lnmsg=mysql_fetch_row($resdermsg);
 	?>
 	<a href="/forum-football/<?php echo $uri_begin?><?php echo ($nbpage*10-10)>0?"page".($nbpage*10-10):""?>.html#mess<?php echo $lnmsg[0]?>"><img src="/template/default/last.gif" alt="Aller au dernier message" width="16" height="16" hspace="2" border="0" align="absmiddle"></a>
@@ -430,7 +430,7 @@ while($lmsg=mysql_fetch_array($resmsg)) {
 				<?php // nombre de message de l'utilisateur
 				if(!$nbmsguser[$lmsg["id_user"]])
 				{
-					$resdermsg=mysql_query("select COUNT(Nmsg) AS NBMSG from forum where id_user='".$lmsg["id_user"]."' AND supp=0");
+					$resdermsg=mysql_query("select COUNT(Nmsg) AS NBMSG from forum where id_user='".mysql_real_escape_string($lmsg["id_user"])."' AND supp=0");
 					$nbmsg=mysql_fetch_assoc($resdermsg);
 					$nbmsguser[$lmsg["id_user"]] = $nbmsg["NBMSG"];
 				}
@@ -567,7 +567,7 @@ $disabled_forum=true;
 			<?php
 			if($num_msg && $modifier)
 			{
-				$res_msg = mysql_query("select Nquest, id_forum_theme, sujet, message from forum where Nmsg=$num_msg");
+				$res_msg = mysql_query("select Nquest, id_forum_theme, sujet, message from forum where Nmsg=".mysql_real_escape_string($num_msg));
 				$message = mysql_fetch_object($res_msg);
 			}
 			?>
