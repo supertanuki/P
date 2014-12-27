@@ -1,4 +1,6 @@
 <?php
+die('Forum en maintenance... Merci de revenir dans quelques minutes...');
+
 require_once('init.php');
 require_once('mainfunctions.php');
 require_once('contentfunctions.php');
