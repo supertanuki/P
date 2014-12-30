@@ -35,6 +35,16 @@ $saison_en_cours = getConfig('saison_en_cours');
 // DEBUT TRAITEMENT
 
 
+// Coupe de France
+echo "<li><b>Coupe de France</b>";
+$idleague = 11;
+
+$idleq = 48228; // 32è de finale
+$url = str_replace('%ID%', $idleq, URL_RESULTAT);
+extraction_info($idleague, 1, $url);
+
+
+
 // Coupe de la Ligue
 echo "<li><b>Coupe de la Ligue</b>";
 $idleague = 12;
@@ -46,6 +56,8 @@ extraction_info($idleague, 1, $url);
 $idleq = 48222; // 8émes de finale
 $url = str_replace('%ID%', $idleq, URL_RESULTAT);
 extraction_info($idleague, 2, $url);
+
+
 
 //for($i=1; $i<=1; $i++)
 //{
