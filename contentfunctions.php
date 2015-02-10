@@ -746,7 +746,7 @@ function getContentLeft()
 
                 if (!$user->id_user) {
                     $content = '
-					<p>Jouer à Prono+ c\'est simple :<br />tu as droit à <b>10 points pour chaque match d\'une grille</b> que tu réparties en mises sur tous les matchs de la grille (de 5 à 50 points par match), tu pronostiques les scores et tu gagnes :<br />					
+					<p>Jouer à Prono+ c\'est simple :<br />tu as droit à <b>10 points pour chaque match d\'une grille</b> que tu répartis en mises sur tous les matchs de la grille (de 5 à 50 points par match), tu pronostiques les scores et tu gagnes :<br />					
 					- <b>10 fois ta mise</b> si le score du match est le bon<br />
 					- <b>3 fois ta mise</b> si le résultat du match est le bon (gagné, perdu, nul)<br />					
 					- et tu perds ta mise si le résultat du match n\'est pas le bon<br />
