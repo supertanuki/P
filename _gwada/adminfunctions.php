@@ -68,7 +68,7 @@ function AdminName($admin_user)
     return "<fieldset class=\"adminmenu\">
 					<legend>Bienvenue " . formatDbData($admin_user->firstname . " " . $admin_user->lastname) . " | <a href=\"logout.php\">Se déconnecter</a></legend>
 					<p>Grilles &gt; <a href=\"matches_add.php\">Ajouter</a> | <a href=\"matches_list.php\">Modifier / Calculer</a><br />
-					Matchs &gt; <a href=\"info_matches.php\">Gérer</a><br />
+					Matchs &gt; <a href=\"info_matches.php\">Gérer</a> | <a href=\"matches_cron.php\">Cron</a><br />
 					Coupe &gt; <a href=\"cup.php\">Gérer</a><br />
 					Clubs / équipes &gt; <a href=\"team.php\">Gérer</a><br />
 					Newsletter &gt; <a href=\"newsletter_send.php\">Gérer</a><br />
