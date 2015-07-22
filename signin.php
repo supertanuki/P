@@ -87,10 +87,10 @@ if($_POST[action] == "signin")
 	$SQL = "INSERT INTO `pp_user`(`id_lang`, `login`, `urlprofil`, `pwd`, `email`, `timezone`, `register_date`)
 			VALUES(1, '".$db->escapeSimple($_POST[login])."', '".$db->escapeSimple($_POST[login])."', '".$db->escapeSimple($_POST[pwd])."', '".$db->escapeSimple($_POST[email])."', '".$db->escapeSimple($_POST[fuseau])."', NOW())";
 	$result = $db->query($SQL);
-	if(DB::isError($result)) die ("{'response':400, 'msg':'".$result->getMessage()."'}");
+	if(DB::isError($result)) die ("{'response':400, 'msg':'oh oh! ".$result->errorMessage()."'}");
 	
 	
-	sendemail('supertanuki@gmail.com', 'Liline de Prono+', 'noreply@pronoplus.com', 'Prono+ New user : '.$_POST[login], 'Prono+ New user : '.$_POST[login].' / '.$_POST[email]);
+	// sendemail('supertanuki@gmail.com', 'Liline de Prono+', 'noreply@pronoplus.com', 'Prono+ New user : '.$_POST[login], 'Prono+ New user : '.$_POST[login].' / '.$_POST[email]);
 	
 	
 	if($user = setUser($_POST[login], $_POST[pwd]))
@@ -100,4 +100,3 @@ if($_POST[action] == "signin")
 		echo "{'response':400, 'msg':'Impossible de se connecter !'}";
 	}
 }
-?>
