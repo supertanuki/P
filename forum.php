@@ -550,13 +550,26 @@ if(!$nmsg && !$modifier) {
 	$titre_cadre="Répondre au sujet";
 }
 echo "<div class=\"popup\"><h2 class=\"title_orange\">$titre_cadre</h2></div>";
-		
 
-if(!$user->id_user) {
-$disabled_forum=true;
+// Disallow forum posting during 24h after signup
+if ($user->id_user) {
+    $now = new DateTime();
+    $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user->register_date);
+    $register_date->add(new DateInterval('P1D'));
+}
+
+if (!$user->id_user) {
+    $disabled_forum=true;
+    ?>
+    <p align="center"><br /><strong>Vous devez vous enregistrer pour écrire sur le forum de discussion.<br />Vous pouvez <a href="javascript:"; onclick="SeConnecter(this);">vous inscrire en quelques secondes</a>.</strong><br /><br /></p>
+<?php
+} elseif ($user->id_user && $register_date > $now) {
+    $disabled_forum=true;
+    ?>
+    <p align="center"><br /><strong>Tu es nouveau ! Tu auras accès au forum dans très peu de temps ! Merci pour ta patience !</strong></p>
+<?php
+} else {
 ?>
-<p align="center"><br /><strong>Vous devez vous enregistrer pour écrire sur le forum de discussion.<br />Vous pouvez <a href="javascript:"; onclick="SeConnecter(this);">vous inscrire en quelques secondes</a>.</strong><br /><br /></p>
-<?php } else { ?>
 	<form name="envoyer_msg" method="post" action="/forum.php">
 
 		<table width="100%" border="0" cellspacing="1" cellpadding="2">
